@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xsi:schemaLocation="
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-3.0.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd
+		http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-3.0.xsd">
+
+	<bean class="org.springframework.web.servlet.mvc.annotation.DefaultAnnotationHandlerMapping"/>
+	<bean class="org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter">
+		<property name="webBindingInitializer">
+			<bean class="org.springframework.web.bind.support.ConfigurableWebBindingInitializer">
+				<property name="conversionService">
+					<bean class="org.springframework.format.support.FormattingConversionServiceFactoryBean"/>
+				</property>
+			</bean>
+		</property>
+		<property name="messageConverters">
+			<list>
+				<bean class="org.springframework.http.converter.StringHttpMessageConverter">
+					<property name="supportedMediaTypes" value="text/plain"/>
+					<property name="writeAcceptCharset" value="false"/>
+				</bean>
+				<bean class="org.springframework.http.converter.FormHttpMessageConverter"/>
+			</list>
+		</property>
+	</bean>
+
+	<bean class="org.springframework.web.servlet.view.ContentNegotiatingViewResolver" >
+		<property name="order" value="0"/>
+		<property name="ignoreAcceptHeader" value="true"/>
+		<property name="favorParameter" value="true"/>
+		<property name="parameterName" value="_format"/>
+		<property name="defaultContentType" value="text/html"/>
+		<property name="mediaTypes">
+			<map>
+				<entry key="json" value="application/json"/>
+			</map>
+		</property>
+		<property name="defaultViews">
+			<list>
+				<ref bean="jacksonJsonView"/>
+			</list>
+		</property>
+		<property name="viewResolvers">
+			<list>
+				<bean class="org.springframework.web.servlet.view.BeanNameViewResolver"/>
+			</list>
+		</property>
+	</bean>
+	
+	<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<property name="order" value="1"/>
+		<property name="prefix" value="/WEB-INF/views/"/>
+		<property name="suffix" value=".jsp"/>
+	</bean>
+
+	<bean id="jacksonJsonView" class="com.easybuy.common.JacksonJsonView">
+		<property name="modelKey" value="_model"/>
+		<property name="contentType" value="application/json"/>
+		<property name="objectMapper" ref="jacksonJsonObjectMapper"/>
+	</bean>
+
+	<!-- <bean name="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+		<property name="maxUploadSize" value="20000000"/>
+	</bean> -->
+
+	<bean id="jacksonJsonObjectMapper" class="org.codehaus.jackson.map.ObjectMapper"/>
+	<bean class="com.easybuy.common.ObjectMapperInitializer">
+		<property name="objectMapper" ref="jacksonJsonObjectMapper"/>
+		<property name="dateFormat" value="yyyy-MM-dd HH:mm:ss"/>
+		<property name="genericSerializers">
+			<map>
+				<entry key="com.easybuy.common.JSONRawValue" value-ref="jsonRawValueSerializer"/>
+				<entry key="org.json.JSONObject" value-ref="jsonObjectSerializer"/>
+				<entry key="org.json.JSONArray" value-ref="jsonArraySerializer"/>
+			</map>
+		</property>
+	</bean>
+	<bean id="jsonRawValueSerializer" class="com.easybuy.common.JSONRawValueSerializer"/>
+	<bean id="jsonObjectSerializer" class="com.easybuy.common.JSONObjectSerializer"/>
+	<bean id="jsonArraySerializer" class="com.easybuy.common.JSONArraySerializer"/>
+	
+
+	<context:component-scan base-package="com.easybuy.common"/>
+	<context:component-scan base-package="com.easybuy.login"/>
+	<context:component-scan base-package="com.easybuy.logout"/>
+	<context:component-scan base-package="com.easybuy.registration"/>
+	<context:component-scan base-package="com.easybuy.message"/>
+	<context:component-scan base-package="com.easybuy.product"/>
+	<context:component-scan base-package="com.easybuy.wishlist"/>
+	<context:component-scan base-package="com.easybuy.shopcart"/>
+	<context:component-scan base-package="com.easybuy.order"/>
+	<context:component-scan base-package="com.easybuy.user"/>
+
+	<mvc:resources location="/css/" mapping="/css/**"/>
+	<mvc:resources location="/images/" mapping="/images/**"/>
+	<mvc:resources location="/js/" mapping="/js/**"/>
+
+	<mvc:interceptors>
+		
+		<mvc:interceptor>
+			<mvc:mapping path="/shopcart/**"/>
+			<mvc:mapping path="/wishlist/**"/>
+			<mvc:mapping path="/order/**"/>
+			<mvc:mapping path="/message/**"/>
+			<mvc:mapping path="/product/edit/**"/>
+			<mvc:mapping path="/user/**"/>
+			<mvc:mapping path="/main/**"/>
+			<bean class="com.easybuy.common.AdminInterceptor" p:loginURI="/login"/>
+		</mvc:interceptor>
+		<!---->
+	</mvc:interceptors>
+
+</beans>
