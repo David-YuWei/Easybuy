@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="user.seller">
+	
+	<select id="selectListCount" resultType="integer">
+		select count(1) from seller
+	</select>
+	
+	<select id="selectList" resultType="com.easybuy.user.domain.Seller">
+		select user_name,first_name,middle_name,last_name,email_id,address,phone_number,routing_number,account_number,status 
+		from seller 
+		<if test="firstResult != null">
+			limit #{firstResult}
+			<if test="maxResult != null">, #{maxResult}
+			</if>
+		</if>
+	</select>
+	
+	<select id="selectById" resultType="com.easybuy.user.domain.Seller">
+		select user_name,first_name,middle_name,last_name,email_id,address,phone_number,routing_number,account_number,status 
+		from seller
+		where user_name = #{user_name} 
+	</select>
+	
+</mapper>

@@ -16,13 +16,14 @@ import com.easybuy.common.Pager;
 import com.easybuy.user.domain.Admin;
 import com.easybuy.user.domain.Buyer;
 import com.easybuy.user.domain.Seller;
+import com.easybuy.user.domain.User;
 
 @Service("user:userService")
 public class UserService {
 
 	private static final String REQUEST_ATTR_USERNAME = "user";
-	@Resource(name = "user:buyerDAO")
-	private BuyerDAO buyerDAO;
+	@Resource(name = "user:userDAO")
+	private UserDAO userDAO;
 	
 	public UserService() {
 	}
@@ -40,13 +41,20 @@ public class UserService {
 		HttpSession session = request.getSession();
 		session.invalidate();
 		//check user in database
-		boolean result = buyerDAO.checkExistByUsernameAndPassword(username, password);
-		if(result){
+		String result = userDAO.checkExistByUsernameAndPassword(username, password);
+		if(result !=null){
 			session = request.getSession();
-			Buyer buyer = new Buyer();
-			buyer.setUser_name(username);
-			//todo
-			session.setAttribute("user", buyer);
+			User user = null;
+			if(result.equals("buyer")){
+				user = userDAO.getBuyerById(username);
+			}
+			else if(result.equals("seller")){
+				user = userDAO.getSellerById(username);
+			}
+			else{
+				user = userDAO.getAdminById(username);
+			}
+			session.setAttribute("user", user);
 			return "success";
 		}
 		else{
@@ -55,7 +63,7 @@ public class UserService {
 	}
 	
 	public List<Buyer> getBuyerList(Pager pager){
-		List<Buyer> buyers= buyerDAO.getBuyerList(pager);
+		List<Buyer> buyers= userDAO.getBuyerList(pager);
 		if(buyers !=null){
 			for(Buyer br:buyers){
 				//translates value of the attribute to practical meaning
