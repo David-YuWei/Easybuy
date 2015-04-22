@@ -2,7 +2,7 @@
 <div class='navigate'>
 <ul>
 <% 
-	Object user = session.getAttribute("user");
+	User user = (User) session.getAttribute("user");
 	if(user == null){
 %>
 	<li><a href='/Easybuy/login'>Sign in</a></li>
@@ -17,7 +17,7 @@
 	else if(user instanceof Buyer){
 		String user_name = ((Buyer)user).getUser_name();
 %>
-		<li><a href='/Easybuy/login'>hello, <%= user_name %></a></li>
+		<li><a href='/Easybuy/user/buyer/profile'>hello, <%= user_name %></a></li>
 		<li><a href='/Easybuy/logout'>Sign out</a></li>
 		<li><a href='/Easybuy/message/'>Message</a></li>
 		<li class="right"><a href='/Easybuy/order/'>Order</a></li>
@@ -29,7 +29,7 @@
 	else if(user instanceof Seller){
 		String user_name = ((Seller)user).getUser_name();
 %>
-		<li><a href='/Easybuy/login'>hello, <%= user_name %></a></li>
+		<li><a href='/Easybuy/user/seller/profile'>hello, <%= user_name %></a></li>
 		<li><a href='/Easybuy/logout'>Sign out</a></li>
 		<li><a href='/Easybuy/product/sellerProducts'>My products</a></li>
 		<li><a href='/Easybuy/message/'>Message</a></li>
@@ -40,7 +40,7 @@
 	else {
 		String user_name = ((Admin)user).getUser_name();
 %>
-		<li><a href='/Easybuy/login'>hello, <%= user_name %></a></li>
+		<li><a href='/Easybuy/user/admin/profile'>hello, <%= user_name %></a></li>
 		<li><a href='/Easybuy/logout'>Sign out</a></li>
 		<li><a href='/Easybuy/message/'>Message</a></li>
 		<li class="right"><a href='/Easybuy/user/'>User</a></li>
