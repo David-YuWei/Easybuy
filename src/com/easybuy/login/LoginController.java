@@ -53,7 +53,7 @@ public class LoginController {
 			} else {
 				String msg = userService.checkUser(request,username,password);
 				if (msg.equals("success")) {
-					mav.setViewName("redirect:/main");
+					mav.setViewName("redirect:/");
 				} else {
 					mav.addObject("url", url);
 					mav.addObject("msg", msg);

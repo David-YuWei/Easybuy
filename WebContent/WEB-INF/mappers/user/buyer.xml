@@ -4,13 +4,6 @@
 
 <mapper namespace="user.buyer">
 	
-	<select id="selectCountByUsernameAndPassword" resultType="integer">
-		select count(1) from buyer 
-		where user_name = #{username} 
-		and password = #{password}
-		and status = 1
-	</select>
-	
 	<select id="selectListCount" resultType="integer">
 		select count(1) from buyer
 		where status = 1
@@ -24,6 +17,12 @@
 			<if test="maxResult != null">, #{maxResult}
 			</if>
 		</if>
+	</select>
+	
+	<select id="selectById" resultType="com.easybuy.user.domain.Buyer">
+		select user_name,first_name,middle_name,last_name,email_id,address,phone_number,status 
+		from buyer
+		where user_name = #{user_name} 
 	</select>
 	
 	<delete id="delete">
