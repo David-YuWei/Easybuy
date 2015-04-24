@@ -62,6 +62,31 @@ public class UserService {
 		}
 	}
 	
+	public String getBuyerById(HttpServletRequest request, String username){
+		HttpSession session = request.getSession();
+		session.invalidate();
+		//check user in database
+		String result = userDAO.viewBuyer(username);
+		if(result !=null){
+			session = request.getSession();
+			User user = null;
+			if(result.equals("buyer")){
+				user = userDAO.getBuyerById(username);
+			}
+			else if(result.equals("seller")){
+				user = userDAO.getSellerById(username);
+			}
+			else{
+				user = userDAO.getAdminById(username);
+			}
+			session.setAttribute("user", user);
+			return "success";
+		}
+		else{
+			return "incorrect username or password";
+		}
+	}
+	
 	public List<Buyer> getBuyerList(Pager pager){
 		List<Buyer> buyers= userDAO.getBuyerList(pager);
 		if(buyers !=null){
@@ -71,6 +96,17 @@ public class UserService {
 		}
 		return buyers;
 	}
+	
+	public List<Seller> getSellerList(Pager pager){
+		List<Seller> sellers= userDAO.getSellerList(pager);
+		if(sellers !=null){
+			for(Seller br:sellers){
+				//translates value of the attribute to practical meaning
+			}
+		}
+		return sellers;
+	}
+
 
 	public void insertBuyer(Buyer buyer) throws Exception{
 		

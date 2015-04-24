@@ -81,6 +81,19 @@ public class UserDAO {
 			return result.get(0).getType();
 		}
 	}
+	
+	public String viewBuyer(String username){
+		Map<String, Object> props = new HashMap<String, Object>();
+		props.put("username", username);
+		
+		List<UserType> result = (List<UserType>) sqlSessionTemplate.selectList("user.selectCountByUsernameAndPassword", props);
+		if (result ==null || result.size() == 0) {
+			return null;
+		} else {
+			return result.get(0).getType();
+		}
+	}
+
 
 	public void deleteBuyer(String id) {
 		sqlSessionTemplate.delete("user.buyer.delete", id);
