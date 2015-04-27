@@ -12,7 +12,7 @@ var initTmpls = function(){
 }
 
 var searchList = function(option){
-	$.getJSON('/Easybuy/user/buyer/list?_format=json', option, function(r){
+	$.getJSON('/Easybuy/user/buyer/list?_format=json', lastOption, function(r){
 		if(r.status == 'success'){
 			$('#list-table').find('> tbody > tr:gt(0)').remove();
 			$('#list-table').append($.tmpl('list',{list:r.list}));
@@ -45,7 +45,7 @@ var create = function(){
 }
 
 var del = function(user_name){
-	if(confirm('are you sure you want to delete this data?')){
+	if(confirm('are you sure you want to delete this user?')){
 		$.post('/Easybuy/user/buyer/delete.json?_decode=UTF-8', {
 			user_name: user_name
 		}, function(r){

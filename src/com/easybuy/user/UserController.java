@@ -18,6 +18,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.easybuy.common.Pager;
 import com.easybuy.user.domain.Buyer;
+import com.easybuy.user.domain.Seller;
 
 
 @Controller("userController")
@@ -57,6 +58,20 @@ public class UserController {
 			return mav;
 		}
 	}
+	
+	@RequestMapping(value = "/seller", method = {RequestMethod.GET, RequestMethod.POST})
+	public ModelAndView toseller(HttpServletRequest request, HttpServletResponse response) throws ServletException {
+		ModelAndView mav = new ModelAndView();
+		try {
+			
+			mav.setViewName("/user/userList_seller");
+					
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			return mav;
+		}
+	}
 
 	@RequestMapping(value = "/buyer/list", method = {RequestMethod.GET})
 	public ModelAndView buyerList(HttpServletRequest request, HttpServletResponse response,
@@ -79,4 +94,75 @@ public class UserController {
 		return mav;
 	}
 	
+	@RequestMapping(value = "/seller/list", method = {RequestMethod.GET})
+	public ModelAndView sellerList(HttpServletRequest request, HttpServletResponse response,
+			@RequestParam(value = "page", required = false, defaultValue = "#{1}") Integer page,
+			@RequestParam(value = "pageSize", required = false, defaultValue = "#{20}") Integer pageSize) throws ServletException {
+		ModelAndView mav = new ModelAndView();
+		Map<String, Object> model = new LinkedHashMap<String, Object>();
+		try {
+			Pager pager = new Pager(page, pageSize > 50 ? 50 : pageSize);
+			List<Seller> list = userService.getSellerList(pager);
+			model.put("status", "success");
+			model.put("pager", pager);
+			model.put("list", list);
+		} catch (Exception e) {
+			model.put("status", "error");
+			e.printStackTrace();
+		} finally {
+			mav.addObject("_model", model);
+		}
+		return mav;
+	}
+	
+	@RequestMapping(value = "/buyer/delete", method = {RequestMethod.GET, RequestMethod.POST})
+	public ModelAndView delete(HttpServletRequest request, HttpServletResponse response,
+			@RequestParam(value = "user_name", required = true) String username) throws ServletException {
+		ModelAndView mav = new ModelAndView();
+		Map<String, Object> model = new LinkedHashMap<String, Object>();
+		try {
+			userService.deleteBuyer(username);
+			model.put("status", "success");
+		} catch (Exception e) {
+			model.put("status", "error");
+			e.printStackTrace();
+		} finally {
+			mav.addObject("_model", model);
+		}
+		return mav;
+	}
+	
+	@RequestMapping(value = "/seller/approve", method = {RequestMethod.GET, RequestMethod.POST})
+	public ModelAndView approve(HttpServletRequest request, HttpServletResponse response,
+			@RequestParam(value = "user_name", required = true) String username) throws ServletException {
+		ModelAndView mav = new ModelAndView();
+		Map<String, Object> model = new LinkedHashMap<String, Object>();
+		try {
+			userService.approveSeller(username);
+			model.put("status", "success");
+		} catch (Exception e) {
+			model.put("status", "error");
+			e.printStackTrace();
+		} finally {
+			mav.addObject("_model", model);
+		}
+		return mav;
+	}
+	
+	@RequestMapping(value = "/seller/decline", method = {RequestMethod.GET, RequestMethod.POST})
+	public ModelAndView decline(HttpServletRequest request, HttpServletResponse response,
+			@RequestParam(value = "user_name", required = true) String username) throws ServletException {
+		ModelAndView mav = new ModelAndView();
+		Map<String, Object> model = new LinkedHashMap<String, Object>();
+		try {
+			userService.declineSeller(username);
+			model.put("status", "success");
+		} catch (Exception e) {
+			model.put("status", "error");
+			e.printStackTrace();
+		} finally {
+			mav.addObject("_model", model);
+		}
+		return mav;
+	}
 }

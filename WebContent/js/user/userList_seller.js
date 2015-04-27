@@ -12,10 +12,10 @@ var initTmpls = function(){
 }
 
 var searchList = function(option){
-	$.getJSON('/Easybuy/wishlist/list?_format=json', option, function(r){
+	$.getJSON('/Easybuy/user/seller/list?_format=json', lastOption, function(r){
 		if(r.status == 'success'){
-			$('#wishlist').html('');
-			$('#wishlist').append($.tmpl('list',{list:r.list}));
+			$('#list-table').find('> tbody > tr:gt(0)').remove();
+			$('#list-table').append($.tmpl('list',{list:r.list}));
 			var pageinfo = {
 					pager: r.pager,
 					pages: []
@@ -40,10 +40,14 @@ var gotopage = function(page, pageSize){
 	searchList(lastOption);
 }
 
-var del = function(product_id){
-	if(confirm('are you sure you want to delete this data?')){
-		$.post('/Easybuy/wishlist/deleteItem.json?_decode=UTF-8', {
-			product_id: product_id
+var create = function(){
+	edit();
+}
+
+var approve = function(user_name){
+	if(confirm('are you sure you want to approve this seller?')){
+		$.post('/Easybuy/user/seller/approve.json?_decode=UTF-8', {
+			user_name: user_name
 		}, function(r){
 			if(r.status == 'success'){
 				searchList();
@@ -52,15 +56,14 @@ var del = function(product_id){
 	}
 }
 
-
-var add2cart = function(){
-	lastOption.product_id = $('#product_id').val();
-	$.getJSON('/Easybuy/product/add2cart?_format=json', lastOption, function(r){
-		if(r.redirect){
-			window.location.replace("/Easybuy"+r.url);
-		}
-		else if(r.status == 'success'){
-			$('#message').html('added to cart');
-		}
-	});
+var decline = function(user_name){
+	if(confirm('are you sure you want to decline this seller?')){
+		$.post('/Easybuy/user/seller/decline.json?_decode=UTF-8', {
+			user_name: user_name
+		}, function(r){
+			if(r.status == 'success'){
+				searchList();
+			}
+		}, 'json');
+	}
 }
