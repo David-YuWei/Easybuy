@@ -32,9 +32,9 @@ public class UserService {
 		return request.getSession();
 	}
 	
-	public Object getUser(HttpServletRequest request) {
+	public User getUser(HttpServletRequest request) {
 		HttpSession session = request.getSession();
-		return session.getAttribute(REQUEST_ATTR_USERNAME);
+		return (User)session.getAttribute(REQUEST_ATTR_USERNAME);
 	}
 	
 	public String checkUser(HttpServletRequest request, String username, String password){
@@ -97,7 +97,6 @@ public class UserService {
 		return sellers;
 	}
 
-
 	public void insertBuyer(Buyer buyer) throws Exception{
 		
 	}
@@ -115,19 +114,6 @@ public class UserService {
 	}
 	
 	public void updateBuyer(Buyer buyer) throws Exception{
-		
-	}
-	
-	public List<Buyer> searchBuyerList(){
-		return null;
-	}
-	
-	public Buyer searchBuyerById(String id){
-		return null;
-	}
-	
-	
-	public void deleteSeller(long id) throws Exception{
 		
 	}
 	

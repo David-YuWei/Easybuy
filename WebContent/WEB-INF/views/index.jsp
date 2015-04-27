@@ -6,6 +6,9 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
 <link href="/Easybuy/css/common.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="/Easybuy/js/jquery-1.5.2.js"></script>
+<script type="text/javascript" src="/Easybuy/js/jquery.tmpl.js"></script>
+<script type="text/javascript" src="/Easybuy/js/index.js"></script>
 </head>
 <body>
 	<div class="container">
@@ -20,12 +23,10 @@
 			</div>
 			<div class="searchArea">
 				<form id="form" name="searchForm" method="post" action="/Easybuy/product/search">
-					<select class="list-select">
+					<select id="brand_name" name="brand_name" class="list-select">
 					  	<option value="">All</option>
-					  	<option value="Apple">Apple</option>
-					  	<option value="dell">Dell</option>
 					</select>
-					<input name="searchText" type="text" class="input-text"/>
+					<input id="content" name="content" type="text" class="input-text"/>
 					<span class="searchButton" onclick="document.searchForm.submit();"></span>
 				</form>
 			</div>
@@ -33,11 +34,34 @@
 		<div class="content">
 			<div class="section">Hot product</div>
 			<div class="underline"></div>
-			<div class="productArea"></div>
-			<div class="section">New product</div>
-			<div class="underline"></div>
-			<div class="productArea"></div>
+			<div id="hotProduct" class="productArea"></div>
 		</div>
+		<div class="footer"></div>
     </div>
+    
+    
+<div id="templates" style="display: none;">
+<script x-id="brand_list" type="text/x-template">
+{{each(i,v) brand_list}}
+	<option value="{{= v}}">{{= v}}</option>
+{{/each}}
+</script>
+<script x-id="list" type="text/x-template">
+{{each list}}
+<div id="p_{{= product_id}}" class="productBox">
+	<div class="img">
+		<a href="/Easybuy/product/{{= product_id}}/view">
+			<img alt="" src="/Easybuy/{{= image}}" />
+		</a>
+	</div>
+	<div class="name">{{= product_name}}</div>
+	<div class="price"><font>$ {{= price}}</font></div>
+	<div class="score"><font>{{= ranking}}</font>/5.0</div>
+</div>
+{{/each}}
+</script>
+</div>
 </body>
+
+
 </html>
