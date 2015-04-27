@@ -15,9 +15,8 @@
 <%
 	}
 	else if(user instanceof Buyer){
-		String user_name = ((Buyer)user).getUser_name();
 %>
-		<li><a href='/Easybuy/user/profile/buyer?user_name=<%= user_name %>'>hello, <%= user_name %></a></li>
+		<li><a href='/Easybuy/user/profile/buyer?user_name=<%= user.getUser_name() %>'>hello, <%= user.getFirst_name() %></a></li>
 		<li><a href='/Easybuy/logout'>Sign out</a></li>
 		<li><a href='/Easybuy/message/'>Message</a></li>
 		<li class="right"><a href='/Easybuy/order/'>Order</a></li>
@@ -27,9 +26,8 @@
 <%	
 	}
 	else if(user instanceof Seller){
-		String user_name = ((Seller)user).getUser_name();
 %>
-		<li><a href='/Easybuy/user/profile/seller?user_name=<%= user_name %>'>hello, <%= user_name %></a></li>
+		<li><a href='/Easybuy/user/profile/seller?user_name=<%= user.getUser_name() %>'>hello, <%= user.getFirst_name() %></a></li>
 		<li><a href='/Easybuy/logout'>Sign out</a></li>
 		<li><a href='/Easybuy/product/sellerProducts'>My products</a></li>
 		<li><a href='/Easybuy/message/'>Message</a></li>
@@ -38,9 +36,8 @@
 <%
 	}
 	else {
-		String user_name = ((Admin)user).getUser_name();
 %>
-		<li><a href='/Easybuy/user/profile/admin?user_name=<%= user_name %>'>hello, <%= user_name %></a></li>
+		<li><a href='/Easybuy/user/profile/admin?user_name=<%= user.getUser_name() %>'>hello, <%= user.getFirst_name() %></a></li>
 		<li><a href='/Easybuy/logout'>Sign out</a></li>
 		<li><a href='/Easybuy/message/'>Message</a></li>
 		<li class="right"><a href='/Easybuy/user/'>User</a></li>
