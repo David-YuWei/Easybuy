@@ -25,9 +25,20 @@
 		where user_name = #{user_name} 
 	</select>
 	
+	 <select id="CheckBuyer" resultType="com.easybuy.user.domain.Buyer">
+		select user_name 
+		from buyer
+		where user_name = #{user_name} 
+	</select> 
+	
 	<delete id="delete">
 		delete from buyer
 		where user_name = #{user_name}
 	</delete>
+	
+	<insert id="insertBuyer" parameterType="com.easybuy.user.domain.Buyer">
+	insert into buyer values(#{username},#{firstname},#{middlename},#{lastname},#{emailid},#{phonenumber},#{address},#{password},1)
+	</insert>
+	
 	
 </mapper>

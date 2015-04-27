@@ -1,1 +1,41 @@
-@CHARSET "UTF-8";
+@CHARSET "UTF-8";@CHARSET "UTF-8";
+.registration{
+	width: 370px;
+	display: block;
+	
+	padding-left: 500px;
+}
+.registrationtop {
+	height:5px;
+	background-color: #4486F3;
+	display:block;
+	width: 100%;
+}
+.registration-form{
+	border:1px solid #cdcdcd;
+	width:100%
+	height: 300px;
+	display:block;
+	overflow:hidden;
+}
+.registration-form .form-head{
+	display:block;
+	padding-top:10px;
+	padding-left:32px;
+}
+
+.registration-form .form-row{
+	display:block;
+	height:40px;
+	padding-top:20px;
+	padding-left:32px;
+}
+
+.registration-form .form-row span{
+	display:block;
+	font-weight:bold;
+	padding-bottom: 5px;
+}
+
+
+
