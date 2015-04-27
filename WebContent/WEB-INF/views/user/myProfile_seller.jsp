@@ -11,69 +11,67 @@
 </head>
 <%
 	Seller seller = (Seller) request.getAttribute("sellerInfo");
+	if(seller.getMiddle_name() == null){
+		seller.setMiddle_name("");
+	}
 %>
 <body>
    <div class="container">
-    <div class="logo">
-			<a href="/Easybuy/">
-				<img alt="" src="/Easybuy/images/logo.png"  />
-			</a>
-		</div>
-		<div class="myProfile_seller">
-			<div class="myProfile_sellertop"></div>
+    	<jsp:include page='../header.jsp'>
+			<jsp:param name="select" value="home" />
+		</jsp:include>
+		<div class="content">
+			<div class="title">Seller Profile</div>
+			<div class="underline"></div>
+			<div class="userForm">
 			<form id="form" method="post" action="/Easybuy/profile/myProfile_seller">
-				<div class="myProfile_seller-form">
-					<div class="form-head">
-						<h1>Seller Profile</h1>
+					<div class="input-row">
+						<div class="label">User Name</div>
+						<div class="input-box"><input name="username" id="username" type="text" value="<%=seller.getUser_name() %>" class="input-text"/>&nbsp;<font color="red">*</font></div>
 					</div>
-		
-					<div class="form-row">
-						<label>First Name</label>
-						<input name="firstname" id="firstname" type="text" value="<%=seller.getFirst_name() %>" class="input-text"/>
+					<div class="input-row">
+						<div class="label">First Name</div>
+						<div class="input-box"><input name="firstname" id="firstname" type="text" value="<%=seller.getFirst_name() %>" class="input-text"/>&nbsp;<font color="red">*</font></div>
 					</div>
-					<div class="form-row">
-						<label>Middle Name</label>
-						<input name="middlename" id="middlename" type="text" value="<%=seller.getMiddle_name() %>" class="input-text"/>
+					<div class="input-row">
+						<div class="label">Middle Name</div>
+						<div class="input-box"><input name="middlename" id="middlename" type="text" value="<%=seller.getMiddle_name() %>" class="input-text"/>&nbsp;</div>
 					</div>
-					<div class="form-row">
-						<label>Last Name</label>
-						<input name="lastname" id="lastname" type="text" value="<%=seller.getLast_name() %>" class="input-text"/>
+					<div class="input-row">
+						<div class="label">Last Name</div>
+						<div class="input-box"><input name="lastname" id="lastname" type="text" value="<%=seller.getLast_name() %>" class="input-text"/>&nbsp;<font color="red">*</font></div>
 					</div>
-					<div class="form-row">
-						<label>Email Id</label>
-						<input name="emailid" id="emailid" type="text" value="<%=seller.getEmail_id() %>" class="input-text"/>
+					<div class="input-row">
+						<div class="label">Email Id</div>
+						<div class="input-box"><input name="emailid" id="emailid" type="text" value="<%=seller.getEmail_id() %>" class="input-text"/>&nbsp;<font color="red">*</font></div>
 					</div>
-					<div class="form-row">
-						<label>Address</label>
-						<input name="address" id="address" type="text" value="<%=seller.getAddress() %>" class="input-text"/>
+					<div class="input-row">
+						<div class="label">Address</div>
+						<div class="input-box"><input name="address" id="address" type="text" value="<%=seller.getAddress() %>" class="input-text"/>&nbsp;<font color="red">*</font></div>
 					</div>
-					<div class="form-row">
-						<label>Phone Number</label>
-						<input name="phonenumber" id="phonenumber" type="text" value="<%=seller.getPhone_number() %>" class="input-text"/>
-					</div>
-					<div class="form-row">
-						<label>User Name</label>
-						<input name="username" id="username" type="text" value="<%=seller.getUser_name() %>" class="input-text"/>
+					<div class="input-row">
+						<div class="label">Phone Number</div>
+						<div class="input-box"><input name="phonenumber" id="phonenumber" type="text" value="<%=seller.getPhone_number() %>" class="input-text"/>&nbsp;<font color="red">*</font></div>
 					</div>
 					
-					<div class="form-row">
-						<label>Password</label>
-						<input name="password" id="password" type="password" value="<%=seller.getPassword() %>" class="input-text"/>
+					<!--  
+					<div class="input-row">
+						<div class="label">Password</div>
+						<div class="input-box"><input name="password" id="password" type="password" value="<%=seller.getPassword() %>" class="input-text"/>&nbsp;<font color="red">*</font></div>
 					</div>
-					<div class="form-row">
-						<label>Routing Number</label>
-						<input name="routingnumber" id="routingnumber" type="text" value="<%=seller.getRouting_number() %>" class="input-text"/>
+					<div class="input-row">
+						<div class="label">Routing Number</div>
+						<div class="input-box"><input name="routingnumber" id="routingnumber" type="text" value="<%=seller.getRouting_number() %>" class="input-text"/>&nbsp;<font color="red">*</font></div>
 					</div>
-					<div class="form-row">
-						<label>Account Number</label>
-						<input name="accountnumber" id="accountnumber" type="text" value="<%=seller.getAccount_number() %>" class="input-text"/>
+					<div class="input-row">
+						<div class="label">Account Number</div>
+						<div class="input-box"><input name="accountnumber" id="accountnumber" type="text" value="<%=seller.getAccount_number() %>" class="input-text"/>&nbsp;<font color="red">*</font></div>
 					</div>
-					
-			</div>
+					-->
 			</form>
 			</div>
 			</div>
-			
+	</div>
 
 </body>
 </html>

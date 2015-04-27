@@ -45,7 +45,7 @@ var create = function(){
 }
 
 var approve = function(user_name){
-	if(confirm('are you sure you want to approve this data?')){
+	if(confirm('are you sure you want to approve this seller?')){
 		$.post('/Easybuy/user/seller/approve.json?_decode=UTF-8', {
 			user_name: user_name
 		}, function(r){
@@ -57,7 +57,7 @@ var approve = function(user_name){
 }
 
 var decline = function(user_name){
-	if(confirm('are you sure you want to decline this data?')){
+	if(confirm('are you sure you want to decline this seller?')){
 		$.post('/Easybuy/user/seller/decline.json?_decode=UTF-8', {
 			user_name: user_name
 		}, function(r){

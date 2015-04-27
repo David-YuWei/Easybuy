@@ -11,6 +11,9 @@
 	float:left;
 	display:inline;
 }
+.leftBoard a{
+	color:black;
+}
 .leftBoard ul{
 }
 .leftBoard ul li{
@@ -35,4 +38,29 @@
 	height:420px;
 	margin-top:20px;
 	float:right;
+}
+
+.userForm{
+	float:left;
+	width:100%;
+}
+
+.input-row{
+	height: 40px;
+	line-height:40px;
+	float:auto;
+	width:100%;
+}
+
+.input-row .label{
+	width:15%;
+	float:left;
+	text-align:right;
+}
+
+.input-row .input-box{
+	width:80%;
+	float:left;
+	text-align:left;
+	margin-left:10px;
 }

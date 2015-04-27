@@ -14,43 +14,42 @@
 %>
 <body>
    <div class="container">
-    <div class="logo">
-			<a href="/Easybuy/">
-				<img alt="" src="/Easybuy/images/logo.png"  />
-			</a>
-		</div>
-		<div class="myProfile_admin">
-			<div class="myProfile_admintop"></div>
+	    <jsp:include page='../header.jsp'>
+			<jsp:param name="select" value="home" />
+		</jsp:include>
+		<div class="content">
+			<div class="title">Admin Profile</div>
+			<div class="underline"></div>
+			<div class="userForm">
 			<form id="form" method="post" action="/Easybuy/profile/myProfile_admin">
 				<div class="myProfile_admin-form">
-					<div class="form-head">
-						<h1>Admin Profile</h1>
+					<div class="input-row">
+						<div class="label">User Name</div>
+						<div class="input-box"><input name="username" id="username" type="text" value="<%=admin.getUser_name() %>" class="input-text"/>&nbsp;<font color="red">*</font></div>
 					</div>
-		            <div class="form-row">
-						<label>User Name</label>
-						<input name="username" id="username" type="text" value="<%= admin.getUser_name() %>" class="input-text"/>
+					<div class="input-row">
+						<div class="label">First Name</div>
+						<div class="input-box"><input name="firstname" id="firstname" type="text" value="<%=admin.getFirst_name() %>" class="input-text"/>&nbsp;<font color="red">*</font></div>
 					</div>
-					
+					<div class="input-row">
+						<div class="label">Middle Name</div>
+						<div class="input-box"><input name="middlename" id="middlename" type="text" value="<%=admin.getMiddle_name() %>" class="input-text"/>&nbsp;</div>
+					</div>
+					<div class="input-row">
+						<div class="label">Last Name</div>
+						<div class="input-box"><input name="lastname" id="lastname" type="text" value="<%=admin.getLast_name() %>" class="input-text"/>&nbsp;<font color="red">*</font></div>
+					</div>
+
+					<!--  
 					<div class="form-row">
 						<label>Password</label>
 						<input name="password" id="password" type="password" value="<%= admin.getPassword() %>" class="input-text"/>
 					</div>
-					<div class="form-row">
-						<label>First Name</label>
-						<input name="firstname" id="firstname" type="text" value="<%= admin.getFirst_name() %>" class="input-text"/>
-					</div>
-					<div class="form-row">
-						<label>Middle Name</label>
-						<input name="middlename" id="middlename" type="text" value="<%= admin.getMiddle_name() %>" class="input-text"/>
-					</div>
-					<div class="form-row">
-						<label>Last Name</label>
-						<input name="lastname" id="lastname" type="text" value="<%= admin.getLast_name() %>" class="input-text"/>
-					</div>
+					-->
 			</div>
 			</form>
 			</div>
 			</div>
-
+	</div>
 </body>
 </html>

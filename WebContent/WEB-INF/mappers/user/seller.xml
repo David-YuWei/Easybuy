@@ -25,7 +25,7 @@
 	</select>
 	
 	<update id="approve">
-		update seller set status = '2' 
+		update seller set status = '1' 
 		where user_name = #{id}
 	</update>
 	<update id="decline">

@@ -22,8 +22,8 @@
 			<div class="userArea">
 				<div class="leftBoard">
 					<ul>
-						<li>Sellers</li>
-						<li class="selected">Buyers</li>
+						<li><a href="/Easybuy/user/seller">Seller</a></li>
+						<li class="selected"><a href="/Easybuy/user/buyer">Buyer</a></li>
 					</ul>
 				</div>
 				<div class="listArea">

@@ -22,8 +22,8 @@
 			<div class="userArea">
 				<div class="leftBoard">
 					<ul>
-						<li class="selected">Seller</li>
-						<li>Buyer</li>
+						<li class="selected"><a href="/Easybuy/user/seller">Seller</a></li>
+						<li><a href="/Easybuy/user/buyer">Buyer</a></li>
 					</ul>
 				</div>
 				<div class="listArea">
@@ -31,10 +31,10 @@
 					<table border="0" cellpadding="0" cellspacing="0" class="data-table" id="list-table">
 						<tr class="data-table-head">
 							<td width="10%">user</td>
-							<td width="30%">full name</td>
-							<td width="20%">email</td>
-							<td width="10%">status</td>
-							<td width="30%"></td>
+							<td width="15%">full name</td>
+							<td width="30%">email</td>
+							<td width="15%">status</td>
+							<td width=""></td>
 						</tr>
 					</table>
 					<div id="pagebar" class="pagebar"></div>
@@ -49,17 +49,20 @@
 <script x-id="list" type="text/x-template">
 {{each list}}
 <tr x-id="{{= user_name}}" class="data-table-row">
-	<td align="center"><a href="/Easybuy/user/seller/{{= user_name}}">{{= user_name}}</a></td>
+	<td align="center"><a href="/Easybuy/user/profile/seller?user_name={{= user_name}}">{{= user_name}}</a></td>
 	<td align="center">{{= first_name}} {{= middle_name}} {{= last_name}}</td>
 	<td align="center">
 		{{= email_id}}
 	</td>
-<td align="center">
-		{{= status}}
+	<td align="center">
+		{{if status =='0'}}<span style="color:#cccccc;">deleted</span>
+		{{else status =='1'}}<span style="color:#009933;">approved</span>
+		{{else status =='2'}}<span style="color:red;">submitted</span>
+		{{/if}}
 	</td>
 	<td align="center">
-		<span onclick="approve('{{= user_name}}');">approve user</span>
-        <span onclick="decline('{{= user_name}}');">decline user</span>
+		<a href="javascript:void(0)" onclick="approve('{{= user_name}}');">approve user</a>&nbsp;&nbsp;&nbsp	
+		<a href="javascript:void(0)" onclick="decline('{{= user_name}}');">decline user</a>
 	</td>
 </tr>
 {{/each}}
