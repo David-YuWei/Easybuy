@@ -11,6 +11,12 @@
 </head>
 <%
 	Admin admin = (Admin) request.getAttribute("adminInfo");
+	if(admin.getMiddle_name() == null){
+		admin.setMiddle_name("");
+	}
+	else{
+		
+	}
 %>
 <body>
    <div class="container">
