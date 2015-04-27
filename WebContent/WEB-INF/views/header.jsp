@@ -6,7 +6,7 @@
 	if(user == null){
 %>
 	<li><a href='/Easybuy/login'>Sign in</a></li>
-	<li><a href='/Easybuy/registration/buyerregistration'>Register as Buyer</a></li>
+	<li><a href='/Easybuy/registration/buyer'>Register as Buyer</a></li>
 	<li><a href='/Easybuy/registration/seller'>Register as Seller</a></li>
 	<li class="right"><a href='/Easybuy/order/'>Order</a></li>
 	<li class="right"><a href='/Easybuy/shopcart'>Shopcart</a></li>

@@ -72,32 +72,6 @@ public class WishlistController {
 		return mav;
 	}
 	
-	@RequestMapping(value = "/addProduct", method = {RequestMethod.GET})
-	public ModelAndView addProduct(HttpServletRequest request, HttpServletResponse response,
-			@RequestParam(value = "product_id", required = true) long product_id) throws ServletException {
-		ModelAndView mav = new ModelAndView();
-		Map<String, Object> model = new LinkedHashMap<String, Object>();
-		try {
-			User user = userService.getUser(request);
-			WishlistItem wli = new WishlistItem();
-			wli.setUser_name(user.getUser_name());
-			wli.setProduct_id(product_id);
-			boolean result = wishlistService.insertItem(wli);
-			if(result){
-				model.put("status", "success");
-			}
-			else{
-				model.put("status", "error");
-			}
-		} catch (Exception e) {
-			model.put("status", "error");
-			e.printStackTrace();
-		} finally {
-			mav.addObject("_model", model);
-		}
-		return mav;
-	}
-	
 	@RequestMapping(value = "/deleteItem", method = {RequestMethod.GET,RequestMethod.POST})
 	public ModelAndView deleteItem(HttpServletRequest request, HttpServletResponse response,
 			@RequestParam(value = "product_id", required = true) long product_id) throws ServletException {

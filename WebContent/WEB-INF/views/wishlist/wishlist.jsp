@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
+<title>Easybuy.com</title>
 <link href="/Easybuy/css/common.css" rel="stylesheet" type="text/css" />
 <link href="/Easybuy/css/product.css" rel="stylesheet" type="text/css" />
 <link href="/Easybuy/css/wishlist.css" rel="stylesheet" type="text/css" />

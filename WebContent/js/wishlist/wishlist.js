@@ -55,8 +55,11 @@ var del = function(product_id){
 
 var add2cart = function(){
 	lastOption.product_id = $('#product_id').val();
-	$.getJSON('/Easybuy/shopcart/addProduct?_format=json', lastOption, function(r){
-		if(r.status == 'success'){
+	$.getJSON('/Easybuy/product/add2cart?_format=json', lastOption, function(r){
+		if(r.redirect){
+			window.location.replace("/Easybuy"+r.url);
+		}
+		else if(r.status == 'success'){
 			$('#message').html('added to cart');
 		}
 	});

@@ -54,23 +54,28 @@ var gotopage = function(page, pageSize){
 }
 
 var add2cart = function(){
-	
-	var option = {};
-	option.product_id = $('#product_id').val();
-	$.getJSON('/Easybuy/shopcart/addProduct?_format=json', option, function(r){
-		if(r.status == 'success'){
+	$.post('/Easybuy/product/add2shopcart.json?_decode=UTF-8', {
+		product_id: $('#product_id').val()
+	}, function(r){
+		if(r.redirect){
+			window.location.replace("/Easybuy"+r.url);
+		}
+		else if(r.status == 'success'){
 			$('#message').html('added to cart');
 		}
-	});
+	}, 'json');
 }
 
 var add2wishlist = function(){
-	var option = {};
-	option.product_id = $('#product_id').val();
-	$.getJSON('/Easybuy/wishlist/addProduct?_format=json', option, function(r){
-		if(r.status == 'success'){
+	$.post('/Easybuy/product/add2wishlist.json?_decode=UTF-8', {
+		product_id: $('#product_id').val()
+	}, function(r){
+		if(r.redirect){
+			window.location.replace("/Easybuy"+r.redirect);
+		}
+		else if(r.status == 'success'){
 			$('#message').attr("class","message1");
 			$('#message').html('added to wishlist');
 		}
-	});
+	}, 'json');
 }
