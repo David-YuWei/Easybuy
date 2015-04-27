@@ -62,6 +62,11 @@ public class UserService {
 		}
 	}
 	
+	public void logout(HttpServletRequest request){
+		HttpSession session = request.getSession();
+		session.invalidate();
+	}
+	
 	public Buyer getBuyerById(String username){
 		Buyer buyer = userDAO.getBuyerById(username);
 		return buyer;

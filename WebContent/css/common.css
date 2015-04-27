@@ -169,6 +169,10 @@ span{
 	font-weight:bold;
 	font-size:25px;
 }
+.content .logoutMessage{
+	margin-left:30px;
+	margin-top:20px;
+}
 .section{
 	margin-top: 10px;
 	font-weight:bold;
