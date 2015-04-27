@@ -10,7 +10,9 @@
 		<setting name="defaultStatementTimeout" value="25000"/>
 	</settings>
 	<mappers>
+		<mapper resource="../mappers/user/user.xml"/>
 		<mapper resource="../mappers/user/buyer.xml"/>
+		<mapper resource="../mappers/user/seller.xml"/>
 		<!-- 
 		<mapper resource="mappers/user/seller.xml"/>
 		<mapper resource="mappers/user/admin.xml"/> -->
