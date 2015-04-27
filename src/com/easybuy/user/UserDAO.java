@@ -26,6 +26,48 @@ public class UserDAO {
 		return (Buyer)sqlSessionTemplate.selectOne("user.buyer.selectById",props);
 	}
 	
+	public String insertBuyer(String firstname,String middlename,String lastname,String emailid,String address,String phonenumber,String username,String password)
+	{
+		Map<String, Object> props = new HashMap<String, Object>();
+		props.put("username", username);
+		props.put("firstname", firstname);
+		props.put("lastname", lastname);
+		props.put("middlename", middlename);
+		props.put("emailid", emailid);
+		props.put("address", address);
+		props.put("phonenumber", phonenumber);
+		props.put("password", password);
+		
+
+		return (String)sqlSessionTemplate.selectOne("user.buyer.insertBuyer",props);
+	}
+
+/*	public String checkBuyer(String user_name){
+		Map<String, Object> props = new HashMap<String, Object>();
+		props.put("user_name", user_name);
+		return (String)sqlSessionTemplate.selectOne("user.buyer.checkBuyer",props); 
+	} */
+	
+
+	public String insertSeller(String firstname,String middlename,String lastname,String emailid
+			,String address,String phonenumber,String username,String password,String accountnumber,String routingnumber)
+	{
+		Map<String, Object> props = new HashMap<String, Object>();
+		props.put("username", username);
+		props.put("firstname", firstname);
+		props.put("lastname", lastname);
+		props.put("middlename", middlename);
+		props.put("emailid", emailid);
+		props.put("address", address);
+		props.put("phonenumber", phonenumber);
+		props.put("password", password);
+		props.put("accountnumber", accountnumber);
+		props.put("routingnumber", routingnumber);
+		
+
+		return (String)sqlSessionTemplate.selectOne("user.seller.insertSeller",props);
+	}
+	
 	public Seller getSellerById(String user_name){
 		Map<String, Object> props = new HashMap<String, Object>();
 		props.put("user_name", user_name);

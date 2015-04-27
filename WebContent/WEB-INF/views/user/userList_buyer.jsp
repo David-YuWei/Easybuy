@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
+<title>Easybuy.com</title>
 <link href="/Easybuy/css/common.css" rel="stylesheet" type="text/css" />
 <link href="/Easybuy/css/user.css" rel="stylesheet" type="text/css" />
 <script type="text/javascript" src="/Easybuy/js/jquery-1.5.2.js"></script>
@@ -22,8 +22,8 @@
 			<div class="userArea">
 				<div class="leftBoard">
 					<ul>
-						<li>Sellers</li>
-						<li class="selected">Buyers</li>
+						<li><a href="/Easybuy/user/seller">Seller</a></li>
+						<li class="selected"><a href="/Easybuy/user/buyer">Buyer</a></li>
 					</ul>
 				</div>
 				<div class="listArea">

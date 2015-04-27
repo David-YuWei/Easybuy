@@ -30,4 +30,9 @@
 		where user_name = #{id}
 	</update>
 	
+	<insert id="insertBuyer" parameterType="com.easybuy.user.domain.Buyer">
+	insert into buyer values(#{username},#{firstname},#{middlename},#{lastname},#{emailid},#{phonenumber},#{address},#{password},1)
+	</insert>
+	
+	
 </mapper>

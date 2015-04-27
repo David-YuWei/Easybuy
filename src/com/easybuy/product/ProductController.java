@@ -26,6 +26,8 @@ import com.easybuy.product.domain.Review;
 import com.easybuy.user.UserService;
 import com.easybuy.user.domain.Buyer;
 import com.easybuy.user.domain.User;
+import com.easybuy.wishlist.WishlistService;
+import com.easybuy.wishlist.domain.WishlistItem;
 
 
 @Controller("productController")
@@ -38,6 +40,8 @@ public class ProductController {
 	private ProductService productService;
 	@Resource(name = "imageService")
 	private ImageService imageService;
+	@Resource(name = "wishlist:wishlistService")
+	private WishlistService wishlistService;
 	
 	
 	@RequestMapping(value = "", method = {RequestMethod.GET, RequestMethod.POST})
@@ -333,6 +337,37 @@ public class ProductController {
 			}
 			else{
 				model.put("status", "error");
+			}
+		} catch (Exception e) {
+			model.put("status", "error");
+			e.printStackTrace();
+		} finally {
+			mav.addObject("_model", model);
+		}
+		return mav;
+	}
+	
+	@RequestMapping(value = "/add2wishlist", method = {RequestMethod.GET,RequestMethod.POST})
+	public ModelAndView add2wishlist(HttpServletRequest request, HttpServletResponse response,
+			@RequestParam(value = "product_id", required = true) String product_id) throws ServletException {
+		ModelAndView mav = new ModelAndView();
+		Map<String, Object> model = new LinkedHashMap<String, Object>();
+		try {
+			User user = userService.getUser(request);
+			if(user == null){
+				model.put("redirect", "/login");
+			}
+			else{
+				WishlistItem wli = new WishlistItem();
+				wli.setUser_name(user.getUser_name());
+				wli.setProduct_id(Long.parseLong(product_id));
+				boolean result = wishlistService.insertItem(wli);
+				if(result){
+					model.put("status", "success");
+				}
+				else{
+					model.put("status", "error");
+				}
 			}
 		} catch (Exception e) {
 			model.put("status", "error");

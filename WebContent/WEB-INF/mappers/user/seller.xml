@@ -25,11 +25,15 @@
 	</select>
 	
 	<update id="approve">
-		update seller set status = '2' 
+		update seller set status = '1' 
 		where user_name = #{id}
 	</update>
 	<update id="decline">
 		update seller set status = '0' 
 		where user_name = #{id}
 	</update>
+
+	<insert id="insertSeller" parameterType="com.easybuy.user.domain.Seller">
+	insert into seller values(#{username},#{firstname},#{middlename},#{lastname},#{emailid},#{address},#{phonenumber},#{password},#{routingnumber},#{accountnumber},2)
+	</insert>
 </mapper>

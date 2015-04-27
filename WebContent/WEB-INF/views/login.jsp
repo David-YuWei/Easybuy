@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
+<title>Easybuy.com</title>
 <link href="/Easybuy/css/common.css" rel="stylesheet" type="text/css" />
 <link href="/Easybuy/css/login.css" rel="stylesheet" type="text/css" />
 </head>
@@ -15,6 +15,7 @@
 				<img alt="" src="/Easybuy/images/logo.png"  />
 			</a>
 		</div>
+		<div class="loginMessage">${msg}</div>
 		<div class="login">
 			<div class="logintop"></div>
 			<form id="form" method="post" action="/Easybuy/login/signin">
@@ -35,7 +36,7 @@
 					</div>
 					<div class="form-row">
 						<div class="right"><a class="right" href="/Easybuy/registration/seller">Register as Seller</a></div>
-						<div class="left"><a href="/Easybuy/registration/buyer" >Register as Buyer</a></div>
+						<div class="left"><a class ="left" href="/Easybuy/registration/buyer" >Register as Buyer</a></div>
 					</div>
 				</div>
 			</form>
