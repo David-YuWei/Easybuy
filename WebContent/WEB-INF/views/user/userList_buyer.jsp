@@ -49,7 +49,7 @@
 <script x-id="list" type="text/x-template">
 {{each list}}
 <tr x-id="{{= user_name}}" class="data-table-row">
-	<td align="center"><a href="/Easybuy/user/buyer/{{= user_name}}">{{= user_name}}</a></td>
+	<td align="center"><a href="/Easybuy/user/profile/buyer?user_name={{= user_name}}">{{= user_name}}</a></td>
 	<td align="center">{{= first_name}} {{= middle_name}} {{= last_name}}</td>
 	<td align="center">
 		{{= email_id}}

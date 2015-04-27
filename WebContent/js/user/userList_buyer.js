@@ -12,6 +12,7 @@ var initTmpls = function(){
 }
 
 var searchList = function(option){
+	alert("stop here!!");
 	$.getJSON('/Easybuy/user/buyer/list?_format=json', lastOption, function(r){
 		if(r.status == 'success'){
 			$('#list-table').find('> tbody > tr:gt(0)').remove();

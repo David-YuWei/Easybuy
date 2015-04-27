@@ -96,9 +96,15 @@ public class UserDAO {
 
 
 	public void deleteBuyer(String id) {
-		sqlSessionTemplate.delete("user.buyer.delete", id);
+		sqlSessionTemplate.update("user.buyer.delete", id);
 	}
 	
+	public void approveSeller(String id) {
+		sqlSessionTemplate.update("user.seller.approve", id);
+	}
+	public void declineSeller(String id) {
+		sqlSessionTemplate.update("user.seller.decline", id);
+	}
 	public static class UserType {
 		private String type;
 

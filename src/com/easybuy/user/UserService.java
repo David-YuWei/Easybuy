@@ -62,29 +62,19 @@ public class UserService {
 		}
 	}
 	
-	public String getBuyerById(HttpServletRequest request, String username){
-		HttpSession session = request.getSession();
-		session.invalidate();
-		//check user in database
-		String result = userDAO.viewBuyer(username);
-		if(result !=null){
-			session = request.getSession();
-			User user = null;
-			if(result.equals("buyer")){
-				user = userDAO.getBuyerById(username);
-			}
-			else if(result.equals("seller")){
-				user = userDAO.getSellerById(username);
-			}
-			else{
-				user = userDAO.getAdminById(username);
-			}
-			session.setAttribute("user", user);
-			return "success";
-		}
-		else{
-			return "incorrect username or password";
-		}
+	public Buyer getBuyerById(String username){
+		Buyer buyer = userDAO.getBuyerById(username);
+		return buyer;
+	}
+	
+	public Seller getSellerById(String username){
+		Seller seller = userDAO.getSellerById(username);
+		return seller;
+	}
+	
+	public Admin getAdminById(String username){
+		Admin admin = userDAO.getAdminById(username);
+		return admin;
 	}
 	
 	public List<Buyer> getBuyerList(Pager pager){
@@ -113,7 +103,15 @@ public class UserService {
 	}
 
 	public void deleteBuyer(String id) throws Exception{
-		
+		userDAO.deleteBuyer(id);
+	}
+	
+	public void approveSeller(String id) throws Exception{
+		userDAO.approveSeller(id);
+	}
+	
+	public void declineSeller(String id) throws Exception{
+		userDAO.declineSeller(id);
 	}
 	
 	public void updateBuyer(Buyer buyer) throws Exception{
