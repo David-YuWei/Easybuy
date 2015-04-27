@@ -25,7 +25,7 @@ public class LoginController {
 	public LoginController(){
 		
 	}
-	
+
 	@RequestMapping(value = "", method = {RequestMethod.GET, RequestMethod.POST})
 	public ModelAndView gotoLogin(HttpServletRequest request, HttpServletResponse response) {
 		ModelAndView mav = new ModelAndView();
@@ -46,7 +46,7 @@ public class LoginController {
 		ModelAndView mav = new ModelAndView();
 		try {
 			if (StringUtils.isBlank(username) || StringUtils.isBlank(password)) {
-				mav.addObject("msg", "invalid username or password");
+				mav.addObject("msg", "Plase enter your Username or password");
 				mav.addObject("url", url);
 				mav.setViewName("/login");
 				return mav;
@@ -56,7 +56,7 @@ public class LoginController {
 					mav.setViewName("redirect:/");
 				} else {
 					mav.addObject("url", url);
-					mav.addObject("msg", msg);
+					mav.addObject("msg", "Invalid Username and password");
 					mav.setViewName("/login");
 					return mav;
 				}

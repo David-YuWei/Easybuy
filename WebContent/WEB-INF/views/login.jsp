@@ -16,7 +16,8 @@
 			</a>
 		</div>
 		<div class="login">
-			<div class="logintop"></div>
+	${msg}
+		<div class="logintop"></div>
 			<form id="form" method="post" action="/Easybuy/login/signin">
 				<div class="login-form">
 					<div class="form-head">
@@ -35,7 +36,7 @@
 					</div>
 					<div class="form-row">
 						<div class="right"><a class="right" href="/Easybuy/registration/seller">Register as Seller</a></div>
-						<div class="left"><a href="/Easybuy/registration/buyer" >Register as Buyer</a></div>
+						<div class="left"><a class ="left" href="/Easybuy/registration/buyerregistration" >Register as Buyer</a></div>
 					</div>
 				</div>
 			</form>
