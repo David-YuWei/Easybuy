@@ -60,6 +60,16 @@ span{
 	background-color:#ffc; 
 	border-color:#4486F3; 
 }
+.input-textarea {  
+	vertical-align:middle;
+	height:80px;
+	width:450px;
+	border-color:#cccccc;  
+}
+.input-textarea:focus { 
+	background-color:#ffc; 
+	border-color:#4486F3; 
+}
 .input-button { 
 	background-color:#4486F3;
 	width:305px;
@@ -159,6 +169,10 @@ span{
 	font-weight:bold;
 	font-size:25px;
 }
+.content .logoutMessage{
+	margin-left:30px;
+	margin-top:20px;
+}
 .section{
 	margin-top: 10px;
 	font-weight:bold;
@@ -168,9 +182,8 @@ span{
 	border-top:1px solid #cccccc;
 }
 .productArea{
-	height:200px;
+	height:255px;
 	margin-top: 10px;
-	border:1px solid #cccccc;
 }
 
 .listArea{
@@ -290,6 +303,54 @@ span{
 }
 .box-15{
 	width:150px;
+}
+
+.productBox{
+	border:1px solid #cccccc;
+	width:180px;
+	margin-left:10px;
+	display:inline;
+	float:left;
+}
+.productBox .img{
+	height:160px;
+	text-align:center;
+	line-height:160px;
+}
+
+.productBox .img img{
+	margin-top:30px;
+}
+
+.productBox .name{
+	margin-left:10px;
+	text-align:left;
+	height:25px;
+	line-height:20px;
+	font-weight:bold;
+}
+
+.productBox .price{
+	margin-left:10px;
+	text-align:left;
+	height:25px;
+	line-height:25px;
+	color:#4486F3;
+}
+
+.productBox .score{
+	margin-left:10px;
+	text-align:left;
+	height:25px;
+	line-height:25px;
+}
+
+.productBox .score font{
+	font-weight:bold;
+}
+
+.h100{
+	height:100px;
 }
 
 

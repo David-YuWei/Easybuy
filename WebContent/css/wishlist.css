@@ -1,1 +1,83 @@
 @CHARSET "UTF-8";
+a{
+	position:relative;
+	height:20px;
+}
+
+.content .title{
+	float:left;
+	height:30px;
+	width:100%;
+	display:inline;
+}
+
+.data-row .info{
+	width: 50%;
+	float:left;
+	height:120px;
+}
+
+.info .area1{
+	width:100%;
+	height:50px;
+	line-height:30px;
+	font-weight:bold;
+}
+
+.info .area2{
+	width:100%;
+	height:50px;
+	line-height:20px;
+	color: #4486F3;
+}
+
+.info .area3{
+	width:100%;
+	height:20px;
+	line-height:0px;
+}
+.font1{
+	font-weight:bold;
+	font-size:20px;
+}
+
+.operate{
+	width:20%;
+	float:right;
+}
+
+.operate .message{
+	width:100%;
+	float:left;
+	height:20px;
+	line-height:20px;
+	text-align:center;
+}
+
+.operate .op1{
+	width:100%;
+	float:left;
+	text-align:center;
+	height:30px;
+}
+
+.op1 span{
+	margin-left:40px;
+}
+.operate .op2{
+	width:100%;
+	float:left;
+	margin-top:10px;
+	height:20px;
+	text-align:center;
+	line-height:20px;
+}
+
+.operate .op3{
+	width:100%;
+	margin-top:10px;
+	height:20px;
+	float:left;
+	text-align:center;
+	line-height:20px;
+}
