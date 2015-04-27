@@ -46,7 +46,7 @@ public class LoginController {
 		ModelAndView mav = new ModelAndView();
 		try {
 			if (StringUtils.isBlank(username) || StringUtils.isBlank(password)) {
-				mav.addObject("msg", "Plase enter your Username or password");
+				mav.addObject("msg", "Please enter your Username or password");
 				mav.addObject("url", url);
 				mav.setViewName("/login");
 				return mav;

@@ -32,9 +32,9 @@ public class UserService {
 		return request.getSession();
 	}
 	
-	public Object getUser(HttpServletRequest request) {
+	public User getUser(HttpServletRequest request) {
 		HttpSession session = request.getSession();
-		return session.getAttribute(REQUEST_ATTR_USERNAME);
+		return (User)session.getAttribute(REQUEST_ATTR_USERNAME);
 	}
 	
 	public String checkUser(HttpServletRequest request, String username, String password){
@@ -62,6 +62,26 @@ public class UserService {
 		}
 	}
 	
+	public void logout(HttpServletRequest request){
+		HttpSession session = request.getSession();
+		session.invalidate();
+	}
+	
+	public Buyer getBuyerById(String username){
+		Buyer buyer = userDAO.getBuyerById(username);
+		return buyer;
+	}
+	
+	public Seller getSellerById(String username){
+		Seller seller = userDAO.getSellerById(username);
+		return seller;
+	}
+	
+	public Admin getAdminById(String username){
+		Admin admin = userDAO.getAdminById(username);
+		return admin;
+	}
+	
 	public List<Buyer> getBuyerList(Pager pager){
 		List<Buyer> buyers= userDAO.getBuyerList(pager);
 		if(buyers !=null){
@@ -70,6 +90,16 @@ public class UserService {
 			}
 		}
 		return buyers;
+	}
+	
+	public List<Seller> getSellerList(Pager pager){
+		List<Seller> sellers= userDAO.getSellerList(pager);
+		if(sellers !=null){
+			for(Seller br:sellers){
+				//translates value of the attribute to practical meaning
+			}
+		}
+		return sellers;
 	}
 
 	public String insertBuyer(HttpServletRequest request,String firstname,String middlename,String lastname,String emailid,String address,String phonenumber,String username,String password) throws Exception{
@@ -115,23 +145,18 @@ public class UserService {
 	  return "success"; 
 	} */
 	public void deleteBuyer(String id) throws Exception{
-		
+		userDAO.deleteBuyer(id);
+	}
+	
+	public void approveSeller(String id) throws Exception{
+		userDAO.approveSeller(id);
+	}
+	
+	public void declineSeller(String id) throws Exception{
+		userDAO.declineSeller(id);
 	}
 	
 	public void updateBuyer(Buyer buyer) throws Exception{
-		
-	}
-	
-	public List<Buyer> searchBuyerList(){
-		return null;
-	}
-	
-	public Buyer searchBuyerById(String id){
-		return null;
-	}
-	
-	
-	public void deleteSeller(long id) throws Exception{
 		
 	}
 	

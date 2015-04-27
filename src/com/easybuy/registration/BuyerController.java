@@ -16,7 +16,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.easybuy.user.UserService;
 
 @Controller("BuyerController")
-@RequestMapping("/registration")
+@RequestMapping("/registration/buyer")
 public class BuyerController {
 
 	@Resource(name = "user:userService")
@@ -38,7 +38,7 @@ public class BuyerController {
 		return mav;
 	}
 	
-	@RequestMapping(value = "/buyerregistration", method = {RequestMethod.POST,RequestMethod.GET})
+	@RequestMapping(value = "/add", method = {RequestMethod.POST,RequestMethod.GET})
 	public ModelAndView register(HttpServletRequest request, HttpServletResponse response) throws ServletException {
 		
 		ModelAndView mav = new ModelAndView();

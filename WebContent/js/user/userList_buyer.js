@@ -45,7 +45,7 @@ var create = function(){
 }
 
 var del = function(user_name){
-	if(confirm('are you sure you want to delete this data?')){
+	if(confirm('are you sure you want to delete this user?')){
 		$.post('/Easybuy/user/buyer/delete.json?_decode=UTF-8', {
 			user_name: user_name
 		}, function(r){

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="wishlist">
+	
+	
+	<select id="selectCountByUsername" resultType="integer">
+		select count(1)
+		from wish_list_items 
+		where user_name = #{user_name}
+	</select>
+	
+	<select id="selectByUsername" resultType="com.easybuy.product.domain.Product">
+		select p.product_id,p.product_name,p.user_name, p.price, p.image,p.ranking,p.brand_name
+		from wish_list_items w, product p 
+		where w.product_id  = p.product_id
+		and w.user_name = #{user_name}  
+		<if test="firstResult != null">
+			limit #{firstResult}
+			<if test="maxResult != null">, #{maxResult}
+			</if>
+		</if>
+	</select>
+	
+	<insert id="insertItem" parameterType="com.easybuy.wishlist.domain.WishlistItem">
+		insert into wish_list_items (user_name, product_id)
+		values(#{user_name}, #{product_id})
+	</insert>
+
+	<delete id="deleteItem" parameterType="com.easybuy.wishlist.domain.WishlistItem">
+		delete from wish_list_items where user_name = #{user_name} and product_id = #{product_id} 
+	</delete>
+	
+</mapper>

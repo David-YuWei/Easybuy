@@ -26,9 +26,19 @@ public class SellerController {
 		
 	}
 	
+	@RequestMapping(value = "", method = {RequestMethod.GET, RequestMethod.POST})
+	public ModelAndView gotobuyerregistration(HttpServletRequest request, HttpServletResponse response) {
+		ModelAndView mav = new ModelAndView();
+		try {
+			mav.setViewName("/registration/seller");
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+		}
+		return mav;
+	}
 	
-	
-	@RequestMapping(value = "", method = {RequestMethod.POST,RequestMethod.GET})
+	@RequestMapping(value = "/add", method = {RequestMethod.POST,RequestMethod.GET})
 	public ModelAndView seller(HttpServletRequest request, HttpServletResponse response) throws ServletException {
 		
 		ModelAndView mav = new ModelAndView();

@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="product">
+	
+	<select id="selectAllBrands" resultType="java.lang.String">
+		select brand_name
+		from brand 
+	</select>
+	
+	<select id="selectById" resultType="com.easybuy.product.domain.Product">
+		select product_id,product_name,user_name, price, description,image,ranking,brand_name,status,update_time
+		from product
+		where product_id = #{product_id}
+		and status = '1'
+	</select>
+	
+	<select id="selectHotProductList" resultType="com.easybuy.product.domain.Product">
+		select product_id,product_name,user_name, price, description,image,ranking,brand_name,status,update_time
+		from product
+		where status = '1'  
+		order by ranking desc 
+		<if test="firstResult != null">
+			limit #{firstResult}
+			<if test="maxResult != null">, #{maxResult}
+			</if>
+		</if>
+	</select>
+	
+	<select id="selectCountByDefault" resultType="integer">
+		select count(1)
+		from product 
+		where status = '1'
+	</select>
+	
+	<select id="selectByDefault" resultType="com.easybuy.product.domain.Product">
+		select product_id,product_name,user_name, price, description,image,ranking,brand_name,status,update_time
+		from product 
+		where status = '1'  
+		<if test="firstResult != null">
+			limit #{firstResult}
+			<if test="maxResult != null">, #{maxResult}
+			</if>
+		</if>
+	</select>
+	
+	<select id="selectCountByBrandAndName" resultType="integer">
+		select count(1)
+		from product 
+		where status = '1'
+		and brand_name = #{brand_name}
+		and product_name like #{product_name}
+	</select>
+	
+	<select id="selectByBrandAndName" resultType="com.easybuy.product.domain.Product">
+		select product_id,product_name,user_name, price, description,image,ranking,brand_name,status,update_time
+		from product 
+		where status = '1'  
+		and brand_name = #{brand_name}
+		and product_name like #{product_name} 
+		<if test="firstResult != null">
+			limit #{firstResult}
+			<if test="maxResult != null">, #{maxResult}
+			</if>
+		</if>
+	</select>
+	
+	<select id="selectCountByBrand" resultType="integer">
+		select count(1)
+		from product 
+		where status = '1'
+		and brand_name = #{brand_name}
+	</select>
+	
+	<select id="selectByBrand" resultType="com.easybuy.product.domain.Product">
+		select product_id,product_name,user_name, price, description,image,ranking,brand_name,status,update_time
+		from product 
+		where status = '1'  
+		and brand_name = #{brand_name}  
+		<if test="firstResult != null">
+			limit #{firstResult}
+			<if test="maxResult != null">, #{maxResult}
+			</if>
+		</if>
+	</select>
+	
+	<select id="selectCountByBrandOrName" resultType="integer">
+		select count(1)
+		from product 
+		where status = '1'
+		and (brand_name like #{brand_name} or product_name like #{product_name})
+	</select>
+	
+	<select id="selectByBrandOrName" resultType="com.easybuy.product.domain.Product">
+		select product_id,product_name,user_name, price, description,image,ranking,brand_name,status,update_time
+		from product 
+		where status = '1'  
+		and (brand_name like #{brand_name} or product_name like #{product_name}) 
+		<if test="firstResult != null">
+			limit #{firstResult}
+			<if test="maxResult != null">, #{maxResult}
+			</if>
+		</if>
+	</select>
+	
+	<select id="selectSellerProductsCount" resultType="integer">
+		select count(1)
+		from product 
+		where status = '1'
+		and user_name = #{user_name}
+	</select>
+	
+	<select id="selectSellerProducts" resultType="com.easybuy.product.domain.Product">
+		select product_id,product_name,user_name, price, description,image,ranking,brand_name,status,update_time
+		from product 
+		where status = '1'  
+		and user_name = #{user_name} 
+		<if test="firstResult != null">
+			limit #{firstResult}
+			<if test="maxResult != null">, #{maxResult}
+			</if>
+		</if>
+	</select>
+	
+	<select id="selectReviewsCount" resultType="integer">
+		select count(1)
+		from reviews 
+		where product_id = #{product_id}
+	</select>
+	
+	<select id="selectReviews" resultType="com.easybuy.product.domain.Review">
+		select user_name,product_id,ranking,review
+		from reviews 
+		where product_id = #{product_id}  
+		<if test="firstResult != null">
+			limit #{firstResult}
+			<if test="maxResult != null">, #{maxResult}
+			</if>
+		</if>
+	</select>
+	
+	<insert id="insert" parameterType="com.easybuy.product.domain.Product" useGeneratedKeys="true" keyProperty="product_id">
+		insert into product (product_name,user_name, price, description,image,ranking,brand_name,status,update_time)
+		values(#{product_name}, #{user_name}, #{price}, #{description}, #{image}, #{ranking}, #{brand_name},#{status},#{update_time})
+	</insert>
+	
+	<insert id="insert_brand">
+		insert into brand (brand_name)
+		values(#{brand_name})
+	</insert>
+
+	<update id="updateWithImage" parameterType="com.easybuy.product.domain.Product">
+		update product set
+		product_name = #{product_name}, price = #{price}, description = #{description},image = #{image},
+		brand_name = #{brand_name},update_time = #{update_time} 
+		where product_id = #{product_id}
+	</update>
+	
+	<update id="updateWithoutImage" parameterType="com.easybuy.product.domain.Product">
+		update product set
+		product_name = #{product_name}, price = #{price}, description = #{description},
+		brand_name = #{brand_name},update_time = #{update_time} 
+		where product_id = #{product_id}
+	</update>
+
+	<delete id="deleteById">
+		update product set status = '0' where product_id = #{product_id}
+	</delete>
+	
+</mapper>
