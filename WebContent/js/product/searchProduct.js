@@ -11,11 +11,14 @@ var initTmpls = function(){
 	});
 }
 
-var searchList = function(option){
-	$.getJSON('/Easybuy/user/buyer/list?_format=json', option, function(r){
+
+var searchList = function(){
+	lastOption.brand_name = $('#brand_name').val();
+	lastOption.content = $('#content').val();
+	$.getJSON('/Easybuy/product/searchProduct?_format=json', lastOption, function(r){
 		if(r.status == 'success'){
-			$('#list-table').find('> tbody > tr:gt(0)').remove();
-			$('#list-table').append($.tmpl('list',{list:r.list}));
+			$('#productArea').html('');
+			$('#productArea').append($.tmpl('list',{list:r.list}));
 			var pageinfo = {
 					pager: r.pager,
 					pages: []
@@ -37,21 +40,5 @@ var gotopage = function(page, pageSize){
 	if(pageSize != null){
 		lastOption.pageSize = pageSize;
 	}
-	searchList(lastOption);
-}
-
-var create = function(){
-	edit();
-}
-
-var del = function(user_name){
-	if(confirm('are you sure you want to delete this data?')){
-		$.post('/Easybuy/user/buyer/delete.json?_decode=UTF-8', {
-			user_name: user_name
-		}, function(r){
-			if(r.status == 'success'){
-				searchList();
-			}
-		}, 'json');
-	}
+	searchList();
 }

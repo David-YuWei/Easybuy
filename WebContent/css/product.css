@@ -1,1 +1,283 @@
 @CHARSET "UTF-8";
+.product{
+	width:100%;
+}
+
+.product .info{
+	width:100%;
+	height:200px;
+	float:left;
+}
+
+.product .info .img{
+	margin:10px;
+	width: 200px;
+	height:200px;
+	text-align:center;
+	margin-top:40px;
+	float:left;
+}
+
+.product .info .name{
+	float:left;
+	width:70%;
+	height:50px;
+	line-height:50px;
+	padding-left:30px;
+	font-weight:bold;
+}
+.product .info .price{
+	float:left;
+	width:70%;
+	height:50px;
+	line-height:50px;
+	padding-left:30px;
+	color: #4486F3;
+}
+
+.product .info .score{
+	float:left;
+	width:70%;
+	height:40px;
+	line-height:40px;
+	padding-left:30px;
+	font-weight:bold;
+}
+
+.product .info .operate{
+	float:left;
+	width:70%;
+	height:30px;
+}
+
+.span-click-box{
+	width:100px;
+	height:30px;
+	margin-left:30px;
+	line-height:30px;
+	text-align: center;
+	display:inline;
+	float:left;
+	background-color: #4486F3;
+	color:white;
+}
+
+.product .info .message{
+	float:left;
+	width:70%;
+	height:30px;
+	margin-left:30px;
+	line-height:30px;
+	color: #009933;
+}
+
+.product .info .message1{
+	float:left;
+	width:50%;
+	height:30px;
+	margin-left:160px;
+	line-height:30px;
+	color: #009933;
+}
+
+.product .description{
+	width:100%;
+	display:block;
+}
+
+.product .description .textArea{
+	padding:20px 30px 20px 30px;
+	display:block;
+}
+
+.product .reviews{
+	width:100%;
+	display:block;
+	float:left;
+}
+
+.product .reviews .textArea{
+	margin-top:10px;
+	margin-bottom:10px;
+	display:block;
+	float:left;
+	width:100%;
+}
+.product .reviews .message{
+	margin-left:30px;
+}
+
+.data-head{
+	border:1px solid #dddddd;
+	height:30px;
+	line-height:30px;
+	background-color: #f7f7f7;
+	width:100%;
+}
+.data-head .item_column1{
+	float:left;
+	text-align:center;
+	padding-left:30px;
+	width:60%;
+	color:#666666;
+}
+.data-head .item_column2{
+	text-align:center;
+	float:left;
+	width:15%;
+	color:#666666;
+}
+.data-head .item_column3{
+	text-align:center;
+	float:left;
+	width:15%;
+	color:#666666;
+}
+.data-row{
+	padding-top:5px;
+	padding-bottom:5px;
+	border-left: 1px solid #dddddd;
+	border-right: 1px solid #dddddd;
+	border-bottom: 1px solid #dddddd;
+	width:100%;
+	float:left;
+	height:40px;
+	line-height:40px;
+}
+
+.data-row .data_column3{
+	width:15%;
+	text-align:center;
+	vertical-align:middle;
+	float:left;
+}
+.data-row .data_column2{
+	width:15%;
+	text-align:center;
+	font-weigth:bold;
+	float:left;
+}
+.data-row .data_column1{
+	text-align:left;
+	padding-left:30px;
+	width:60%;
+	float:left;
+}
+
+.content .title{
+	float:left;
+	height:30px;
+	width:80%;
+	display:inline;
+}
+
+.content .right{
+	float:left;
+	width:20%;
+	height:50px;
+	line-height:80px;
+	text-align:right;
+}
+.content .underline{
+	float:left;
+	width:100%;
+}
+
+.productList{
+	float:left;
+	width:100%;
+	padding-bottom:10px;
+}
+.productList .data-row{
+	border-left:0px;
+	border-right:0px;
+	height:120px;
+	line-height:120px;
+}
+.productList img{
+	float:left;
+	line-height:120px;
+	padding-right:30px;
+}
+
+.productList .column1{
+	float:left;
+	width:30%;
+	text-align:left;
+}
+
+.productList .column2{
+	float:left;
+	width:10%;
+	font-weight:bold;
+	text-align:left;
+}
+.productList .operate1{
+	float:right;
+	width:16%;
+	text-align:right;
+}
+.productList .operate2{
+	float:right;
+	width:12%;
+	text-align:right;
+}
+.productForm{
+	float:left;
+	width:100%;
+}
+
+.input-row{
+	height: 40px;
+	line-height:40px;
+	float:auto;
+	width:100%;
+}
+
+.input-row .label{
+	width:15%;
+	float:left;
+	text-align:right;
+}
+
+.input-row .input-box{
+	width:80%;
+	float:left;
+	text-align:left;
+	margin-left:10px;
+}
+.textarea-row{
+	float:auto;
+	width:100%;
+	height: 80px;
+	line-height:80px;
+}
+.textarea-row .label{
+	width:15%;
+	float:left;
+	text-align:right;
+}
+.textarea-row .input-box{
+	width:80%;
+	float:left;
+	text-align:left;
+	margin-top:10px;
+	margin-left:10px;
+}
+
+.save-box{
+	width:85%;
+	margin-top:20px;
+	float:right;
+	text-align:left;
+	margin-right:20px;
+}
+.save-info{
+	height:40px;
+	line-height:40px;
+	width:85%;
+	color: red;
+	float:right;
+	text-align:left;
+	margin-right:-10px;
+}
