@@ -24,4 +24,12 @@
 		where user_name = #{user_name} 
 	</select>
 	
+	<update id="approve">
+		update seller set status = '2' 
+		where user_name = #{id}
+	</update>
+	<update id="decline">
+		update seller set status = '0' 
+		where user_name = #{id}
+	</update>
 </mapper>

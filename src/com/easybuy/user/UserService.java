@@ -62,6 +62,21 @@ public class UserService {
 		}
 	}
 	
+	public Buyer getBuyerById(String username){
+		Buyer buyer = userDAO.getBuyerById(username);
+		return buyer;
+	}
+	
+	public Seller getSellerById(String username){
+		Seller seller = userDAO.getSellerById(username);
+		return seller;
+	}
+	
+	public Admin getAdminById(String username){
+		Admin admin = userDAO.getAdminById(username);
+		return admin;
+	}
+	
 	public List<Buyer> getBuyerList(Pager pager){
 		List<Buyer> buyers= userDAO.getBuyerList(pager);
 		if(buyers !=null){
@@ -72,24 +87,30 @@ public class UserService {
 		return buyers;
 	}
 	
-	public Buyer searchBuyerById(String user_name){
-		return userDAO.getBuyerById(user_name);
+	public List<Seller> getSellerList(Pager pager){
+		List<Seller> sellers= userDAO.getSellerList(pager);
+		if(sellers !=null){
+			for(Seller br:sellers){
+				//translates value of the attribute to practical meaning
+			}
+		}
+		return sellers;
 	}
-	
-	public Seller searchSellerById(String user_name){
-		return userDAO.getSellerById(user_name);
-	}
-	
-	public Admin searchAdminById(String user_name){
-		return userDAO.getAdminById(user_name);
-	}
-	
+
 	public void insertBuyer(Buyer buyer) throws Exception{
 		
 	}
 
 	public void deleteBuyer(String id) throws Exception{
-		
+		userDAO.deleteBuyer(id);
+	}
+	
+	public void approveSeller(String id) throws Exception{
+		userDAO.approveSeller(id);
+	}
+	
+	public void declineSeller(String id) throws Exception{
+		userDAO.declineSeller(id);
 	}
 	
 	public void updateBuyer(Buyer buyer) throws Exception{
