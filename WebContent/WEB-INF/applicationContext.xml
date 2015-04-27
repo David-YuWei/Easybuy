@@ -18,6 +18,7 @@
 
 	<import resource="common-context.xml"/>
 	
+	<context:component-scan base-package="com.easybuy.common"/>
 	<context:component-scan base-package="com.easybuy.user"/>
 	<context:component-scan base-package="com.easybuy.message"/>
 	<context:component-scan base-package="com.easybuy.product"/>

@@ -10,6 +10,11 @@
 		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-3.0.xsd
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd
 		http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-3.0.xsd">
+	<bean name="common:configurer" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+		<property name="ignoreUnresolvablePlaceholders" value="true" />
+		<property name="location" value="/WEB-INF/project.properties" />
+	</bean>
+
 
 	<bean class="org.springframework.web.servlet.mvc.annotation.DefaultAnnotationHandlerMapping"/>
 	<bean class="org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter">
@@ -66,9 +71,9 @@
 		<property name="objectMapper" ref="jacksonJsonObjectMapper"/>
 	</bean>
 
-	<!-- <bean name="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+	<bean name="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
 		<property name="maxUploadSize" value="20000000"/>
-	</bean> -->
+	</bean>
 
 	<bean id="jacksonJsonObjectMapper" class="org.codehaus.jackson.map.ObjectMapper"/>
 	<bean class="com.easybuy.common.ObjectMapperInitializer">
@@ -101,6 +106,7 @@
 	<mvc:resources location="/css/" mapping="/css/**"/>
 	<mvc:resources location="/images/" mapping="/images/**"/>
 	<mvc:resources location="/js/" mapping="/js/**"/>
+	<mvc:resources location="file:${image.path}" mapping="file/**"/>
 
 	<mvc:interceptors>
 		
@@ -110,6 +116,9 @@
 			<mvc:mapping path="/order/**"/>
 			<mvc:mapping path="/message/**"/>
 			<mvc:mapping path="/product/edit/**"/>
+			<mvc:mapping path="/product/add/**"/>
+			<mvc:mapping path="/product/new/**"/>
+			<mvc:mapping path="/product/sellerProducts/**"/>
 			<mvc:mapping path="/user/**"/>
 			<mvc:mapping path="/main/**"/>
 			<bean class="com.easybuy.common.AdminInterceptor" p:loginURI="/login"/>
