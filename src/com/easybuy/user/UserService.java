@@ -32,9 +32,9 @@ public class UserService {
 		return request.getSession();
 	}
 	
-	public Object getUser(HttpServletRequest request) {
+	public User getUser(HttpServletRequest request) {
 		HttpSession session = request.getSession();
-		return session.getAttribute(REQUEST_ATTR_USERNAME);
+		return (User)session.getAttribute(REQUEST_ATTR_USERNAME);
 	}
 	
 	public String checkUser(HttpServletRequest request, String username, String password){
@@ -62,6 +62,26 @@ public class UserService {
 		}
 	}
 	
+	public void logout(HttpServletRequest request){
+		HttpSession session = request.getSession();
+		session.invalidate();
+	}
+	
+	public Buyer getBuyerById(String username){
+		Buyer buyer = userDAO.getBuyerById(username);
+		return buyer;
+	}
+	
+	public Seller getSellerById(String username){
+		Seller seller = userDAO.getSellerById(username);
+		return seller;
+	}
+	
+	public Admin getAdminById(String username){
+		Admin admin = userDAO.getAdminById(username);
+		return admin;
+	}
+	
 	public List<Buyer> getBuyerList(Pager pager){
 		List<Buyer> buyers= userDAO.getBuyerList(pager);
 		if(buyers !=null){
@@ -71,29 +91,72 @@ public class UserService {
 		}
 		return buyers;
 	}
-
-	public void insertBuyer(Buyer buyer) throws Exception{
-		
+	
+	public List<Seller> getSellerList(Pager pager){
+		List<Seller> sellers= userDAO.getSellerList(pager);
+		if(sellers !=null){
+			for(Seller br:sellers){
+				//translates value of the attribute to practical meaning
+			}
+		}
+		return sellers;
 	}
 
-	public void deleteBuyer(String id) throws Exception{
+	public String insertBuyer(HttpServletRequest request,String firstname,String middlename,String lastname,String emailid,String address,String phonenumber,String username,String password) throws Exception{
+		HttpSession session = request.getSession();
+		session.invalidate();
+	  String result = userDAO.insertBuyer(firstname,middlename,lastname,emailid,address,phonenumber,username,password);
+	  if(result != null)
+	  {
+		  session =request.getSession();
+		  User user = null;
+		  session.setAttribute("user", user);
+		  return "success";
+	  }
+	  return "success";
 		
+	}
+	
+	public String insertSeller(HttpServletRequest request,String firstname,String middlename,String lastname,String emailid,String address,
+			String phonenumber,String username,String password,String accountnumber,String routingnumber) throws Exception{
+	//	HttpSession session = request.getSession();
+  //session.invalidate();
+	  String result = userDAO.insertSeller(firstname,middlename,lastname,emailid,address,phonenumber,username,password,accountnumber,routingnumber);
+	  if(result != null)
+	  {
+		  return "success";
+	  }
+	  return "success";
+		
+	}
+	
+	/* public String checkBuyer(HttpServletRequest request,String username) throws Exception
+	{
+		HttpSession session = request.getSession();
+		session.invalidate();
+	  String result = userDAO.checkBuyer(username);
+	  if(result != null)
+	  {
+		  session =request.getSession();
+		  User user = null;
+		  session.setAttribute("user", user);
+		  return "success";
+	  }
+	  return "success"; 
+	} */
+	public void deleteBuyer(String id) throws Exception{
+		userDAO.deleteBuyer(id);
+	}
+	
+	public void approveSeller(String id) throws Exception{
+		userDAO.approveSeller(id);
+	}
+	
+	public void declineSeller(String id) throws Exception{
+		userDAO.declineSeller(id);
 	}
 	
 	public void updateBuyer(Buyer buyer) throws Exception{
-		
-	}
-	
-	public List<Buyer> searchBuyerList(){
-		return null;
-	}
-	
-	public Buyer searchBuyerById(String id){
-		return null;
-	}
-	
-	
-	public void deleteSeller(long id) throws Exception{
 		
 	}
 	
