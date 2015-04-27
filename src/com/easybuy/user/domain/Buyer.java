@@ -7,7 +7,7 @@ public class Buyer extends User implements Serializable{
 	private String email_id;
 	private String address;
 	private String phone_number;
-	private int status;
+	private String status;
 	
 	public String getEmail_id() {
 		return email_id;
@@ -22,10 +22,10 @@ public class Buyer extends User implements Serializable{
 		this.address = address;
 	}
 	
-	public int getStatus() {
+	public String getStatus() {
 		return status;
 	}
-	public void setStatus(int status) {
+	public void setStatus(String status) {
 		this.status = status;
 	}
 	public String getPhone_number() {

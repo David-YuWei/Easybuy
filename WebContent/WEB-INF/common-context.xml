@@ -45,6 +45,12 @@
 		<constructor-arg index="0" ref="sqlSessionFactory"/>
 	</bean>
 	
+	<bean name="imageService" class="com.easybuy.common.ImageService" lazy-init="false">
+		<property name="imagePath">
+			<value>${image.path}</value>
+		</property>
+	</bean>
+	
 	<!-- <bean name="ehCacheManager" class="org.springframework.cache.ehcache.EhCacheManagerFactoryBean">
 		<property name="configLocation" value="classpath:ehcache.xml"/>
 	</bean> -->
