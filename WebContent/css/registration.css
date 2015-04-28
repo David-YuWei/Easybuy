@@ -1,9 +1,9 @@
 @CHARSET "UTF-8";@CHARSET "UTF-8";
 .registration{
-	width: 370px;
+	width: 550px;
 	display: block;
 	
-	padding-left: 500px;
+	padding-left: 400px;
 }
 .registrationtop {
 	height:5px;
@@ -18,16 +18,58 @@
 }
 .registration-form .form-head{
 	display:block;
+	font-weight:bold;
+	font-size:20px;
 	padding-top:10px;
 	padding-left:32px;
 }
 
 .registration-form .form-row{
 	display:block;
-	height:40px;
-	padding-top:6px;
-	padding-left:32px;
+	width:100%;
+	height:30px;
+	line-height:30px;
+	padding-top:10px;
 }
+
+.registration-form .form-row-info{
+	display:block;
+	width:100%;
+	height:20px;
+	line-height:20px;
+	padding-top:10px;
+}
+
+.registration-form .form-submit{
+	display:block;
+	float:left;
+	height:30px;
+	line-height:30px;
+	margin-top:10px;
+	margin-left:150px;
+	margin-bottom:20px;
+}
+
+.form-submit .input-button{
+	width:140px;
+	box-shadow:none;
+}
+
+.registration-form .label{
+	width:140px;
+	text-align:right;
+	height:30px;
+	float:left;
+}
+
+.registration-form .input-box{
+	width:390px;
+	padding-left: 10px;
+	text-align:left;
+	float:left;
+	height:30px;
+}
+
 
 .registration-form .form-row span{
 	display:block;
@@ -37,7 +79,7 @@
 
 .registrationMessage{
 	height:20px;
-	margin-left:500px;
+	margin-left:400px;
 	color:red;
 }
 .logo{
