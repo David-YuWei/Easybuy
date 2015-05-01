@@ -13,6 +13,10 @@
 
 <%
 	Message message = (Message) request.getAttribute("message");
+	String disable = (String) request.getAttribute("disable");
+	if(disable ==null){
+		disable="";
+	}
 	int message_id;
 	String fromuser = "";
 	String touser = "";
@@ -24,6 +28,9 @@
 		touser = String.valueOf(message.getTouser());
 		type = message.getType();
 		content = message.getContent();
+		if(content==null){
+			content="";
+		}
 	}
 	String error = (String)request.getAttribute("error");
 	if(error ==null)
@@ -45,7 +52,13 @@
 				<form id="form" enctype="multipart/form-data" name="form" method="post" action="/Easybuy/message/messageNew">
 				<div class="input-row">
 					<div class="label">To</div>
-					<div class="input-box"><input name="touser" id="touser" type="text" value="<%= touser%>" class="input-text"/></div>
+					<%if(disable.equals("disable"))
+						{%>
+					<div class="input-box"><input name="touser" id="touser" type="text" value="<%= touser%>" class="input-text" readonly=readonly/></div>
+					<%} %>
+					<%if(disable.equals("")){ %>
+					<div class="input-box"><input name="touser" id="touser" type="text" value="<%= touser%>" class="input-text" /></div>
+					<%} %>
 					<div class="label">Content</div>
 					<div class="input-box"><input name="content" id="content" type="text" value="<%= content%>" class="input-text"/></div>
 					

@@ -138,6 +138,26 @@ public class MessageController {
 		return mav;
 	}
 	
+	
+	
+	@RequestMapping(value = "/new", method = {RequestMethod.GET, RequestMethod.POST})
+	public ModelAndView tonew1(HttpServletRequest request, HttpServletResponse response,
+			@RequestParam(value = "touser", required = true) String touser ) {
+		ModelAndView mav = new ModelAndView();
+		try {
+			Message message = new Message();
+			message.setTouser(touser);
+			mav.addObject("message",message);
+			mav.addObject("disable","disable");
+			mav.setViewName("/message/message_new");
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+		}
+		return mav;
+	}
+	
+	
 	@RequestMapping(value = "/messageNew", method = {RequestMethod.GET, RequestMethod.POST})
 	public ModelAndView add(HttpServletRequest request, HttpServletResponse response) throws ServletException {
 		ModelAndView mav = new ModelAndView();
