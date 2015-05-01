@@ -13,7 +13,7 @@
 		<mapper resource="../mappers/user/user.xml"/>
 		<mapper resource="../mappers/user/buyer.xml"/>
 		<mapper resource="../mappers/user/seller.xml"/>
-		
+		<mapper resource="../mappers/message/message.xml"/>
 		<mapper resource="../mappers/product/product.xml"/>
 		
 		<mapper resource="../mappers/wishlist/wishlist.xml"/>
