@@ -8,6 +8,7 @@ body,html{
 	margin:0 auto; 
 	overflow:hidden;
 	font-size:14px;
+	overflow-y:scroll;
 }
 
 a { 

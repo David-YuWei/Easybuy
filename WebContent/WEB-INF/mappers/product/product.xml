@@ -16,6 +16,13 @@
 		and status = '1'
 	</select>
 	
+	<select id="selectReview" resultType="com.easybuy.product.domain.Review">
+		select user_name,product_id,ranking,review
+		from reviews
+		where user_name = #{user_name}
+		and product_id = #{product_id}
+	</select>
+	
 	<select id="selectHotProductList" resultType="com.easybuy.product.domain.Product">
 		select product_id,product_name,user_name, price, description,image,ranking,brand_name,status,update_time
 		from product
@@ -145,10 +152,26 @@
 		values(#{product_name}, #{user_name}, #{price}, #{description}, #{image}, #{ranking}, #{brand_name},#{status},#{update_time})
 	</insert>
 	
+	<insert id="insertReview" parameterType="com.easybuy.product.domain.Review">
+		insert into reviews (user_name,product_id,ranking,review)
+		values(#{user_name}, #{product_id}, #{ranking}, #{review})
+	</insert>
+	
+	<update id="updateRanking">
+		update product set ranking = #{ranking} 
+		where product_id = #{product_id} 
+	</update>
+	
 	<insert id="insert_brand">
 		insert into brand (brand_name)
 		values(#{brand_name})
 	</insert>
+
+	<update id="updateReview" parameterType="com.easybuy.product.domain.Review">
+		update reviews set review = #{review} 
+		where user_name = #{user_name}
+		and product_id = #{product_id}
+	</update>
 
 	<update id="updateWithImage" parameterType="com.easybuy.product.domain.Product">
 		update product set

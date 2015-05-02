@@ -36,7 +36,6 @@ public class UserController {
 	public ModelAndView toUserList(HttpServletRequest request, HttpServletResponse response) {
 		ModelAndView mav = new ModelAndView();
 		try {
-			mav.addObject("msg", "1234");
 			mav.setViewName("/user/userList_seller");
 		} catch (Exception e) {
 			e.printStackTrace();

@@ -53,14 +53,15 @@ var del = function(product_id){
 }
 
 
-var add2cart = function(){
-	lastOption.product_id = $('#product_id').val();
-	$.getJSON('/Easybuy/product/add2cart?_format=json', lastOption, function(r){
+var add2cart = function(product_id){
+	option = {};
+	option.product_id = product_id;
+	$.getJSON('/Easybuy/product/add2cart?_format=json', option, function(r){
 		if(r.redirect){
 			window.location.replace("/Easybuy"+r.url);
 		}
 		else if(r.status == 'success'){
-			$('#message').html('added to cart');
+			$('#message_'+product_id).html('added to cart');
 		}
 	});
 }

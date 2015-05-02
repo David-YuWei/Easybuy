@@ -23,6 +23,8 @@ import com.easybuy.common.ImageService;
 import com.easybuy.common.Pager;
 import com.easybuy.product.domain.Product;
 import com.easybuy.product.domain.Review;
+import com.easybuy.shopcart.ShopcartService;
+import com.easybuy.shopcart.domain.ShopcartItem;
 import com.easybuy.user.UserService;
 import com.easybuy.user.domain.Buyer;
 import com.easybuy.user.domain.User;
@@ -42,6 +44,8 @@ public class ProductController {
 	private ImageService imageService;
 	@Resource(name = "wishlist:wishlistService")
 	private WishlistService wishlistService;
+	@Resource(name = "shopcart:shopcartService")
+	private ShopcartService shopcartService;
 	
 	
 	@RequestMapping(value = "", method = {RequestMethod.GET, RequestMethod.POST})
@@ -134,7 +138,7 @@ public class ProductController {
 		return mav;
 	}
 	
-	@RequestMapping(value = "/review/list", method = {RequestMethod.GET})
+	@RequestMapping(value = "/reviewList", method = {RequestMethod.GET})
 	public ModelAndView reviewList(HttpServletRequest request, HttpServletResponse response,
 			@RequestParam(value = "product_id", required = true) long product_id,
 			@RequestParam(value = "page", required = false, defaultValue = "#{1}") Integer page,
@@ -163,6 +167,129 @@ public class ProductController {
 			mav.setViewName("/product/product_new");
 		} catch (Exception e) {
 			e.printStackTrace();
+		} finally {
+		}
+		return mav;
+	}
+	
+	@RequestMapping(value = "/review/new", method = {RequestMethod.GET, RequestMethod.POST})
+	public ModelAndView toreviewnew(HttpServletRequest request, HttpServletResponse response,
+			@RequestParam(value = "product_id", required = true) long product_id) {
+		ModelAndView mav = new ModelAndView();
+		try {
+			User user = userService.getUser(request);
+			Review review = productService.getReview(user.getUser_name(), product_id);
+			if(review ==null){
+				review = new Review();
+				mav.addObject("type", "new");
+			}
+			else{
+				mav.addObject("type", "edit");
+			}
+			Product product = productService.getById(product_id);
+			review.setProduct_id(product_id);
+			review.setProduct_name(product.getProduct_name());
+			mav.addObject("review", review);
+			
+			mav.setViewName("/product/product_review");
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+		}
+		return mav;
+	}
+	
+	@RequestMapping(value = "/review/add", method = {RequestMethod.GET, RequestMethod.POST})
+	public ModelAndView reviewadd(HttpServletRequest request, HttpServletResponse response) throws ServletException {
+		ModelAndView mav = new ModelAndView();
+		Review review = new Review();
+		try {
+			long product_id = Long.parseLong(request.getParameter("product_id"));
+			String product_name = request.getParameter("product_name");
+			String ranking = request.getParameter("ranking");
+			String comment = request.getParameter("comment");
+			review.setProduct_id(product_id);
+			review.setProduct_name(product_name);
+			review.setRanking(ranking == null || ranking.equals("")? 0: Float.parseFloat(ranking));
+			review.setReview(comment);
+			if (StringUtils.isBlank(ranking) || StringUtils.isBlank(comment)) {
+				mav.addObject("message", "ranking/comment should not be empty.");
+				mav.addObject("type", "new");
+				mav.addObject("review", review);
+				mav.setViewName("/product/product_review");
+				return mav;
+			}
+			
+			if(review.getRanking() <0 || review.getRanking() >5){
+				mav.addObject("message", "ranking must be a number between 0 to 5");
+				mav.addObject("type", "new");
+				mav.addObject("review", review);
+				mav.setViewName("/product/product_review");
+				return mav;
+			}
+			
+			User user = userService.getUser(request);
+			
+			review.setUser_name(user.getUser_name());
+			boolean result = productService.insertReview(review);
+			if(result){
+				mav.setViewName("redirect:/order/");
+			}
+			else{
+				mav.addObject("review", review);
+				mav.addObject("type", "new");
+				mav.addObject("message", "save failed.");
+				mav.setViewName("/product/product_review");
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+			mav.addObject("review", review);
+			mav.addObject("type", "new");
+			mav.addObject("message", "save failed.");
+			mav.setViewName("/product/product_review");
+		} finally {
+		}
+		return mav;
+	}
+	
+	@RequestMapping(value = "/review/update", method = {RequestMethod.GET, RequestMethod.POST})
+	public ModelAndView reviewupdate(HttpServletRequest request, HttpServletResponse response) throws ServletException {
+		ModelAndView mav = new ModelAndView();
+		User user = userService.getUser(request);
+		Review review =  null;
+		try {
+			long product_id = Long.parseLong(request.getParameter("product_id"));
+			review =  productService.getReview(user.getUser_name(), product_id);
+			String product_name = request.getParameter("product_name");
+			String comment = request.getParameter("comment");
+			review.setProduct_id(product_id);
+			review.setProduct_name(product_name);
+			review.setReview(comment);
+			if (StringUtils.isBlank(comment)) {
+				mav.addObject("message", "comment should not be empty.");
+				mav.addObject("type", "edit");
+				mav.addObject("review", review);
+				mav.setViewName("/product/product_review");
+				return mav;
+			}
+			
+			review.setUser_name(user.getUser_name());
+			boolean result = productService.updateReview(review);
+			if(result){
+				mav.setViewName("redirect:/order/");
+			}
+			else{
+				mav.addObject("review", review);
+				mav.addObject("type", "edit");
+				mav.addObject("message", "save failed.");
+				mav.setViewName("/product/product_review");
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+			mav.addObject("review", review);
+			mav.addObject("type", "edit");
+			mav.addObject("message", "save failed.");
+			mav.setViewName("/product/product_review");
 		} finally {
 		}
 		return mav;
@@ -362,6 +489,38 @@ public class ProductController {
 				wli.setUser_name(user.getUser_name());
 				wli.setProduct_id(Long.parseLong(product_id));
 				boolean result = wishlistService.insertItem(wli);
+				if(result){
+					model.put("status", "success");
+				}
+				else{
+					model.put("status", "error");
+				}
+			}
+		} catch (Exception e) {
+			model.put("status", "error");
+			e.printStackTrace();
+		} finally {
+			mav.addObject("_model", model);
+		}
+		return mav;
+	}
+	
+	@RequestMapping(value = "/add2cart", method = {RequestMethod.GET,RequestMethod.POST})
+	public ModelAndView add2shopcart(HttpServletRequest request, HttpServletResponse response,
+			@RequestParam(value = "product_id", required = true) String product_id) throws ServletException {
+		ModelAndView mav = new ModelAndView();
+		Map<String, Object> model = new LinkedHashMap<String, Object>();
+		try {
+			User user = userService.getUser(request);
+			if(user == null){
+				model.put("redirect", "/login");
+			}
+			else{
+				ShopcartItem si = new ShopcartItem();
+				si.setUser_name_buyer(user.getUser_name());
+				si.setProduct_id(Long.parseLong(product_id));
+				si.setQuantity(1);
+				boolean result = shopcartService.insertItem(si);
 				if(result){
 					model.put("status", "success");
 				}

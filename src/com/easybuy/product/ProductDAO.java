@@ -28,6 +28,13 @@ public class ProductDAO {
 		return (Product) sqlSessionTemplate.selectOne("product.selectById",product_id);
 	}
 	
+	public Review getReview(String user_name,long product_id){
+		Map<String, Object> props = new HashMap<String, Object>();
+		props.put("user_name", user_name);
+		props.put("product_id", product_id);
+		return (Review) sqlSessionTemplate.selectOne("product.selectReview",props);
+	}
+	
 	public List<Product> getHotProductList(){
 		Map<String, Object> props = new HashMap<String, Object>();
 		props.put("firstResult", 0);
@@ -121,6 +128,12 @@ public class ProductDAO {
 		return (List<Product>) sqlSessionTemplate.selectList("product.selectSellerProducts", props);
 	}
 	
+	public int getReviewsCount(long product_id){
+		Map<String, Object> props = new HashMap<String, Object>();
+		props.put("product_id", product_id);
+		return (Integer) sqlSessionTemplate.selectOne("product.selectReviewsCount",props);	
+	}
+	
 	public List<Review> getReviews(Pager pager,long product_id){
 		Map<String, Object> props = new HashMap<String, Object>();
 		props.put("product_id", product_id);
@@ -147,6 +160,21 @@ public class ProductDAO {
 		catch(Exception E){
 		}
 		sqlSessionTemplate.insert("product.insert",product);
+	}
+	
+	public void insertReview(Review review){
+		sqlSessionTemplate.insert("product.insertReview",review);
+	}
+	
+	public void updateReview(Review review){
+		sqlSessionTemplate.update("product.updateReview",review);
+	}
+	
+	public void updateRanking(float ranking,long product_id){
+		Map<String, Object> props = new HashMap<String, Object>();
+		props.put("ranking", ranking);
+		props.put("product_id", product_id);
+		sqlSessionTemplate.update("product.updateRanking", props);
 	}
 	
 	public void update(Product product) {
