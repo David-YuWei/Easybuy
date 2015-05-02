@@ -37,6 +37,7 @@ public class UserService {
 		return (User)session.getAttribute(REQUEST_ATTR_USERNAME);
 	}
 	
+	
 	public String checkUser(HttpServletRequest request, String username, String password){
 		HttpSession session = request.getSession();
 		session.invalidate();
@@ -102,6 +103,15 @@ public class UserService {
 		return sellers;
 	}
 
+	public String checkUsername(HttpServletRequest request, String username){
+		HttpSession session = request.getSession();
+		session.invalidate();		
+		String result = userDAO.checkUsername(username);
+		 session =request.getSession();
+		return result;
+	}
+	
+	
 	public String insertBuyer(HttpServletRequest request,String firstname,String middlename,String lastname,String emailid,String address,String phonenumber,String username,String password) throws Exception{
 		HttpSession session = request.getSession();
 		session.invalidate();
@@ -130,20 +140,7 @@ public class UserService {
 		
 	}
 	
-	/* public String checkBuyer(HttpServletRequest request,String username) throws Exception
-	{
-		HttpSession session = request.getSession();
-		session.invalidate();
-	  String result = userDAO.checkBuyer(username);
-	  if(result != null)
-	  {
-		  session =request.getSession();
-		  User user = null;
-		  session.setAttribute("user", user);
-		  return "success";
-	  }
-	  return "success"; 
-	} */
+	
 	public void deleteBuyer(String id) throws Exception{
 		userDAO.deleteBuyer(id);
 	}

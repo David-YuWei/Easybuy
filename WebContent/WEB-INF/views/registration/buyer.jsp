@@ -9,7 +9,7 @@
 <link href="/Easybuy/css/registration.css" rel="stylesheet" type="text/css" />
 <script type="text/javascript" src="/Easybuy/js/jquery-1.5.2.js"></script>
 <script type="text/javascript" src="/Easybuy/js/jquery.tmpl.js"></script>
-<script type="text/javascript" src="/Easybuy/js/registration/seller.js"></script>
+<script type="text/javascript" src="/Easybuy/js/registration/buyer.js"></script>
 </head>
 
 <script>  
@@ -22,8 +22,6 @@ var cpassword=document.myform.cpassword.value;
 var emailid=document.myform.emailid.value;  
 var address=document.myform.address.value;
 var phonenumber=document.myform.phonenumber.value;  
-var routingnumber=document.myform.routingnumber.value; 
-var accountnumber=document.myform.accountnumber.value; 
 var atposition=emailid.indexOf("@");  
 var dotposition=emailid.lastIndexOf(".");  
 
@@ -58,7 +56,7 @@ if (phonenumber==null || phonenumber==""){
 	  return false; 
 }
 if (isNaN(phonenumber)){  
-	  document.getElementById("error").innerHTML="Routing number must contian only numbers";  
+	  document.getElementById("error").innerHTML="Enter Numeric value only";  
 	  return false;  
 }
 if (phonenumber.length != 10){  
@@ -85,24 +83,9 @@ if(!password==cpassword){
 	  document.getElementById("error").innerHTML="Passwords doesnot match";
 	  return false;  
 } 
-if (accountnumber==null || accountnumber==""){  
-	  document.getElementById("error").innerHTML="Account Number cannot be blank"; 
-	  return false; 
-}
-if (isNaN(accountnumber)){  
-	  document.getElementById("error").innerHTML="Account number must contian only numbers";  
-	  return false;  
-}
-if (routingnumber==null || routingnumber==""){  
-	  document.getElementById("error").innerHTML="Routing number cannot be blank"; 
-	  return false; 
-}
-if (isNaN(routingnumber)){  
-	  document.getElementById("error").innerHTML="Routing number must contian only numbers";  
-	  return false;  
-}
 }  
 </script>  
+
 <script>
 function check()
 {
@@ -113,15 +96,16 @@ function check()
 	}, function(r){
 		if(r.status == 'success'){
 			if(r.msg ==null){
-	           	  document.getElementById("error").innerHTML="User Name is available";  
+	           	  document.getElementById("error").innerHTML="User Name is avalible";  
 	           }
 	           else{
-	           	 document.getElementById("error").innerHTML="User Name is not available";  
+	           	 document.getElementById("error").innerHTML="User Name is not avalible";  
 	           }
 		}
 	}, 'json');
 } 
-       </script>
+</script>
+
 <body>
     <div class="container">
 		<jsp:include page='../header.jsp'>
@@ -137,20 +121,19 @@ function check()
 		</div>
 		<div class="registration">
 		<div class="registrationtop"></div>
-			<form name="myform" onsubmit="return validate()" id="form" method="post" action="/Easybuy/registration/seller">
+			<form name="myform" onsubmit="return validate()" id="form" method="post" action="/Easybuy/registration/buyer">
 				<div class="registration-form">
 					<div class="form-head">
-						Seller Registration
+						Buyer Registration
 					</div>
 					<div class="form-row">
 						<div class="label">User Name</div>
-						<div class="input-box"><input name="username" id="username" type="text" value="${username}" class="input-text"/>&nbsp;<font color="red">*</font>
-						</div>
-						</div>
+						<div class="input-box"><input name="username" id="username" type="text" value="${username}" class="input-text"/>&nbsp;<font color="red">*</font></div>
 						<div class="form-row-info">
 						<div class="label"></div>
 						<div class="input-box"><a href="javascript:void(0)" onclick="check();">Check username</a></div>
 						</div>
+					</div>
 					<div class="form-row">
 						<div class="label">First Name</div>
 						<div class="input-box"><input name="firstname" id="firstname" type="text" value="${firstname}" class="input-text" id="inputSuccess"/>&nbsp;<font color="red">*</font></div>
@@ -188,15 +171,6 @@ function check()
 						<div class="label">Confirm Password</div>
 						<div class="input-box"><input name="cpassword" id="cpassword" type="password" value="${cpassword}"  class="input-text"/>&nbsp;<font color="red">*</font></div>
 					</div>
-					<div class="form-row">
-						<div class="label">Account Number</div>
-						<div class="input-box"><input name="accountnumber"  type="text" value="${accountnumber}" class="input-text"/>&nbsp;<font color="red">*</font></div>
-					</div>
-					<div class="form-row">
-						<div class="label">Routing Number</div>
-						<div class="input-box"><input name="routingnumber"  type="text" value="${routingnumber}" class="input-text"/>&nbsp;<font color="red">*</font></div>
-					</div>
-					
 					<div class="form-submit">
 						<input id="signin" type="submit" value="Register" class="input-button"/>
 					</div>
