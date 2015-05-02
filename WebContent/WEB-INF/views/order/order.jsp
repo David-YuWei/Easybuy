@@ -42,15 +42,15 @@
 					<div class="status-text">
 						<% if(order.getStatus().equals("1")){ %>
 							<input type="radio" value="1" name="order-status" checked="checked" disabled> ordered
-							<input type="radio" value="2"  name="order-status" disabled> shipping
+							<input type="radio" value="2"  name="order-status" disabled> partially shipped
 							<input type="radio" value="3"  name="order-status" disabled> delivered
 						<%}else if(order.getStatus().equals("2")){ %>
 							<input type="radio" value="1" name="order-status" disabled> ordered
-							<input type="radio" value="2"  name="order-status" checked="checked" disabled> shipping
+							<input type="radio" value="2"  name="order-status" checked="checked" disabled> partially shipped
 							<input type="radio" value="3"  name="order-status" disabled> delivered
 						<%}else{ %>
 							<input type="radio" value="1" name="order-status" disabled> ordered
-							<input type="radio" value="2"  name="order-status"  disabled> shipping
+							<input type="radio" value="2"  name="order-status"  disabled> partially shipped
 							<input type="radio" value="3"  name="order-status" checked="checked" disabled> delivered
 						<%} %>
 					</div>
@@ -141,7 +141,7 @@
 						<% if(order.getStatus().equals("1")){ %>
 							ordered
 						<%}else if(order.getStatus().equals("2")){ %>
-							<font style="color:blue;">shipping</font>
+							<font style="color:blue;">partially shipped</font>
 						<%}else{ %>
 							<font style="color:green;">delivered</font>
 						<%} %>
@@ -232,15 +232,15 @@
 					<div class="status-text">
 						<% if(order.getStatus().equals("1")){ %>
 							<input type="radio" value="1" name="order-status" checked="checked" disabled> ordered
-							<input type="radio" value="2"  name="order-status" disabled> shipping
+							<input type="radio" value="2"  name="order-status" disabled> partially shipped
 							<input type="radio" value="3"  name="order-status" disabled> delivered
 						<%}else if(order.getStatus().equals("2")){ %>
 							<input type="radio" value="1" name="order-status" disabled> ordered
-							<input type="radio" value="2"  name="order-status" checked="checked" disabled> shipping
+							<input type="radio" value="2"  name="order-status" checked="checked" disabled> partially shipped
 							<input type="radio" value="3"  name="order-status" disabled> delivered
 						<%}else{ %>
 							<input type="radio" value="1" name="order-status" disabled> ordered
-							<input type="radio" value="2"  name="order-status"  disabled> shipping
+							<input type="radio" value="2"  name="order-status"  disabled> partially shipped
 							<input type="radio" value="3"  name="order-status" checked="checked" disabled> delivered
 						<%} %>
 					</div>
@@ -331,7 +331,7 @@
 						<% if(order.getStatus().equals("1")){ %>
 							ordered
 						<%}else if(order.getStatus().equals("2")){ %>
-							<font style="color:blue;">shipping</font>
+							<font style="color:blue;">partially shipped</font>
 						<%}else{ %>
 							<font style="color:green;">delivered</font>
 						<%} %>
@@ -423,7 +423,7 @@
 						<% if(order.getStatus().equals("1")){ %>
 							ordered
 						<%}else if(order.getStatus().equals("2")){ %>
-							<font style="color:blue;">shipping</font>
+							<font style="color:blue;">partially shipped</font>
 						<%}else{ %>
 							<font style="color:green;">delivered</font>
 						<%} %>

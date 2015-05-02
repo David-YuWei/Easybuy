@@ -44,7 +44,7 @@
 		<div class="info2"><a href="/Easybuy/order/{{= order.order_id}}/view">Order # {{= order.order_id}}</a></div>
 		<div class="info3">
 			{{if order.status =='1'}}<font style="color:black;font-size:16px;">ordered</font>
-			{{else order.status =='2'}}<font style="color:blue;">shipping</font>
+			{{else order.status =='2'}}<font style="color:blue;">partially shipped</font>
 			{{else order.status =='3'}}<font style="color:green;">delivered</font>
 			{{/if}}
 		</div>
