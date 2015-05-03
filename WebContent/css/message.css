@@ -1,1 +1,129 @@
 @CHARSET "UTF-8";
+.userArea{
+	width:100%;
+}
+.leftBoard{
+	margin-top:20px;
+	margin-left:30px;
+	height:500px;
+	border-right:1px solid #cccccc;
+	width:20%;
+	float:left;
+	display:inline;
+}
+.leftBoard ul{
+}
+.leftBoard ul li{
+	list-style:none;
+	width:90%;
+	height:40px;
+	line-height:40px;
+	font-size:16px;
+	text-align: center;
+	border-bottom: 1px solid #cccccc;
+	display: block;
+	cursor:pointer;
+}
+
+.leftBoard ul li:hover,.selected{
+	font-weight:bold;
+	box-shadow: 0px 3px 0px #4486F3;
+}
+
+.input-row{
+	height: 40px;
+	line-height:40px;
+	float:auto;
+	width:100%;
+	margin-top: 45px;
+}
+.userArea .listArea{
+	width:74%;
+	height:420px;
+	margin-top:20px;
+	float:right;
+	
+}
+
+.input-row .label{
+	width:10%;
+	float:left;
+	text-align:right;
+	font-size: 	large;
+}
+
+.input-row .label2{
+	width:75%;
+	float:left;
+	text-align:left;
+	margin-left: 45px;
+	margin-bottom: 10px;
+	border:1px solid;
+	padding-left: 15px;
+}
+
+.input-row .label3{
+	width:75%;
+	float:left;
+	text-align:left;
+	margin-left: 45px;
+	margin-bottom: 10px;
+	border:1px solid;
+	padding-left: 15px;
+}
+
+.input-row .input-text{
+	width:75%;
+	height: 40px;
+	float:left;
+	text-align:left;
+	margin-left: 45px;
+	margin-bottom: 10px;
+	border:1px solid;
+	padding-left: 15px;
+}
+
+.input-row .input-text1{
+	width:75%;
+	height: 400px;
+	float:left;
+	text-align:left;
+	margin-left: 45px;
+	margin-bottom: 10px;
+	border:1px solid;
+	padding-left: 15px;
+}
+
+.save-box{
+	width:85%;
+	margin-top:20px;
+	float:right;
+	text-align:left;
+	margin-right:2px;
+	
+}
+
+.save-info{
+	width:85%;
+	margin-top:20px;
+	color: red;
+	font-weight: bold;
+	float:right;
+	text-align:left;
+	margin-right:2px;
+}
+
+.link{
+	
+	margin-left: 100px;
+}
+
+.userMessage{
+	font-weight: bold;
+}
+
+.messageForm{
+	float:left;
+	width:100%;
+}
+}
