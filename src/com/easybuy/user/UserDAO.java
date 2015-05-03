@@ -136,9 +136,29 @@ public class UserDAO {
 		}
 	}
 
+	public String updateBuyer(String firstname,String middlename,String lastname,
+			String emailid,String address,String phonenumber,String username)
+	{
+		Map<String, Object> props = new HashMap<String, Object>();
+		props.put("username", username);
+		props.put("firstname", firstname);
+		props.put("lastname", lastname);
+		props.put("middlename", middlename);
+		props.put("emailid", emailid);
+		props.put("address", address);
+		props.put("phonenumber", phonenumber);
+		
+		
 
+		return (String)sqlSessionTemplate.selectOne("user.buyer.update_buyer",props);
+	}
+	
+	
 	public void deleteBuyer(String id) {
 		sqlSessionTemplate.update("user.buyer.delete", id);
+	}
+	public void deleteBuyer_user(String id) {
+		sqlSessionTemplate.update("user.buyer.delete_user", id);
 	}
 	
 	public void approveSeller(String id) {

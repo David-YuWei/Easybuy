@@ -30,9 +30,16 @@
 		where user_name = #{id}
 	</update>
 	
+	<update id="delete_user">
+		update buyer set status = '0' 
+		where user_name = #{id}
+	</update>
+	
 	<insert id="insertBuyer" parameterType="com.easybuy.user.domain.Buyer">
 	insert into buyer values(#{username},#{firstname},#{middlename},#{lastname},#{emailid},#{phonenumber},#{address},#{password},1)
 	</insert>
-	
+	<update id="update_buyer" parameterType="com.easybuy.user.domain.Buyer"> update buyer set user_name=#{username},first_name=#{firstname},
+	middle_name=#{middlename},last_name=#{lastname},email_id=#{emailid},phone_number=#{phone_number},
+	address=#{address} where user_name=#{username}</update>
 	
 </mapper>

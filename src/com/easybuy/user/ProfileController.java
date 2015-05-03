@@ -1,5 +1,8 @@
 package com.easybuy.user;
 
+import java.util.LinkedHashMap;
+import java.util.Map;
+
 import javax.annotation.Resource;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -32,6 +35,34 @@ public class ProfileController {
 		ModelAndView mav = new ModelAndView();
 		try {
 			mav.setViewName("/user");
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+		}
+		return mav;
+	}
+	
+	@RequestMapping(value = "/updatebuyer", method = {RequestMethod.POST,RequestMethod.GET})
+	public ModelAndView updatebuyer(HttpServletRequest request, HttpServletResponse response) throws ServletException {
+		
+		ModelAndView mav = new ModelAndView();
+		try {
+		String firstname= request.getParameter("firstname");
+		String middlename= request.getParameter("middlename");
+		String lastname= request.getParameter("lastname");
+		String emailid= request.getParameter("emailid");
+		String address= request.getParameter("address");
+		String phonenumber= request.getParameter("phonenumber");
+		String username= request.getParameter("user_name");
+		
+		
+		
+		String msg = userService.updateBuyer(request,firstname,middlename,lastname,emailid,address,phonenumber,username);
+				if (msg.equals("success")) {
+					mav.addObject("msg","Profile was successfully updated");
+					mav.setViewName("/user/myProfile_buyer");
+					return mav;
+				}
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
@@ -90,5 +121,22 @@ public class ProfileController {
 			}
 			return mav;
 		}
+	@RequestMapping(value = "/deletebuyer", method = {RequestMethod.GET, RequestMethod.POST})
+	public ModelAndView delete_user(HttpServletRequest request, HttpServletResponse response,
+			@RequestParam(value = "user_name", required = true) String username) throws ServletException {
+		ModelAndView mav = new ModelAndView();
+		Map<String, Object> model = new LinkedHashMap<String, Object>();
+		try {
+			System.out.println("a");
+			userService.deleteBuyer(username);
+			model.put("status", "success");
+		} catch (Exception e) {
+			model.put("status", "error");
+			e.printStackTrace();
+		} finally {
+			mav.addObject("_model", model);
+		}
+		return mav;
+	}
 }
 

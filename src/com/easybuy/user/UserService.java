@@ -130,11 +130,11 @@ public class UserService {
 		
 	}
 	
-	/* public String checkBuyer(HttpServletRequest request,String username) throws Exception
-	{
+	public String updateBuyer(HttpServletRequest request,String firstname,String middlename,
+			String lastname,String emailid,String address,String phonenumber,String username) throws Exception{
 		HttpSession session = request.getSession();
 		session.invalidate();
-	  String result = userDAO.checkBuyer(username);
+	  String result = userDAO.updateBuyer(firstname,middlename,lastname,emailid,address,phonenumber,username);
 	  if(result != null)
 	  {
 		  session =request.getSession();
@@ -142,8 +142,10 @@ public class UserService {
 		  session.setAttribute("user", user);
 		  return "success";
 	  }
-	  return "success"; 
-	} */
+	  return "success";
+		
+	}
+	
 	public void deleteBuyer(String id) throws Exception{
 		userDAO.deleteBuyer(id);
 	}
@@ -158,6 +160,9 @@ public class UserService {
 	
 	public void updateBuyer(Buyer buyer) throws Exception{
 		
+	}
+	public void deleteBuyer_user(String id) throws Exception{
+		userDAO.deleteBuyer(id);
 	}
 	
 }
