@@ -9,28 +9,6 @@
 		where status = 1
 	</select>
 	
-	<select id="checkUsername" resultType="string">
-		
-	(
-			select user_name from buyer 
-			where user_name = #{username} 
-			
-		)
-		union
-		(
-			select user_name from seller 
-			where user_name = #{username} 
-			
-		)
-		union
-		(
-			select user_name from admin 
-			where user_name = #{username} 
-			
-		)
-		
-	</select>
-	
 	<select id="selectList" resultType="com.easybuy.user.domain.Buyer">
 		select user_name,first_name,middle_name,last_name,email_id,address,phone_number from buyer
 		where status = 1 

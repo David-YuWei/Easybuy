@@ -16,6 +16,7 @@
 			select "seller" as type from seller 
 			where user_name = #{username} 
 			and password = #{password}
+			and status != '0'
 		)
 		union
 		(
@@ -23,6 +24,26 @@
 			where user_name = #{username} 
 			and password = #{password}
 		)
+	</select>
+	
+	<select id="selectByUsername" resultType="java.lang.String">
+		(
+			select "buyer" as type from buyer 
+			where user_name = #{username}
+			and status = '1'
+		)
+		union
+		(
+			select "seller" as type from seller 
+			where user_name = #{username}
+			and status != '0'
+		)
+		union
+		(
+			select "admin" as type from admin 
+			where user_name = #{username}
+		)
+		
 	</select>
 	
 	<select id="selectAdminById" resultType="com.easybuy.user.domain.Admin">

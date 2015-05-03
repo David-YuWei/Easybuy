@@ -28,100 +28,82 @@ var atposition=emailid.indexOf("@");
 var dotposition=emailid.lastIndexOf(".");  
 
 if (username==null || username==""){  
-	document.getElementById("error").innerHTML="User Name cannot be blank";
+	document.getElementById("message").innerHTML="User Name cannot be blank";
     return false;
  
 }
 if (firstname==null || firstname==""){  
-	document.getElementById("error").innerHTML="First Name cannot be blank";
+	document.getElementById("message").innerHTML="First Name cannot be blank";
     return false;
   
 }
 if (lastname==null || lastname==""){  
-	  document.getElementById("error").innerHTML="Last Name cannot be blank"; 
+	  document.getElementById("message").innerHTML="Last Name cannot be blank"; 
 	  return false; 
 }
 if (emailid==null || emailid==""){  
-	  document.getElementById("error").innerHTML="Email ID cannot be blank"; 
+	  document.getElementById("message").innerHTML="Email ID cannot be blank"; 
 	  return false; 
 }
 if (atposition<1 || dotposition<atposition+2 || dotposition+2>=emailid.length){  
-	document.getElementById("error").innerHTML="Email ID should be like abc@axy.com"; 
+	document.getElementById("message").innerHTML="Email ID should be like abc@axy.com"; 
 	  return false; 
 	  } 
 if (address==null || address==""){  
-	  document.getElementById("error").innerHTML="Address cannot be blank";
+	  document.getElementById("message").innerHTML="Address cannot be blank";
 	  return false; 
 }
 if (phonenumber==null || phonenumber==""){  
-	  document.getElementById("error").innerHTML="Phone number cannot be blank"; 
+	  document.getElementById("message").innerHTML="Phone number cannot be blank"; 
 	  return false; 
 }
 if (isNaN(phonenumber)){  
-	  document.getElementById("error").innerHTML="Routing number must contian only numbers";  
+	  document.getElementById("message").innerHTML="Phone number must contian only numbers";  
 	  return false;  
 }
 if (phonenumber.length != 10){  
-	  document.getElementById("error").innerHTML="Phone Numbers should be 10 didgits";  
+	  document.getElementById("message").innerHTML="Phone Numbers should be 10 digits";  
 	  return false;  
 }
 if (password==null || password==""){  
-	  document.getElementById("error").innerHTML="Password cannot be blank";
+	  document.getElementById("message").innerHTML="Password cannot be blank";
 	  return false;
 }
 if(password.length<8){  
-	document.getElementById("error").innerHTML="Password should be atleast 8 characters long";
+	document.getElementById("message").innerHTML="Password should be at least 8 characters long";
   return false;  
 }
 if (cpassword==null || cpassword==""){  
-	  document.getElementById("error").innerHTML="Please re-enter Password";  
+	  document.getElementById("message").innerHTML="Please re-enter Password";  
 	  return false; 
 }
 if(cpassword.length<8){  
-	document.getElementById("error").innerHTML="Passwords doesnot match";
+	document.getElementById("message").innerHTML="Passwords does not match";
   return false;  
  }
 if(!password==cpassword){  
-	  document.getElementById("error").innerHTML="Passwords doesnot match";
+	  document.getElementById("message").innerHTML="Passwords does not match";
 	  return false;  
 } 
 if (accountnumber==null || accountnumber==""){  
-	  document.getElementById("error").innerHTML="Account Number cannot be blank"; 
+	  document.getElementById("message").innerHTML="Account Number cannot be blank"; 
 	  return false; 
 }
 if (isNaN(accountnumber)){  
-	  document.getElementById("error").innerHTML="Account number must contian only numbers";  
+	  document.getElementById("message").innerHTML="Account number must contian only numbers";  
 	  return false;  
 }
 if (routingnumber==null || routingnumber==""){  
-	  document.getElementById("error").innerHTML="Routing number cannot be blank"; 
+	  document.getElementById("message").innerHTML="Routing number cannot be blank"; 
 	  return false; 
 }
 if (isNaN(routingnumber)){  
-	  document.getElementById("error").innerHTML="Routing number must contian only numbers";  
+	  document.getElementById("message").innerHTML="Routing number must contian only numbers";  
 	  return false;  
 }
 }  
 </script>  
-<script>
-function check()
-{
-	var username=document.myform.username.value;
-	
-	$.post('/Easybuy/registration/check.json?_decode=UTF-8', {
-		username: username
-	}, function(r){
-		if(r.status == 'success'){
-			if(r.msg ==null){
-	           	  document.getElementById("error").innerHTML="User Name is available";  
-	           }
-	           else{
-	           	 document.getElementById("error").innerHTML="User Name is not available";  
-	           }
-		}
-	}, 'json');
-} 
-       </script>
+
 <body>
     <div class="container">
 		<jsp:include page='../header.jsp'>
@@ -133,11 +115,11 @@ function check()
 			</a>
 		</div>
 		<div id="message" class="registrationMessage">
-		<span id="error" style="color:red"></span>
+		
 		</div>
 		<div class="registration">
 		<div class="registrationtop"></div>
-			<form name="myform" onsubmit="return validate()" id="form" method="post" action="/Easybuy/registration/seller">
+			<form name="myform" onsubmit="return validate()" id="form" method="post" action="/Easybuy/registration/seller/add">
 				<div class="registration-form">
 					<div class="form-head">
 						Seller Registration

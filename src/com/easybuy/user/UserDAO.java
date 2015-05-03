@@ -27,13 +27,17 @@ public class UserDAO {
 	}
 	
 	
-	public String checkUsername(String username)
+	public String checkExistByUsername(String username)
 	{
 		Map<String, Object> props = new HashMap<String, Object>();
 		props.put("username", username);	
 		
-		String name = (String) sqlSessionTemplate.selectOne("user.buyer.checkUsername",props);
-		return name;
+		List<String> result = (List<String>) sqlSessionTemplate.selectList("user.selectByUsername",props);
+		if (result ==null || result.size() == 0) {
+			return null;
+		} else {
+			return result.get(0);
+		}
 	}
 	
 	public String insertBuyer(String firstname,String middlename,String lastname,String emailid,String address,String phonenumber,String username,String password)
@@ -48,7 +52,6 @@ public class UserDAO {
 		props.put("phonenumber", phonenumber);
 		props.put("password", password);
 		
-
 		return (String)sqlSessionTemplate.selectOne("user.buyer.insertBuyer",props);
 	}
 	

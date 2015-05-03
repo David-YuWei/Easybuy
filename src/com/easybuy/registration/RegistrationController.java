@@ -26,28 +26,21 @@ public class RegistrationController {
 		
 	}
 	
-	@RequestMapping(value = "", method = {RequestMethod.GET, RequestMethod.POST})
-	public ModelAndView gotobuyerregistration(HttpServletRequest request, HttpServletResponse response) {
-		ModelAndView mav = new ModelAndView();
-		try {
-			mav.setViewName("/registration");
-		} catch (Exception e) {
-			e.printStackTrace();
-		} finally {
-		}
-		return mav;
-	}
-	
-	@RequestMapping(value = "/check", method = {RequestMethod.POST,RequestMethod.GET})
+	@RequestMapping(value = "/checkusername", method = {RequestMethod.POST,RequestMethod.GET})
 	public ModelAndView check(HttpServletRequest request, HttpServletResponse response){
 		ModelAndView mav = new ModelAndView();
 		Map<String, Object> model = new LinkedHashMap<String, Object>();
 		try {
 			String username= request.getParameter("username");
 			
-			String msg = userService.checkUsername(request,username);
+			String result = userService.checkUsername(username);
+			if(result != null){
+				model.put("msg", "UserName is not available");
+			}
+			else{
+				model.put("msg", "<font style=\"color:green;\">UserName is available</font>");
+			}
 			
-			model.put("msg", msg);
 			model.put("status", "success");
 		} catch (Exception e) {
 			model.put("status", "error");
@@ -58,77 +51,5 @@ public class RegistrationController {
 		return mav;
 	} 
 	
-	@RequestMapping(value = "/buyer", method = {RequestMethod.POST,RequestMethod.GET})
-	public ModelAndView buyer(HttpServletRequest request, HttpServletResponse response) throws ServletException {
-		
-		ModelAndView mav = new ModelAndView();
-		try {
-		String firstname= request.getParameter("firstname");
-		String middlename= request.getParameter("middlename");
-		String lastname= request.getParameter("lastname");
-		String emailid= request.getParameter("emailid");
-		String address= request.getParameter("address");
-		String phonenumber= request.getParameter("phonenumber");
-		String username= request.getParameter("username");
-		String password= request.getParameter("password");
-		
-		
-		String msg = userService.insertBuyer(request,firstname,middlename,lastname,emailid,address,phonenumber,username,password);
-				if (msg.equals("success")) {
-					mav.addObject("msg","You are successfully registered");
-					mav.setViewName("/login");
-					return mav;
-				}
-		} catch (Exception e) {
-			e.printStackTrace();
-		} finally {
-		}
-		return mav;
-	}
-	
-	@RequestMapping(value = "", method = {RequestMethod.GET, RequestMethod.POST})
-	public ModelAndView gotosellerregistration(HttpServletRequest request, HttpServletResponse response) {
-		ModelAndView mav = new ModelAndView();
-		try {
-			mav.setViewName("/registration/");
-		} catch (Exception e) {
-			e.printStackTrace();
-		} finally {
-		}
-		return mav;
-	}
-	
-	@RequestMapping(value = "/seller", method = {RequestMethod.POST,RequestMethod.GET})
-	public ModelAndView seller(HttpServletRequest request, HttpServletResponse response) throws ServletException {
-		
-		ModelAndView mav = new ModelAndView();
-		try {
-		String firstname= request.getParameter("firstname");
-		String middlename= request.getParameter("middlename");
-		String lastname= request.getParameter("lastname");
-		String emailid= request.getParameter("emailid");
-		String address= request.getParameter("address");
-		String phonenumber= request.getParameter("phonenumber");
-		String username= request.getParameter("username");
-		String password= request.getParameter("password");
-		String accountnumber = request.getParameter("accountnumber");
-		String routingnumber = request.getParameter("routingnumber");
-		
-		
-		
-			
-				String msg = userService.insertSeller(request,firstname,middlename,lastname,emailid,address,phonenumber,username,password,accountnumber,routingnumber);
-				if (msg.equals("success")) {
-					mav.addObject("msg","You are successfully registered");
-					mav.setViewName("/login");
-					return mav;
-				}
-			
-		} catch (Exception e) {
-			e.printStackTrace();
-		} finally {
-		}
-		return mav;
-	}
 }
 	

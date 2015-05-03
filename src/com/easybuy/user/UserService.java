@@ -95,19 +95,11 @@ public class UserService {
 	
 	public List<Seller> getSellerList(Pager pager){
 		List<Seller> sellers= userDAO.getSellerList(pager);
-		if(sellers !=null){
-			for(Seller br:sellers){
-				//translates value of the attribute to practical meaning
-			}
-		}
 		return sellers;
 	}
 
-	public String checkUsername(HttpServletRequest request, String username){
-		HttpSession session = request.getSession();
-		session.invalidate();		
-		String result = userDAO.checkUsername(username);
-		 session =request.getSession();
+	public String checkUsername(String username){		
+		String result = userDAO.checkExistByUsername(username);
 		return result;
 	}
 	
