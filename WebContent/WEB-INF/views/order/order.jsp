@@ -129,7 +129,7 @@
 					<div class="text">Subtotal:</div><div id="subtotal" class="text1"><%= df.format(order.getPrice()) %></div>
 					<div class="text">Tax:</div><div class="text1" id="tax"><%= df.format(order.getTax()) %></div>
 					<div class="text">Shipping cost:</div><div class="text1" id="shippingCost"><%= df.format(order.getShippingCost()) %></div>
-					<div class="text2">Total:</div><div id="total" class="text3"><%= df.format(order.getPrice()+order.getTax()+order.getShippingCost()) %></div>
+					<div class="text2">Total:</div><div id="total" class="text3">$ <%= df.format(order.getPrice()+order.getTax()+order.getShippingCost()) %></div>
 					<div class="button"><span onclick="document.orderForm.submit();" class="span-click-box">update my order</span></div>
 					
 				</div>
@@ -220,7 +220,7 @@
 					<div class="text">Subtotal:</div><div id="subtotal" class="text1"><%= df.format(order.getPrice()) %></div>
 					<div class="text">Tax:</div><div class="text1" id="tax"><%= df.format(order.getTax()) %></div>
 					<div class="text">Shipping cost:</div><div class="text1" id="shippingCost"><%= df.format(order.getShippingCost()) %></div>
-					<div class="text2">Total:</div><div id="total" class="text3"><%= df.format(order.getPrice()+order.getTax()+order.getShippingCost()) %></div>
+					<div class="text2">Total:</div><div id="total" class="text3">$ <%= df.format(order.getPrice()+order.getTax()+order.getShippingCost()) %></div>
 					<div class="button"></div>
 				</div>
 			<%} %>
@@ -319,7 +319,7 @@
 					<div class="text">Subtotal:</div><div id="subtotal" class="text1"><%= df.format(order.getPrice()) %></div>
 					<div class="text">Tax:</div><div class="text1" id="tax"><%= df.format(order.getTax()) %></div>
 					<div class="text">Shipping cost:</div><div class="text1" id="shippingCost"><%= df.format(order.getShippingCost()) %></div>
-					<div class="text2">Total:</div><div id="total" class="text3"><%= df.format(order.getPrice()+order.getTax()+order.getShippingCost()) %></div>
+					<div class="text2">Total:</div><div id="total" class="text3">$ <%= df.format(order.getPrice()+order.getTax()+order.getShippingCost()) %></div>
 					<div class="button"><span onclick="document.orderForm.submit();" class="span-click-box">update my order</span></div>
 					
 				</div>
@@ -502,7 +502,7 @@
 					<div class="text">Subtotal:</div><div id="subtotal" class="text1"><%= df.format(order.getPrice()) %></div>
 					<div class="text">Tax:</div><div class="text1" id="tax"><%= df.format(order.getTax()) %></div>
 					<div class="text">Shipping cost:</div><div class="text1" id="shippingCost"><%= df.format(order.getShippingCost()) %></div>
-					<div class="text2">Total:</div><div id="total" class="text3"><%= df.format(order.getPrice()+order.getTax()+order.getShippingCost()) %></div>
+					<div class="text2">Total:</div><div id="total" class="text3">$ <%= df.format(order.getPrice()+order.getTax()+order.getShippingCost()) %></div>
 					<div class="button"></div>
 				</div>
 			<%} %>
