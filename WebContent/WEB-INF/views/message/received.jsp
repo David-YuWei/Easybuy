@@ -23,8 +23,8 @@
 			<div class="userArea">
 				<div class="leftBoard">
 					<ul>
-						<li class="selected"><a href="/Easybuy/message/">Received</a></li>
-						<li><a href="/Easybuy/message/sent">Sent</a></li>
+						<li class="selected" onClick="window.location.href = '/Easybuy/message/';">Received</li>
+						<li onClick="window.location.href = '/Easybuy/message/sent';">Sent</li>
 					</ul>
 				</div>
 				<div class="listArea">
@@ -32,8 +32,8 @@
 					<table border="0" cellpadding="0" cellspacing="0" class="data-table" id="list-table">
 						<tr class="data-table-head">
 							<td width="20%">Type</td>
-							<td width="30%">From</td>
-							<td width="30%">Content</td>
+							<td width="20%">From</td>
+							<td width="40%">Content</td>
 							<td width="20%"></td>
 						</tr>
 					</table>

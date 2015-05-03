@@ -23,20 +23,20 @@
 			<div class="userArea">
 				<div class="leftBoard">
 					<ul>
-						<li><a href="/Easybuy/message/">Received</a></li>
-						<li class="selected"><a href="/Easybuy/message/sent">Sent</a></li>
+						<li onClick="window.location.href = '/Easybuy/message/';">Received</li>
+						<li class="selected" onClick="window.location.href = '/Easybuy/message/sent';">Sent</li>
 					</ul>
 				</div>
-				<div class="link">
-				<a href="/Easybuy/message/message_new"> &nbsp &nbsp &nbsp &nbsp &nbspNew Message</a>
-				</div>
-				<div class="listArea">
 				
+				<div class="listArea">
+					<div class="link">
+						<a href="/Easybuy/message/message_new">New Message</a>
+					</div>
 					<div class="tabletop"></div>
 					<table border="0" cellpadding="0" cellspacing="0" class="data-table" id="list-table">
 						<tr class="data-table-head">
-							<td width="30%">To</td>
-							<td width="30%">Content</td>
+							<td width="20%">To</td>
+							<td width="60%">Content</td>
 							<td width="20%"></td>
 						</tr>
 					</table>
@@ -55,7 +55,7 @@
 {{each list}}
 <tr x-id="{{= message_id}}" class="data-table-row">
 	<td align="center">{{= touser}}</td>
-	<td align="center">{{= content}}</td>
+	<td align="left">{{= content}}</td>
 	<td align="center">
 	<a href="/Easybuy/message/message_view?message_id={{= message_id}}">View</a></td>
 </tr>

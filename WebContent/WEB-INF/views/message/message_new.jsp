@@ -49,7 +49,7 @@
 			<div class="underline"></div>
 			<div class="userArea">
 			<div class="messageForm">
-				<form id="form" enctype="multipart/form-data" name="form" method="post" action="/Easybuy/message/messageNew">
+				<form id="form" name="form" method="post" action="/Easybuy/message/messageNew">
 				<div class="input-row">
 					<div class="label">To</div>
 					<%if(disable.equals("disable"))
@@ -59,8 +59,10 @@
 					<%if(disable.equals("")){ %>
 					<div class="input-box"><input name="touser" id="touser" type="text" value="<%= touser%>" class="input-text" /></div>
 					<%} %>
+				</div>
+				<div class="textarea-row">
 					<div class="label">Content</div>
-					<div class="input-box"><input name="content" id="content" type="text" value="<%= content%>" class="input-text"/></div>
+					<div class="input-box"><textarea name="content" rows="5" id="content" class="input-textarea"><%= content%></textarea></div>
 					
 				</div>
 				<div class="save-box"><span class="span-click-box" onClick="document.form.submit();">Send</span></div>

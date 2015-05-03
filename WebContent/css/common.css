@@ -187,6 +187,8 @@ span{
 .underline{
 	margin-top:5px;
 	border-top:1px solid #cccccc;
+	float:left;
+	width:100%;
 }
 .productArea{
 	height:255px;
@@ -202,6 +204,8 @@ span{
 	height:5px;
 	background-color: #4486F3;
 	display:block;
+	float:left;
+	width:100%;
 }
 
 .data-table { 

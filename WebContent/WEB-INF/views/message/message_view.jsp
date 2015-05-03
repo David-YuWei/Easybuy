@@ -22,10 +22,30 @@
 			<div class="underline"></div>
 			<div class="userArea">
 				<div class="input-row">
+					<div class="label">Type</div>
+					<div class="label2">
+					<% if(message.getType().equals("0")){ %>
+						Registration
+					<%}else if(message.getType().equals("1")){ %>
+						New order
+					<%}else if(message.getType().equals("2")){ %>
+						Order Update
+					<%}else if(message.getType().equals("3")){ %>
+						Customer Review
+					<%}else if(message.getType().equals("4")){ %>
+						User Message
+					<%} %>
+					</div>
+				</div>
+				<div class="input-row">
 					<div class="label">From</div>
 					<div class="label2"><%=message.getFromuser() %></div>
+				</div>
+				<div class="input-row">
 					<div class="label">To</div>
 					<div class="label2"><%=message.getTouser() %></div>
+				</div>
+				<div class="input-row">
 					<div class="label">Content</div>
 					<div class="label3"><%=message.getContent() %><br><br><br><br></div>
 					</div>
