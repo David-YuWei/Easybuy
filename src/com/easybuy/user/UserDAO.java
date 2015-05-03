@@ -26,6 +26,16 @@ public class UserDAO {
 		return (Buyer)sqlSessionTemplate.selectOne("user.buyer.selectById",props);
 	}
 	
+	
+	public String checkUsername(String username)
+	{
+		Map<String, Object> props = new HashMap<String, Object>();
+		props.put("username", username);	
+		
+		String name = (String) sqlSessionTemplate.selectOne("user.buyer.checkUsername",props);
+		return name;
+	}
+	
 	public String insertBuyer(String firstname,String middlename,String lastname,String emailid,String address,String phonenumber,String username,String password)
 	{
 		Map<String, Object> props = new HashMap<String, Object>();
@@ -41,12 +51,6 @@ public class UserDAO {
 
 		return (String)sqlSessionTemplate.selectOne("user.buyer.insertBuyer",props);
 	}
-
-/*	public String checkBuyer(String user_name){
-		Map<String, Object> props = new HashMap<String, Object>();
-		props.put("user_name", user_name);
-		return (String)sqlSessionTemplate.selectOne("user.buyer.checkBuyer",props); 
-	} */
 	
 
 	public String insertSeller(String firstname,String middlename,String lastname,String emailid
