@@ -51,9 +51,13 @@
 		</property>
 	</bean>
 	
-	<!-- <bean name="ehCacheManager" class="org.springframework.cache.ehcache.EhCacheManagerFactoryBean">
-		<property name="configLocation" value="classpath:ehcache.xml"/>
-	</bean> -->
+	<bean name="ehCacheManager" class="org.springframework.cache.ehcache.EhCacheManagerFactoryBean">
+		<property name="configLocation" value="/WEB-INF/ehcache.xml"/>
+	</bean>
+	
+	<bean name="common:ehcache" class="org.springframework.cache.ehcache.EhCacheFactoryBean">
+		<property name="cacheManager" ref="ehCacheManager"/>
+	</bean>
 	
 	<tx:annotation-driven transaction-manager="transactionManager"/>
 	

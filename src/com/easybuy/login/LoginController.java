@@ -56,7 +56,7 @@ public class LoginController {
 					mav.setViewName("redirect:/");
 				} else {
 					mav.addObject("url", url);
-					mav.addObject("msg", "Invalid Username and password");
+					mav.addObject("msg", msg);
 					mav.setViewName("/login");
 					return mav;
 				}

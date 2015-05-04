@@ -9,28 +9,6 @@
 		where status = 1
 	</select>
 	
-	<select id="checkUsername" resultType="string">
-		
-	(
-			select user_name from buyer 
-			where user_name = #{username} 
-			
-		)
-		union
-		(
-			select user_name from seller 
-			where user_name = #{username} 
-			
-		)
-		union
-		(
-			select user_name from admin 
-			where user_name = #{username} 
-			
-		)
-		
-	</select>
-	
 	<select id="selectList" resultType="com.easybuy.user.domain.Buyer">
 		select user_name,first_name,middle_name,last_name,email_id,address,phone_number from buyer
 		where status = 1 
@@ -52,9 +30,18 @@
 		where user_name = #{id}
 	</update>
 	
+	<update id="delete_user">
+		update buyer set status = '0' 
+		where user_name = #{id}
+	</update>
+	
 	<insert id="insertBuyer" parameterType="com.easybuy.user.domain.Buyer">
 	insert into buyer values(#{username},#{firstname},#{middlename},#{lastname},#{emailid},#{phonenumber},#{address},#{password},1)
 	</insert>
 	
+	<update id="update_buyer" parameterType="com.easybuy.user.domain.Buyer"> 
+		update buyer set first_name=#{firstname},middle_name=#{middlename},last_name=#{lastname},email_id=#{emailid},phone_number=#{phone_number},address=#{address} 
+		where user_name=#{username}
+	</update>
 	
 </mapper>

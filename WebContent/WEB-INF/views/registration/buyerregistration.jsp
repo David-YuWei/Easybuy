@@ -11,6 +11,80 @@
 <script type="text/javascript" src="/Easybuy/js/jquery.tmpl.js"></script>
 <script type="text/javascript" src="/Easybuy/js/registration/buyer.js"></script>
 </head>
+<script>  
+function validate(){ 
+var username=document.myform.username.value; 
+var firstname=document.myform.firstname.value;  
+var password=document.myform.password.value; 
+var lastname=document.myform.lastname.value;  
+var cpassword=document.myform.cpassword.value; 
+var emailid=document.myform.emailid.value;  
+var address=document.myform.address.value;
+var phonenumber=document.myform.phonenumber.value;  
+var atposition=emailid.indexOf("@");  
+var dotposition=emailid.lastIndexOf(".");  
+
+if (username==null || username==""){  
+	document.getElementById("message").innerHTML="User Name cannot be blank";
+    return false;
+ 
+}
+if (firstname==null || firstname==""){  
+	document.getElementById("message").innerHTML="First Name cannot be blank";
+    return false;
+  
+}
+if (lastname==null || lastname==""){  
+	  document.getElementById("message").innerHTML="Last Name cannot be blank"; 
+	  return false; 
+}
+if (emailid==null || emailid==""){  
+	  document.getElementById("message").innerHTML="Email ID cannot be blank"; 
+	  return false; 
+}
+if (atposition<1 || dotposition<atposition+2 || dotposition+2>=emailid.length){  
+	document.getElementById("message").innerHTML="Email ID should be like abc@axy.com"; 
+	  return false; 
+	  } 
+if (address==null || address==""){  
+	  document.getElementById("message").innerHTML="Address cannot be blank";
+	  return false; 
+}
+if (phonenumber==null || phonenumber==""){  
+	  document.getElementById("message").innerHTML="Phone number cannot be blank"; 
+	  return false; 
+}
+if (isNaN(phonenumber)){  
+	  document.getElementById("message").innerHTML="Phone number must contian only numbers";  
+	  return false;  
+}
+if (phonenumber.length != 10){  
+	  document.getElementById("message").innerHTML="Phone Numbers should be 10 digits";  
+	  return false;  
+}
+if (password==null || password==""){  
+	  document.getElementById("message").innerHTML="Password cannot be blank";
+	  return false;
+}
+if(password.length<8){  
+	document.getElementById("message").innerHTML="Password should be at least 8 characters long";
+  return false;  
+}
+if (cpassword==null || cpassword==""){  
+	  document.getElementById("message").innerHTML="Please re-enter Password";  
+	  return false; 
+}
+if(cpassword.length<8){  
+	document.getElementById("message").innerHTML="Passwords does not match";
+  return false;  
+ }
+if(!password==cpassword){  
+	  document.getElementById("message").innerHTML="Passwords does not match";
+	  return false;  
+} 
+}  
+</script>
+
 <body>
     <div class="container">
 		<jsp:include page='../header.jsp'>
@@ -24,7 +98,7 @@
 		<div id="message" class="registrationMessage">${msg}</div>
 		<div class="registration">
 		<div class="registrationtop"></div>
-			<form id="form" method="post" action="/Easybuy/registration/buyer/add">
+			<form name="myform" onsubmit="return validate()" id="form" method="post" action="/Easybuy/registration/buyer/add">
 				<div class="registration-form">
 					<div class="form-head">
 						Buyer Registration
