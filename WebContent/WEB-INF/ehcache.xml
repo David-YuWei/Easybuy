@@ -68,8 +68,8 @@ used with JMX monitors.
     Subdirectories can be specified below the property e.g. java.io.tmpdir/one
  
     --> 
-	<!--<diskStore path="java.io.tmpdir"/>-->
-	<diskStore path="${project.dir}/tmp/ehcache"/>
+	<diskStore path="java.io.tmpdir"/>
+	<!--  <diskStore path="${project.dir}/tmp/ehcache"/>-->
  
     <!--
     TransactionManagerLookup configuration
