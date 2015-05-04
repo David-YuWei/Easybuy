@@ -79,7 +79,7 @@
 				<div class="op1"><span onclick="add2cart({{= item.product_id}},{{= order.order_id}});" class="span-click-box">Buy it Again</span></div>
 				<div class="op2"><a href="javascript:void(0)" onclick="delItem({{= item.product_id}},{{= order.order_id}});">Delete item</a></div>
 				<div class="op3"><a href="/Easybuy/product/review/new?product_id={{= item.product_id}}">Review</a></div>
-				<div class="op4"><a href="/Easybuy/message/new?to={{= item.user_name}}">Contact Seller</a></div>
+				<div class="op4"><a href="/Easybuy/message/new?touser={{= item.user_name}}">Contact Seller</a></div>
 			</div>
 	<% }
 	else if(user instanceof Seller){
@@ -91,14 +91,14 @@
 					{{else item.status =='2'}}<font style="color:green;">shipped</font>
 					{{/if}}
 				</div>
-				<div class="op4"><a href="/Easybuy/message/new?to={{= order.user_name}}">Contact Buyer</a></div>
+				<div class="op4"><a href="/Easybuy/message/new?touser={{= order.user_name}}">Contact Buyer</a></div>
 			</div>
 	<%}
 	else{
 	%>
 		<div class="operate3">
-				<div class="op1"><a href="/Easybuy/message/new?to={{= order.user_name}}">Contact Buyer</a></div>
-				<div class="op2"><a href="/Easybuy/message/new?to={{= item.user_name}}">Contact Seller</a></div>
+				<div class="op1"><a href="/Easybuy/message/new?touser={{= order.user_name}}">Contact Buyer</a></div>
+				<div class="op2"><a href="/Easybuy/message/new?touser={{= item.user_name}}">Contact Seller</a></div>
 		</div>
 	<%}%>		
 		</div>

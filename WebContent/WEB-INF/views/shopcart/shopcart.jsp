@@ -46,7 +46,7 @@
 		<div id="message_{{= product_id}}" class="message"></div>
 		<div class="op1"><span onclick="add2wishlist({{= product_id}});" class="span-click-box">Add to Wishlist</span></div>
 		<div class="op2"><a href="javascript:void(0)" onclick="del({{= product_id}});">Delete item</a></div>
-		<div class="op3"><a href="/Easybuy/message/new?to={{= user_name_seller}}">Contact Seller</a></div>
+		<div class="op3"><a href="/Easybuy/message/new?touser={{= user_name_seller}}">Contact Seller</a></div>
 	</div>
 	<div class="column0"><font>{{= product_name}}</font></div>
 	<div id="total" class="data-column style2">$ {{= quantity * price}}</div>
