@@ -67,7 +67,7 @@ public class MessageService {
 		}
 	}
 	
-	public boolean sendOrderNotif(String touser, int orderId){
+	public boolean sendOrderNotif(String touser, long orderId){
 		try{
 			Message message =new Message();
 			message.setTouser(touser);
@@ -82,7 +82,7 @@ public class MessageService {
 		}
 	}
 	
-	public boolean sendOrderUpdateNotif(String touser, int orderId){
+	public boolean sendOrderUpdateNotif(String touser, long orderId){
 		try{
 			Message message =new Message();
 			message.setTouser(touser);
@@ -97,13 +97,13 @@ public class MessageService {
 		}
 	}
 	
-	public boolean sendReviewNotif(String touser, int productId){
+	public boolean sendReviewNotif(String touser, String productName){
 		try{
 			Message message =new Message();
 			message.setTouser(touser);
 			message.setType("3");
 			message.setFromuser("Easybuy");
-			message.setContent("Hello "+touser+", you have a new review for your product "+productId+".");
+			message.setContent("Hello "+touser+", you have a new review for your product "+productName+".");
 			messageDAO.sendNotif(message);
 			return true;
 		}

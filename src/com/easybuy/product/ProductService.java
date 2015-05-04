@@ -14,6 +14,7 @@ import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.easybuy.common.Pager;
+import com.easybuy.message.MessageService;
 import com.easybuy.product.domain.Product;
 import com.easybuy.product.domain.Review;
 import com.easybuy.user.UserDAO;
@@ -24,6 +25,10 @@ public class ProductService {
 	
 	@Resource(name = "product:productDAO")
 	private ProductDAO productDAO;
+	
+	@Resource(name = "message:messageService")
+	private MessageService messageService;
+	
 	
 	public List<String> getAllBrands(){
 		//todo.... local caching
@@ -89,6 +94,7 @@ public class ProductService {
 		BigDecimal bg = new BigDecimal(ranking);
         ranking = bg.setScale(1, BigDecimal.ROUND_HALF_UP).floatValue();
 		productDAO.updateRanking(ranking, review.getProduct_id());
+		messageService.sendReviewNotif(product.getUser_name(), product.getProduct_name());
 		return true;
 	}
 	
@@ -115,6 +121,17 @@ public class ProductService {
 	public boolean deleteById(long product_id){
 		try{
 			productDAO.deleteById(product_id);
+			return true;
+		}
+		catch(Exception e){
+			return false;
+		}
+	}
+	
+	
+	public boolean deleteBySellerName(String username){
+		try{
+			productDAO.deleteBySellerName(username);
 			return true;
 		}
 		catch(Exception e){

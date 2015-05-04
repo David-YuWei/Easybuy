@@ -190,4 +190,8 @@ public class ProductDAO {
 		sqlSessionTemplate.delete("product.deleteById", product_id);
 	}
 	
+	public void deleteBySellerName(String username){
+		sqlSessionTemplate.delete("product.deleteBySellerName", username);
+	}
+	
 }

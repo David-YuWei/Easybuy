@@ -191,4 +191,7 @@
 		update product set status = '0' where product_id = #{product_id}
 	</delete>
 	
+	<delete id="deleteBySellerName">
+		update product set status = '0' where user_name = #{username}
+	</delete>
 </mapper>

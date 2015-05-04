@@ -13,6 +13,7 @@ import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.easybuy.common.Pager;
+import com.easybuy.message.MessageService;
 import com.easybuy.order.OrderService;
 import com.easybuy.order.domain.Order;
 import com.easybuy.order.domain.OrderItem;
@@ -28,6 +29,9 @@ public class ShopcartService {
 	
 	@Resource(name = "order:orderService")
 	private OrderService orderService;
+	
+	@Resource(name = "message:messageService")
+	private MessageService messageService;
 	
 	public ShopcartService(){
 		
@@ -90,6 +94,10 @@ public class ShopcartService {
 			orderItems.add(orderItem);
 		}
 		orderService.insertItems(orderItems);
+		Order temp = orderService.getById(order.getOrder_id());
+		for(OrderItem item:temp.getItems()){
+			messageService.sendOrderNotif(item.getUser_name(), order.getOrder_id());
+		}
 		return true;
 	}
 	

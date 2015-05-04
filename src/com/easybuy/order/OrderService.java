@@ -13,6 +13,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.easybuy.common.CacheService;
 import com.easybuy.common.Pager;
+import com.easybuy.message.MessageService;
 import com.easybuy.order.domain.Order;
 import com.easybuy.order.domain.OrderItem;
 
@@ -24,6 +25,9 @@ public class OrderService {
 	
 	@Resource(name = "common:cacheService")
 	private CacheService cacheService;
+	
+	@Resource(name = "message:messageService")
+	private MessageService messageService;
 	
 	public Order getById(long order_id) throws Exception{
 		Object obj = cacheService.get(generateKey(order_id));
@@ -118,6 +122,10 @@ public class OrderService {
 		cacheService.delete(generateKey(order.getOrder_id()));
 		orderDAO.updateOrder(order);
 		orderDAO.updateOrderItemsQuantity(order);
+		Order temp = getById(order.getOrder_id());
+		for(OrderItem item:temp.getItems()){
+			messageService.sendOrderUpdateNotif(item.getUser_name(), order.getOrder_id());
+		}
 		return true;
 	}
 	

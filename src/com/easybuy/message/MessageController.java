@@ -206,25 +206,25 @@ public class MessageController {
 	
 	
 	
-	
-	@RequestMapping(value = "/test", method = {RequestMethod.GET, RequestMethod.POST})
-	public ModelAndView test(HttpServletRequest request, HttpServletResponse response) throws ServletException {
-		ModelAndView mav = new ModelAndView();
-		try {
-				boolean testvar;
-				testvar=messageService.sendRegistrationNotif("yws");
-				testvar=messageService.sendOrderNotif("yws", 123);
-				testvar=messageService.sendOrderUpdateNotif("yws",1234);
-				testvar=messageService.sendReviewNotif("yws",323);
-				int i=15;
-				i=i+1;
-			}
-		 catch (Exception e) {
-			e.printStackTrace();
-		} finally {
-		}
-		return mav;
-	}
+//	
+//	@RequestMapping(value = "/test", method = {RequestMethod.GET, RequestMethod.POST})
+//	public ModelAndView test(HttpServletRequest request, HttpServletResponse response) throws ServletException {
+//		ModelAndView mav = new ModelAndView();
+//		try {
+//				boolean testvar;
+//				testvar=messageService.sendRegistrationNotif("yws");
+//				testvar=messageService.sendOrderNotif("yws", 123);
+//				testvar=messageService.sendOrderUpdateNotif("yws",1234);
+//				testvar=messageService.sendReviewNotif("yws",323);
+//				int i=15;
+//				i=i+1;
+//			}
+//		 catch (Exception e) {
+//			e.printStackTrace();
+//		} finally {
+//		}
+//		return mav;
+//	}
 	
 	}
 

@@ -66,15 +66,7 @@ public class BuyerController {
 				mav.setViewName("/registration/buyerregistration");
 				return mav;
 				
-			} /* else if(!username.equals(null))
-			{
-				String msg = userService.checkBuyer(request,username);
-				if (msg.equals("success")) {
-					mav.addObject("msg","UserName is not available");
-					mav.setViewName("/registration/buyerregistration");
-					return mav;
-				}
-			} */
+			}
 			else{
 				String msg = userService.insertBuyer(request,firstname,middlename,lastname,emailid,address,phonenumber,username,password);
 				if (msg.equals("success")) {

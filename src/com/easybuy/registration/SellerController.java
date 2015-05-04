@@ -81,7 +81,7 @@ public class SellerController {
 			else{
 				String msg = userService.insertSeller(request,firstname,middlename,lastname,emailid,address,phonenumber,username,password,accountnumber,routingnumber);
 				if (msg.equals("success")) {
-					mav.addObject("msg","<font style=\"color:green;\">You are successfully registered</font>");
+					mav.addObject("msg","<font style=\"color:green;\">You are successfully registered, please waiting for approve</font>");
 					mav.setViewName("/login");
 					return mav;
 				}

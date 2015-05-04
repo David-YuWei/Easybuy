@@ -164,4 +164,21 @@ public class UserController {
 		}
 		return mav;
 	}
+	
+	@RequestMapping(value = "/seller/closeAccount", method = {RequestMethod.GET, RequestMethod.POST})
+	public ModelAndView closeAccount(HttpServletRequest request, HttpServletResponse response,
+			@RequestParam(value = "user_name", required = true) String username) throws ServletException {
+		ModelAndView mav = new ModelAndView();
+		Map<String, Object> model = new LinkedHashMap<String, Object>();
+		try {
+			userService.closeSeller(username);
+			model.put("status", "success");
+		} catch (Exception e) {
+			model.put("status", "error");
+			e.printStackTrace();
+		} finally {
+			mav.addObject("_model", model);
+		}
+		return mav;
+	}
 }
