@@ -65,11 +65,13 @@ public class ProfileController {
 		String msg = userService.updateBuyer(request,user);
 			if (msg.equals("success")) {
 				mav.addObject("msg","<font style=\"color:green;\">Profile was successfully updated</font>");
+				mav.addObject("buyerInfo", user);
 				mav.setViewName("/user/myProfile_buyer");
 				return mav;
 			}
 			else{
 				mav.addObject("msg","save failed.");
+				mav.addObject("buyerInfo", user);
 				mav.setViewName("/user/myProfile_buyer");
 				return mav;
 			}
@@ -101,11 +103,13 @@ public class ProfileController {
 		String msg = userService.updateSeller(request,user);
 			if (msg.equals("success")) {
 				mav.addObject("msg","<font style=\"color:green;\">Profile was successfully updated</font>");
+				mav.addObject("sellerInfo", user);
 				mav.setViewName("/user/myProfile_seller");
 				return mav;
 			}
 			else{
 				mav.addObject("msg","save failed.");
+				mav.addObject("sellerInfo", user);
 				mav.setViewName("/user/myProfile_seller");
 				return mav;
 			}
