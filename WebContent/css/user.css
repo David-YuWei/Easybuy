@@ -58,9 +58,57 @@
 	text-align:right;
 }
 
+.input-row .label1{
+	width:80%;
+	float:left;
+	text-align:left;
+	margin-left:10px;
+	font-weight:bold;
+}
+
 .input-row .input-box{
 	width:80%;
 	float:left;
 	text-align:left;
 	margin-left:10px;
+}
+
+.submit-row{
+	width:100%;
+	float:left;
+}
+
+.submit-row .input-button{
+	width:100px;
+	margin-left:16%;
+	box-shadow:none;
+	float:left;
+}
+
+.submit-row .input-button1{
+	width:150px;
+	margin-left:30px;
+	box-shadow:none;
+}
+
+.message{
+	width:40%;
+	float:left;
+	height:30px;
+	line-height:30px;
+	color:red;
+	margin-left:16%;
+}
+
+.span-click-box{
+	width:150px;
+	height:30px;
+	margin-left:30px;
+	line-height:30px;
+	text-align: center;
+	display:inline;
+	float:left;
+	background-color: #4486F3;
+	color:white;
+	margin-top:5px;
 }

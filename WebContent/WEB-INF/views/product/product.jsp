@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ page import="com.easybuy.product.domain.Product, java.util.*" %>
+<%@ page import="com.easybuy.user.domain.*, com.easybuy.product.domain.Product, java.util.*" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -14,6 +14,7 @@
 <script type="text/javascript" src="/Easybuy/js/product/product.js"></script>
 </head>
 <% 
+	User user = (User) session.getAttribute("user");
 	Product product = (Product) request.getAttribute("product");
 	List<String> brands = (List<String>)request.getAttribute("brand_list");
 %>
@@ -57,8 +58,13 @@
 					<div class="price"><font>$ <%= product.getPrice() %></font></div>
 					<div class="score"><font><%= product.getRanking() %></font>/5</div>
 					<div class="operate">
-						<span id="add2cart" class="span-click-box">Add to Cart</span>
-						<span id="add2wishlist" class="span-click-box">Add to Wishlist</span>
+						<% if(user ==null || user instanceof Buyer){ %>
+							<span id="add2cart" class="span-click-box" onClick="add2cart();">Add to Cart</span>
+							<span id="add2wishlist" class="span-click-box" onClick="add2wishlist();">Add to Wishlist</span>
+						<% }else{ %>
+							<span id="add2cart" class="span-click-box gray-box">Add to Cart</span>
+							<span id="add2wishlist" class="span-click-box gray-box">Add to Wishlist</span>
+						<%} %>
 					</div>
 					<div id="message" class="message"></div>
 				</div>

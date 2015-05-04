@@ -118,6 +118,7 @@
 			<mvc:mapping path="/product/edit/**"/>
 			<mvc:mapping path="/product/add/**"/>
 			<mvc:mapping path="/product/new/**"/>
+			<mvc:mapping path="/product/review/**"/>
 			<mvc:mapping path="/product/sellerProducts/**"/>
 			<mvc:mapping path="/user/**"/>
 			<mvc:mapping path="/main/**"/>
