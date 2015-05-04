@@ -45,7 +45,7 @@
 		<div id="message_{{= product_id}}" class="message"></div>
 		<div class="op1"><span onclick="add2cart({{= product_id}});" class="span-click-box">Add to Cart</span></div>
 		<div class="op2"><a href="javascript:void(0)" onclick="del({{= product_id}});">Delete item</a></div>
-		<div class="op3"><a href="/Easybuy/message/new?to={{= user_name}}">Contact Seller</a></div>
+		<div class="op3"><a href="/Easybuy/message/new?touser={{= user_name}}">Contact Seller</a></div>
 	</div>
 </div>
 {{/each}}
