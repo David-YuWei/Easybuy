@@ -26,7 +26,21 @@ public class UserDAO {
 		return (Buyer)sqlSessionTemplate.selectOne("user.buyer.selectById",props);
 	}
 	
-	public String insertBuyer(String firstname,String middlename,String lastname,String emailid,String address,String phonenumber,String username,String password)
+	
+	public String checkExistByUsername(String username)
+	{
+		Map<String, Object> props = new HashMap<String, Object>();
+		props.put("username", username);	
+		
+		List<String> result = (List<String>) sqlSessionTemplate.selectList("user.selectByUsername",props);
+		if (result ==null || result.size() == 0) {
+			return null;
+		} else {
+			return result.get(0);
+		}
+	}
+	
+	public int insertBuyer(String firstname,String middlename,String lastname,String emailid,String address,String phonenumber,String username,String password)
 	{
 		Map<String, Object> props = new HashMap<String, Object>();
 		props.put("username", username);
@@ -38,18 +52,11 @@ public class UserDAO {
 		props.put("phonenumber", phonenumber);
 		props.put("password", password);
 		
-
-		return (String)sqlSessionTemplate.selectOne("user.buyer.insertBuyer",props);
+		return sqlSessionTemplate.insert("user.buyer.insertBuyer",props);
 	}
-
-/*	public String checkBuyer(String user_name){
-		Map<String, Object> props = new HashMap<String, Object>();
-		props.put("user_name", user_name);
-		return (String)sqlSessionTemplate.selectOne("user.buyer.checkBuyer",props); 
-	} */
 	
 
-	public String insertSeller(String firstname,String middlename,String lastname,String emailid
+	public int insertSeller(String firstname,String middlename,String lastname,String emailid
 			,String address,String phonenumber,String username,String password,String accountnumber,String routingnumber)
 	{
 		Map<String, Object> props = new HashMap<String, Object>();
@@ -65,7 +72,7 @@ public class UserDAO {
 		props.put("routingnumber", routingnumber);
 		
 
-		return (String)sqlSessionTemplate.selectOne("user.seller.insertSeller",props);
+		return sqlSessionTemplate.insert("user.seller.insertSeller",props);
 	}
 	
 	public Seller getSellerById(String user_name){
@@ -136,9 +143,40 @@ public class UserDAO {
 		}
 	}
 
-
+	public int updateBuyer(Buyer buyer)
+	{
+		Map<String, Object> props = new HashMap<String, Object>();
+		props.put("username", buyer.getUser_name());
+		props.put("firstname", buyer.getFirst_name());
+		props.put("lastname", buyer.getLast_name());
+		props.put("middlename", buyer.getMiddle_name());
+		props.put("emailid", buyer.getEmail_id());
+		props.put("address", buyer.getAddress());
+		props.put("phone_number", buyer.getPhone_number());
+		
+		return sqlSessionTemplate.update("user.buyer.update_buyer",props);
+	}
+	
+	public int updateSeller(Seller seller)
+	{
+		Map<String, Object> props = new HashMap<String, Object>();
+		props.put("username", seller.getUser_name());
+		props.put("firstname", seller.getFirst_name());
+		props.put("lastname", seller.getLast_name());
+		props.put("middlename", seller.getMiddle_name());
+		props.put("emailid", seller.getEmail_id());
+		props.put("address", seller.getAddress());
+		props.put("phone_number", seller.getPhone_number());
+		
+		return sqlSessionTemplate.update("user.seller.update_seller",props);
+	}
+	
+	
 	public void deleteBuyer(String id) {
 		sqlSessionTemplate.update("user.buyer.delete", id);
+	}
+	public void deleteBuyer_user(String id) {
+		sqlSessionTemplate.update("user.buyer.delete_user", id);
 	}
 	
 	public void approveSeller(String id) {

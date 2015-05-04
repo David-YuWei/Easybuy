@@ -6,6 +6,7 @@ public class Review implements Serializable {
 
 	private String user_name;
 	private long product_id;
+	private String product_name;
 	private float ranking;
 	private String review;
 	
@@ -32,6 +33,12 @@ public class Review implements Serializable {
 	}
 	public void setReview(String review) {
 		this.review = review;
+	}
+	public String getProduct_name() {
+		return product_name;
+	}
+	public void setProduct_name(String product_name) {
+		this.product_name = product_name;
 	}
 	
 	

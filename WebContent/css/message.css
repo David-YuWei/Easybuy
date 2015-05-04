@@ -1,6 +1,8 @@
 @CHARSET "UTF-8";
 .userArea{
 	width:100%;
+	float:left;
+	margin-top:30px;
 }
 .leftBoard{
 	margin-top:20px;
@@ -31,11 +33,11 @@
 }
 
 .input-row{
-	height: 40px;
-	line-height:40px;
-	float:auto;
-	width:100%;
-	margin-top: 45px;
+	height: 30px;
+	line-height:30px;
+	float:left;
+	width:80%;
+	margin-bottom: 10px;
 }
 .userArea .listArea{
 	width:74%;
@@ -46,42 +48,61 @@
 }
 
 .input-row .label{
-	width:10%;
+	width:15%;
 	float:left;
+	height:30px;
+	line-height:30px;
 	text-align:right;
-	font-size: 	large;
 }
 
 .input-row .label2{
-	width:75%;
+	width:80%;
 	float:left;
 	text-align:left;
-	margin-left: 45px;
-	margin-bottom: 10px;
-	border:1px solid;
+	height:30px;
+	line-height:30px;
+	margin-left:20px;
+	border:1px solid #cccccc;
 	padding-left: 15px;
 }
 
 .input-row .label3{
-	width:75%;
+	width:80%;
 	float:left;
 	text-align:left;
-	margin-left: 45px;
-	margin-bottom: 10px;
-	border:1px solid;
+	margin-left: 20px;
+	border:1px solid #cccccc;
 	padding-left: 15px;
 }
 
-.input-row .input-text{
+.input-row .input-box{
+	float:left;
 	width:75%;
-	height: 40px;
+	height:30px;
+	line-height:30px;
+}
+
+.input-row .input-text{
+	width:80%;
+	height: 30px;
 	float:left;
 	text-align:left;
-	margin-left: 45px;
+	margin-left: 20px;
 	margin-bottom: 10px;
-	border:1px solid;
+	border:1px solid #cccccc;
 	padding-left: 15px;
 }
+
+.input-box .input-textarea{
+	width:80%;
+	float:left;
+	text-align:left;
+	margin-left: 20px;
+	margin-bottom: 10px;
+	border:1px solid #cccccc;
+	padding-left: 15px;
+}
+
 
 .input-row .input-text1{
 	width:75%;
@@ -94,28 +115,58 @@
 	padding-left: 15px;
 }
 
-.save-box{
-	width:85%;
-	margin-top:20px;
-	float:right;
+.textarea-row{
+	float:left;
+	width:80%;
+	height: 80px;
+	line-height:80px;
+}
+.textarea-row .label{
+	width:15%;
+	float:left;
+	text-align:right;
+}
+.textarea-row .input-box{
+	width:75%;
+	float:left;
 	text-align:left;
-	margin-right:2px;
-	
+	margin-top:10px;
+}
+
+.save-box{
+	width:80%;
+	margin-top:20px;
+	float:left;
+	text-align:left;
+}
+.save-box .span-click-box{
+	width:100px;
+	height:30px;
+	margin-left:18%;
+	line-height:30px;
+	text-align: center;
+	display:inline;
+	float:left;
+	background-color: #4486F3;
+	color:white;
 }
 
 .save-info{
+	height:40px;
+	line-height:40px;
 	width:85%;
-	margin-top:20px;
 	color: red;
-	font-weight: bold;
 	float:right;
 	text-align:left;
-	margin-right:2px;
+	margin-left:-10px;
 }
 
 .link{
-	
-	margin-left: 100px;
+	width:100%;
+	float:left;
+	height:30px;
+	line-height:20px;
+	text-align:left;
 }
 
 .userMessage{
