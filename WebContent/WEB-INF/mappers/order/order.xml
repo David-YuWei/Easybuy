@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="order">
+	
+	<select id="selectById" resultType="com.easybuy.order.domain.Order">
+		select order_id,user_name,shipping_options,shipping_full_name as full_name,shipping_address_1 as address_1,shipping_address_2 as address_2,phone,price,tax,order_time,paypal_account,passcode,status
+		from orders
+		where order_id = #{order_id}
+	</select>
+	
+	<select id="selectItemsById" resultType="com.easybuy.order.domain.OrderItem">
+		select i.order_id,i.product_id,i.quantity,i.status,p.price,p.user_name,p.product_name,p.image
+		from order_items i, product p 
+		where i.order_id = #{order_id}
+		and i.product_id = p.product_id 
+		and i.status != '0'
+	</select>
+	
+	<select id="selectListCountByBuyer" resultType="integer">
+		select count(1)
+		from orders 
+		where user_name = #{user_name}
+		and status != '0'
+	</select>
+	
+	<select id="selectListByBuyer" resultType="com.easybuy.order.domain.Order">
+		select order_id
+		from orders 
+		where status !='0' 
+		and user_name = #{user_name}  
+		order by order_time desc 
+		<if test="firstResult != null">
+			limit #{firstResult}
+			<if test="maxResult != null">, #{maxResult}
+			</if>
+		</if>
+	</select>
+	
+	<select id="selectListCountBySeller" resultType="integer">
+		select count(1)
+		from orders 
+		where status != '0'
+		and order_id in (
+			select distinct i.order_id 
+			from order_items i,product p
+			where i.product_id = p.product_id 
+			and p.user_name = #{user_name}
+		)
+	</select>
+	
+	<select id="selectListBySeller" resultType="com.easybuy.order.domain.Order">
+		select order_id
+		from orders 
+		where status != '0' 
+		and order_id in (
+			select distinct i.order_id 
+			from order_items i,product p
+			where i.product_id = p.product_id 
+			and p.user_name = #{user_name}
+		)  
+		order by order_time desc 
+		<if test="firstResult != null">
+			limit #{firstResult}
+			<if test="maxResult != null">, #{maxResult}
+			</if>
+		</if>
+	</select>
+	
+	<select id="selectListCountByAdmin" resultType="integer">
+		select count(1)
+		from orders 
+		where status != '0'
+	</select>
+	
+	<select id="selectListByAdmin" resultType="com.easybuy.order.domain.Order">
+		select order_id
+		from orders 
+		where status !='0'  
+		order by order_time desc 
+		<if test="firstResult != null">
+			limit #{firstResult}
+			<if test="maxResult != null">, #{maxResult}
+			</if>
+		</if>
+	</select>
+	
+	<insert id="insert" parameterType="com.easybuy.order.domain.Order" useGeneratedKeys="true" keyProperty="order_id">
+		insert into orders (user_name,shipping_options,shipping_full_name,shipping_address_1,shipping_address_2,phone,price,tax,order_time,paypal_account,passcode,status) 
+		values(#{user_name},#{shipping_options},#{full_name},#{address_1},#{address_2},#{phone},#{price},#{tax},#{order_time},#{paypal_account},#{passcode},#{status})	
+	</insert>
+	
+	<insert id="insertItems" parameterType="java.util.List">
+		insert into order_items(order_id,product_id,quantity,status) 
+		values 
+		<foreach collection="list" item="element" index="index" open="" separator=","  close="">
+		(#{element.order_id}, #{element.product_id},#{element.quantity},#{element.status})
+		</foreach>
+	</insert>
+	
+	<update id="updateOrder" parameterType="com.easybuy.order.domain.Order">
+		update orders set shipping_full_name = #{full_name},shipping_address_1 = #{address_1},shipping_address_2 = #{address_2},phone = #{phone},shipping_options = #{shipping_options},price=#{price},tax=#{tax}
+		where order_id = #{order_id}
+	</update>
+	
+	
+	<update id="updateOrderItemsQuantity" parameterType="java.util.List">
+		update order_items set quantity = case 
+		<foreach collection="list" item="element" index="index" open="" separator=" "  close="">
+		when order_id =#{element.order_id} and product_id = #{element.product_id} then #{element.quantity} 
+		</foreach>
+		end
+		WHERE (order_id,product_id) IN 
+		<foreach collection="list" item="element" index="index" open="(" separator=","  close=")">
+		(#{element.order_id},#{element.product_id})
+		</foreach>
+	</update>
+	
+	<update id="deleteItem" parameterType="com.easybuy.order.domain.OrderItem">
+		update order_items set status = '0' 
+		where order_id = #{order_id} 
+		and product_id = #{product_id} 
+	</update>
+	
+	<update id="updateOrderItemStatus" parameterType="com.easybuy.order.domain.OrderItem">
+		update order_items set status = '2' 
+		where order_id = #{order_id} 
+		and product_id = #{product_id} 
+	</update>
+	
+	<update id="updateOrderStatus">
+		update orders set status = (
+			select case when t.sum >0 then '2' else '3' end
+			from (select count(1) as sum from order_items i
+					where i.order_id = #{order_id} 
+					and i.status = '1') as t)
+		WHERE order_id = #{order_id} 
+	</update>
+	
+	<update id="deleteOrder">
+		update orders set status = '0' 
+		where order_id = #{order_id}  
+	</update>
+	<!-- 
+	
+	<update id="updateQuantity" parameterType="com.easybuy.shopcart.domain.ShopcartItem">
+		update shop_cart set quantity = #{quantity}
+		where user_name = #{user_name_buyer} and product_id = #{product_id}
+	</update>
+
+	<delete id="deleteItem" parameterType="com.easybuy.shopcart.domain.ShopcartItem">
+		delete from shop_cart where user_name = #{user_name_buyer} and product_id = #{product_id} 
+	</delete>
+	
+	<delete id="deleteItems" parameterType="Map">
+		delete from shop_cart where (user_name,product_id) in 
+	    <foreach item="value" index="key" collection="items" open="((" separator="),(" close="))">
+	        #{key},#{value}
+	    </foreach>
+	</delete> -->
+	
+</mapper>

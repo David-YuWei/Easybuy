@@ -30,6 +30,13 @@ public class LogoutController {
 	public ModelAndView gotoLogin(HttpServletRequest request, HttpServletResponse response) {
 		ModelAndView mav = new ModelAndView();
 		try {
+			String type = request.getParameter("type");
+			if(type !=null && type.equals("1")){
+				mav.addObject("msg", "Your account has been closed, and you are successfully logged out.");
+			}
+			else{
+				mav.addObject("msg", "You are successfully logged out.");
+			}
 			userService.logout(request);
 			mav.setViewName("/logout");
 		} catch (Exception e) {

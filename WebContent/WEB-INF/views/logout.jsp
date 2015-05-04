@@ -8,6 +8,13 @@
 <title>Easybuy.com</title>
 <link href="/Easybuy/css/common.css" rel="stylesheet" type="text/css" />
 </head>
+<%
+	String message = (String)request.getAttribute("msg");
+	if(message ==null)
+	{
+		message = "";
+	}
+%>
 <body>
 	<div class="container">
 		<jsp:include page='header.jsp'>
@@ -17,7 +24,7 @@
 			<div class="title">Logout</div>
 			<div class="underline"></div>
 			<div class="logoutMessage">
-				You are successfully logged out.
+				<%= message%>
 			</div>
 		</div>
     </div>

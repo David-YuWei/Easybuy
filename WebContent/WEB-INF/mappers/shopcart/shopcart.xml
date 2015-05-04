@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="shopcart">
+	
+	
+	<select id="selectListCount" resultType="integer">
+		select count(1)
+		from shop_cart 
+		where user_name = #{user_name}
+	</select>
+	
+	<select id="selectList" resultType="com.easybuy.shopcart.domain.ShopcartItem">
+		select p.product_id,p.product_name,p.user_name as user_name_seller, p.price, p.image, s.quantity
+		from shop_cart s, product p 
+		where s.product_id  = p.product_id
+		and s.user_name = #{user_name}  
+		<if test="firstResult != null">
+			limit #{firstResult}
+			<if test="maxResult != null">, #{maxResult}
+			</if>
+		</if>
+	</select>
+	
+	<insert id="insertItem" parameterType="com.easybuy.shopcart.domain.ShopcartItem">
+		insert into shop_cart (user_name, product_id,quantity)
+		values(#{user_name_buyer}, #{product_id}, #{quantity})
+	</insert>
+	
+	<update id="updateQuantity" parameterType="com.easybuy.shopcart.domain.ShopcartItem">
+		update shop_cart set quantity = #{quantity}
+		where user_name = #{user_name_buyer} and product_id = #{product_id}
+	</update>
+
+	<delete id="deleteItem" parameterType="com.easybuy.shopcart.domain.ShopcartItem">
+		delete from shop_cart where user_name = #{user_name_buyer} and product_id = #{product_id} 
+	</delete>
+	
+	<delete id="deleteItems" parameterType="java.util.HashMap">
+		delete from shop_cart where user_name = #{user_name} and product_id in 
+	    <foreach item="item" collection="product_ids" index="index" open="(" separator="," close=")">
+	         #{item}
+	    </foreach>
+	</delete>
+	
+</mapper>
