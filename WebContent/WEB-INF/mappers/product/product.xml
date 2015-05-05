@@ -27,7 +27,7 @@
 		select product_id,product_name,user_name, price, description,image,ranking,brand_name,status,update_time
 		from product
 		where status = '1'  
-		order by ranking desc 
+		order by ranking DESC 
 		<if test="firstResult != null">
 			limit #{firstResult}
 			<if test="maxResult != null">, #{maxResult}
@@ -44,7 +44,8 @@
 	<select id="selectByDefault" resultType="com.easybuy.product.domain.Product">
 		select product_id,product_name,user_name, price, description,image,ranking,brand_name,status,update_time
 		from product 
-		where status = '1'  
+		where status = '1'
+		order by ${sortBy} DESC  
 		<if test="firstResult != null">
 			limit #{firstResult}
 			<if test="maxResult != null">, #{maxResult}
@@ -65,7 +66,8 @@
 		from product 
 		where status = '1'  
 		and brand_name = #{brand_name}
-		and product_name like #{product_name} 
+		and product_name like #{product_name}
+		order by ${sortBy} DESC 
 		<if test="firstResult != null">
 			limit #{firstResult}
 			<if test="maxResult != null">, #{maxResult}
@@ -84,7 +86,8 @@
 		select product_id,product_name,user_name, price, description,image,ranking,brand_name,status,update_time
 		from product 
 		where status = '1'  
-		and brand_name = #{brand_name}  
+		and brand_name = #{brand_name} 
+		order by ${sortBy} DESC  
 		<if test="firstResult != null">
 			limit #{firstResult}
 			<if test="maxResult != null">, #{maxResult}
@@ -104,6 +107,7 @@
 		from product 
 		where status = '1'  
 		and (brand_name like #{brand_name} or product_name like #{product_name}) 
+		order by ${sortBy} DESC   
 		<if test="firstResult != null">
 			limit #{firstResult}
 			<if test="maxResult != null">, #{maxResult}
@@ -122,7 +126,8 @@
 		select product_id,product_name,user_name, price, description,image,ranking,brand_name,status,update_time
 		from product 
 		where status = '1'  
-		and user_name = #{user_name} 
+		and user_name = #{user_name}
+		order by update_time desc  
 		<if test="firstResult != null">
 			limit #{firstResult}
 			<if test="maxResult != null">, #{maxResult}

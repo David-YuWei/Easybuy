@@ -61,7 +61,7 @@
 			</div>
 		</div>
 		<div class="content">
-			<div class="section">Sort by:</div>
+			<div class="section">Sort by:&nbsp;&nbsp;&nbsp;&nbsp;<input type="radio" value="ranking" id="sortType" onclick="searchList();" name="sortBy" />&nbsp;&nbsp;Ranking &nbsp;&nbsp;&nbsp;&nbsp;<input type="radio" value="update_time" onclick="searchList();" id="sortType" name="sortBy" checked="checked"/>&nbsp;&nbsp;Time</div>
 			<div class="underline"></div>
 			<div id="productArea" class="productArea"></div>
 			<div id="pagebar" class="pagebar"></div>
