@@ -102,13 +102,14 @@ public class ProductController {
 	public ModelAndView searchProduct(HttpServletRequest request, HttpServletResponse response,
 			@RequestParam(value = "brand_name", required = true) String brand_name,
 			@RequestParam(value = "content", required = true) String content,
+			@RequestParam(value = "sortBy", required = false, defaultValue = "update_time") String sortBy,
 			@RequestParam(value = "page", required = false, defaultValue = "#{1}") Integer page,
 			@RequestParam(value = "pageSize", required = false, defaultValue = "#{20}") Integer pageSize) throws ServletException {
 		ModelAndView mav = new ModelAndView();
 		Map<String, Object> model = new LinkedHashMap<String, Object>();
 		try {
 			Pager pager = new Pager(page, pageSize > 50 ? 50 : pageSize);
-			List<Product> products = productService.search(pager,brand_name,content);
+			List<Product> products = productService.search(pager,brand_name,content,sortBy);
 			model.put("status", "success");
 			model.put("pager", pager);
 			model.put("list", products);
