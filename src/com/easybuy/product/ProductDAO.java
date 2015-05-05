@@ -162,6 +162,16 @@ public class ProductDAO {
 		sqlSessionTemplate.insert("product.insert",product);
 	}
 	
+	public void insertBrand(String brand_name){
+		Map<String, Object> props = new HashMap<String, Object>();
+		props.put("brand_name", brand_name);
+		try{
+			sqlSessionTemplate.insert("product.insert_brand",props);
+		}
+		catch(Exception E){
+		}
+	}
+	
 	public void insertReview(Review review){
 		sqlSessionTemplate.insert("product.insertReview",review);
 	}

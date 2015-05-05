@@ -110,6 +110,7 @@ public class ProductService {
 	
 	public boolean update(Product product){
 		try{
+			productDAO.insertBrand(product.getBrand_name());
 			productDAO.update(product);
 			return true;
 		}
