@@ -191,8 +191,8 @@ span{
 	width:100%;
 }
 .productArea{
-	height:255px;
-	margin-top: 10px;
+	width:100%;
+	float:left;
 }
 
 .listArea{
@@ -319,12 +319,12 @@ span{
 .productBox{
 	border:1px solid #cccccc;
 	width:180px;
-	margin-left:10px;
-	display:inline;
+	margin-left:5px;
+	margin-top:5px;
 	float:left;
 }
 .productBox .img{
-	height:160px;
+	height:150px;
 	text-align:center;
 	line-height:160px;
 }
@@ -336,8 +336,7 @@ span{
 .productBox .name{
 	margin-left:10px;
 	text-align:left;
-	height:25px;
-	line-height:20px;
+	height:35px;
 	font-weight:bold;
 }
 

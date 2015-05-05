@@ -43,21 +43,21 @@ public class ProductService {
 		return productDAO.getReview(user_name, product_id);
 	}
 	
-	public List<Product> search(Pager pager,String brand_name,String content){
+	public List<Product> search(Pager pager,String brand_name,String content,String sortBy){
 		if(brand_name ==null || brand_name.trim().equals("")){
 			if(content ==null || content.trim().equals("")){
-				return productDAO.searchByDefault(pager);
+				return productDAO.searchByDefault(pager,sortBy);
 			}
 			else{
-				return productDAO.searchByBrandOrName(pager,content);
+				return productDAO.searchByBrandOrName(pager,content,sortBy);
 			}
 		}
 		else{
 			if(content ==null || content.trim().equals("")){
-				return productDAO.searchByBrand(pager,brand_name);
+				return productDAO.searchByBrand(pager,brand_name,sortBy);
 			}
 			else{
-				return productDAO.searchByBrandAndName(pager,brand_name,content);
+				return productDAO.searchByBrandAndName(pager,brand_name,content,sortBy);
 			}
 		}
 	}

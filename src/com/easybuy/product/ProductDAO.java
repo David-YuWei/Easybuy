@@ -42,8 +42,9 @@ public class ProductDAO {
 		return (List<Product>) sqlSessionTemplate.selectList("product.selectHotProductList", props);
 	}
 	
-	public List<Product> searchByDefault(Pager pager){
+	public List<Product> searchByDefault(Pager pager,String sortBy){
 		Map<String, Object> props = new HashMap<String, Object>();
+		props.put("sortBy", sortBy);
 		if (pager != null) {
 			Integer total = (Integer) sqlSessionTemplate.selectOne("product.selectCountByDefault",props);
 			pager.setTotal(total);
@@ -58,10 +59,11 @@ public class ProductDAO {
 		return (List<Product>) sqlSessionTemplate.selectList("product.selectByDefault", props);
 	}
 	
-	public List<Product> searchByBrandAndName(Pager pager,String brand_name,String content){
+	public List<Product> searchByBrandAndName(Pager pager,String brand_name,String content,String sortBy){
 		Map<String, Object> props = new HashMap<String, Object>();
 		props.put("brand_name", brand_name);
 		props.put("product_name", "%"+content+"%");
+		props.put("sortBy", sortBy);
 		if (pager != null) {
 			Integer total = (Integer) sqlSessionTemplate.selectOne("product.selectCountByBrandAndName",props);
 			pager.setTotal(total);
@@ -76,9 +78,10 @@ public class ProductDAO {
 		return (List<Product>) sqlSessionTemplate.selectList("product.selectByBrandAndName", props);
 	}
 	
-	public List<Product> searchByBrand(Pager pager,String brand_name){
+	public List<Product> searchByBrand(Pager pager,String brand_name,String sortBy){
 		Map<String, Object> props = new HashMap<String, Object>();
 		props.put("brand_name", brand_name);
+		props.put("sortBy", sortBy);
 		if (pager != null) {
 			Integer total = (Integer) sqlSessionTemplate.selectOne("product.selectCountByBrand",props);
 			pager.setTotal(total);
@@ -93,10 +96,11 @@ public class ProductDAO {
 		return (List<Product>) sqlSessionTemplate.selectList("product.selectByBrand", props);
 	}
 	
-	public List<Product> searchByBrandOrName(Pager pager,String content){
+	public List<Product> searchByBrandOrName(Pager pager,String content,String sortBy){
 		Map<String, Object> props = new HashMap<String, Object>();
 		props.put("brand_name", "%"+content+"%");
 		props.put("product_name", "%"+content+"%");
+		props.put("sortBy", sortBy);
 		if (pager != null) {
 			Integer total = (Integer) sqlSessionTemplate.selectOne("product.selectCountByBrandOrName",props);
 			pager.setTotal(total);

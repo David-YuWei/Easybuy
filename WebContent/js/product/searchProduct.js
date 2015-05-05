@@ -15,6 +15,7 @@ var initTmpls = function(){
 var searchList = function(){
 	lastOption.brand_name = $('#brand_name').val();
 	lastOption.content = $('#content').val();
+	lastOption.sortBy = $('input[type="radio"][name="sortBy"]:checked').val();
 	$.getJSON('/Easybuy/product/searchProduct?_format=json', lastOption, function(r){
 		if(r.status == 'success'){
 			$('#productArea').html('');
