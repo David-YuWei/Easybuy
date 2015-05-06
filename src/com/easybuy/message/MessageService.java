@@ -52,6 +52,16 @@ public class MessageService {
 		}
 	}
 	
+	public String selectSentCount(String user_name){
+		String empty="";
+		int count=0;
+		count=messageDAO.selectSentCount(user_name);
+		if(count==0){
+			empty="Sent list is empty";
+		}
+		return empty;
+	}
+	
 	public boolean sendRegistrationNotif(String touser){
 		try{
 			Message message =new Message();

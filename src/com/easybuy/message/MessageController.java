@@ -90,7 +90,7 @@ public class MessageController {
 	@RequestMapping(value = "/sentList", method = {RequestMethod.GET})
 	public ModelAndView sentList(HttpServletRequest request, HttpServletResponse response,
 			@RequestParam(value = "page", required = false, defaultValue = "#{1}") Integer page,
-			@RequestParam(value = "pageSize", required = false, defaultValue = "#{20}") Integer pageSize) throws ServletException {
+			@RequestParam(value = "pageSize", required = false, defaultValue = "#{5}") Integer pageSize) throws ServletException {
 		ModelAndView mav = new ModelAndView();
 		Map<String, Object> model = new LinkedHashMap<String, Object>();
 		try {

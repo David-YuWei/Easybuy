@@ -84,7 +84,11 @@ public class MessageDAO {
 		return (String)sqlSessionTemplate.selectOne("message.checkTouser",props);
 	}
 	
-	
+	public int selectSentCount(String user_name){
+		Map<String, Object> props = new HashMap<String, Object>();
+		props.put("user_name",user_name);
+		return (int)sqlSessionTemplate.selectOne("message.selectSentCount",props);
+	}
 	
 	
 	
