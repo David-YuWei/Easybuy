@@ -12,6 +12,7 @@
 <script type="text/javascript" src="/Easybuy/js/jquery.tmpl.js"></script>
 <script type="text/javascript" src="/Easybuy/js/message/sentList.js"></script>
 </head>
+
 <body>
 <div class="container">
 		<jsp:include page='../header.jsp'>
@@ -52,6 +53,7 @@
 </script>
 
 <script x-id="sentMessages" type="text/x-template">
+
 {{each list}}
 <tr x-id="{{= message_id}}" class="data-table-row">
 	<td align="center">{{= touser}}</td>
@@ -60,6 +62,9 @@
 	<a href="/Easybuy/message/message_view?message_id={{= message_id}}">View</a></td>
 </tr>
 {{/each}}
+
+
+
 </script>
 </div>
  

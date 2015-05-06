@@ -52,5 +52,11 @@
 		values(#{fromuser}, #{touser}, #{type}, #{content})
 	</insert>
 	
+	<select id="checkTouser" resultType="String">
+		(select user_name from seller where user_name = #{touser}) 
+		union (select user_name from buyer where user_name = #{touser}) 
+		union (select user_name from admin where user_name = #{touser});
+	</select>
+	
 </mapper>
 	
