@@ -49,7 +49,7 @@
 						</div>
 						<div class="input-row">
 							<div class="label">Phone</div>
-							<div class="input-box"><input name="phone" id="phone" type="text" value="<%= order.getPhone() == null ? "" : order.getPhone() %>" class="input-text"/>&nbsp;<font color="red">*</font></div>
+							<div class="input-box"><input name="phone" id="phone" type="text" value="<%= order.getPhone() == null ? "" : order.getPhone() %>" onkeyup="if(this.value.length==1){this.value=this.value.replace(/[^1-9]/g,'')}else{this.value=this.value.replace(/\D/g,'')}"  class="input-text"/>&nbsp;<font color="red">*</font></div>
 						</div>
 					</div>
 				</div>
@@ -78,11 +78,11 @@
 					<div class="input-zone">
 						<div class="input-row">
 							<div class="label">Card number</div>
-							<div class="input-box"><input name="paypal_account" id="paypal_account" type="text" value="<%= order.getPaypal_account() == null ? "" : order.getPaypal_account() %>" class="input-text"/>&nbsp;<font color="red">*</font></div>
+							<div class="input-box"><input name="paypal_account" id="paypal_account" type="text" value="<%= order.getPaypal_account() == null ? "" : order.getPaypal_account() %>" onkeyup="if(this.value.length==1){this.value=this.value.replace(/[^1-9]/g,'')}else{this.value=this.value.replace(/\D/g,'')}" class="input-text"/>&nbsp;<font color="red">*</font></div>
 						</div>
 						<div class="input-row">
 							<div class="label">Passcode</div>
-							<div class="input-box"><input name="passcode" id="passcode" type="text" value="<%= order.getPasscode() == null ? "" : order.getPasscode() %>" class="input-text" id="inputSuccess"/>&nbsp;<font color="red">*</font></div>
+							<div class="input-box"><input name="passcode" id="passcode" type="password" value="<%= order.getPasscode() == null ? "" : order.getPasscode() %>" class="input-text" onkeyup="if(this.value.length==1){this.value=this.value.replace(/[^1-9]/g,'')}else{this.value=this.value.replace(/\D/g,'')}" id="inputSuccess"/>&nbsp;<font color="red">*</font></div>
 						</div>
 					</div>
 				</div>
