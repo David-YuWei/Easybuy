@@ -55,4 +55,8 @@ public class ShopcartDAO {
 	    params.put("user_name", user_name);
 		sqlSessionTemplate.delete("shopcart.deleteItems", params);
 	}
+	
+	public void deleteProduct(long product_id){
+		sqlSessionTemplate.delete("shopcart.deleteProduct",product_id);
+	}
 }

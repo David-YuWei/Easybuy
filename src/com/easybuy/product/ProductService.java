@@ -17,7 +17,10 @@ import com.easybuy.common.Pager;
 import com.easybuy.message.MessageService;
 import com.easybuy.product.domain.Product;
 import com.easybuy.product.domain.Review;
+import com.easybuy.shopcart.ShopcartService;
 import com.easybuy.user.UserDAO;
+import com.easybuy.wishlist.WishlistDAO;
+import com.easybuy.wishlist.WishlistService;
 
 @Service("product:productService")
 public class ProductService {
@@ -28,6 +31,12 @@ public class ProductService {
 	
 	@Resource(name = "message:messageService")
 	private MessageService messageService;
+	
+	@Resource(name = "wishlist:wishlistService")
+	private WishlistService wishlistService;
+	
+	@Resource(name = "shopcart:shopcartService")
+	private ShopcartService shopcartService;
 	
 	
 	public List<String> getAllBrands(){
@@ -122,6 +131,8 @@ public class ProductService {
 	public boolean deleteById(long product_id){
 		try{
 			productDAO.deleteById(product_id);
+			wishlistService.deleteProduct(product_id);
+			shopcartService.deleteProduct(product_id);
 			return true;
 		}
 		catch(Exception e){
