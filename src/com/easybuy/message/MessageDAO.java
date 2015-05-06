@@ -78,6 +78,11 @@ public class MessageDAO {
 	}
 	
 	
+	public String checkTouser(String touser){
+		Map<String, Object> props = new HashMap<String, Object>();
+		props.put("touser", touser);
+		return (String)sqlSessionTemplate.selectOne("message.checkTouser",props);
+	}
 	
 	
 	

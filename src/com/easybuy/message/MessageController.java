@@ -100,6 +100,7 @@ public class MessageController {
 			model.put("status", "success");
 			model.put("pager", pager);
 			model.put("list", messages);
+				
 		} catch (Exception e) {
 			model.put("status", "error");
 			e.printStackTrace();
@@ -177,6 +178,15 @@ public class MessageController {
 			if(content.length() > 1000){
 				mav.addObject("error", "Content too long.");
 				mav.addObject("message", message);
+				mav.setViewName("/message/message_new");
+				return mav;
+			}
+			
+			Boolean test=messageService.checkTouser(touser);
+			if(test==false)
+			{
+				mav.addObject("message",message);
+				mav.addObject("error", "Please enter a valid user ID in TO field!");
 				mav.setViewName("/message/message_new");
 				return mav;
 			}

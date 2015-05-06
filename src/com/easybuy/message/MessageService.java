@@ -111,4 +111,24 @@ public class MessageService {
 			return false;
 		}
 	}
+	
+	public boolean checkTouser(String touser){
+		try{
+			String test;
+			test=messageDAO.checkTouser(touser);
+			if(test!=null){
+				return true;
+			}
+			else{
+				return false;
+			}
+		}
+		catch(Exception e){
+			return false;
+		}
+	}
+	
+	
+	
+
 }
