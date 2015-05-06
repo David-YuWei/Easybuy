@@ -78,7 +78,9 @@
 				<div id="message_{{= order.order_id}}_{{= item.product_id}}" class="message"></div>
 				<div class="op1"><span onclick="add2cart({{= item.product_id}},{{= order.order_id}});" class="span-click-box">Buy it Again</span></div>
 				<div class="op2"><a href="javascript:void(0)" onclick="delItem({{= item.product_id}},{{= order.order_id}});">Delete item</a></div>
-				<div class="op3"><a href="/Easybuy/product/review/new?product_id={{= item.product_id}}">Review</a></div>
+				{{if item.status =='2'}}<div class="op3"><a href="/Easybuy/product/review/new?product_id={{= item.product_id}}">Review</a></div>
+				{{else}}<div class="op3"><font style="color:gray;">Review</font></div>
+				{{/if}}
 				<div class="op4"><a href="/Easybuy/message/new?touser={{= item.user_name}}">Contact Seller</a></div>
 			</div>
 	<% }
