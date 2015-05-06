@@ -90,7 +90,7 @@ public class MessageController {
 	@RequestMapping(value = "/sentList", method = {RequestMethod.GET})
 	public ModelAndView sentList(HttpServletRequest request, HttpServletResponse response,
 			@RequestParam(value = "page", required = false, defaultValue = "#{1}") Integer page,
-			@RequestParam(value = "pageSize", required = false, defaultValue = "#{20}") Integer pageSize) throws ServletException {
+			@RequestParam(value = "pageSize", required = false, defaultValue = "#{5}") Integer pageSize) throws ServletException {
 		ModelAndView mav = new ModelAndView();
 		Map<String, Object> model = new LinkedHashMap<String, Object>();
 		try {
@@ -100,6 +100,7 @@ public class MessageController {
 			model.put("status", "success");
 			model.put("pager", pager);
 			model.put("list", messages);
+				
 		} catch (Exception e) {
 			model.put("status", "error");
 			e.printStackTrace();
@@ -177,6 +178,15 @@ public class MessageController {
 			if(content.length() > 1000){
 				mav.addObject("error", "Content too long.");
 				mav.addObject("message", message);
+				mav.setViewName("/message/message_new");
+				return mav;
+			}
+			
+			Boolean test=messageService.checkTouser(touser);
+			if(test==false)
+			{
+				mav.addObject("message",message);
+				mav.addObject("error", "Please enter a valid user ID in TO field!");
 				mav.setViewName("/message/message_new");
 				return mav;
 			}
