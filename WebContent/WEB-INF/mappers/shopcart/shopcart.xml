@@ -44,4 +44,8 @@
 	    </foreach>
 	</delete>
 	
+	<delete id="deleteProduct">
+		delete from shop_cart where product_id  = #{product_id}
+	</delete>
+	
 </mapper>

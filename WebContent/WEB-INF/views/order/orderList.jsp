@@ -55,7 +55,7 @@
 	<% }
 	else if(user instanceof Seller){
 	%>	
-		<div class="info4"><a href="/Easybuy/order/{{= order.order_id}}/edit">View order details</a>
+		<div class="info4"><a href="/Easybuy/order/{{= order.order_id}}/view">View order details</a>
 		</div>
 	<%}
 	else{

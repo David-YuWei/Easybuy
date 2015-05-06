@@ -105,5 +105,9 @@ public class ShopcartService {
 		shopcartDAO.deleteItems(user_name,product_ids);
 	}
 	
+	public void deleteProduct(long product_id){
+		shopcartDAO.deleteProduct(product_id);
+	}
+	
 	
 }
