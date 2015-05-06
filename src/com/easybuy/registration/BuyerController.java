@@ -54,27 +54,12 @@ public class BuyerController {
 		String cpassword= request.getParameter("cpassword");
 		
 		
-		
-			if (StringUtils.isBlank(username) || StringUtils.isBlank(password) || StringUtils.isBlank(firstname) || StringUtils.isBlank(lastname)
-					|| StringUtils.isBlank(emailid) || StringUtils.isBlank(address) || StringUtils.isBlank(phonenumber) || StringUtils.isBlank(cpassword)) {
-				mav.addObject("msg", "Please enter all details");
-				mav.setViewName("/registration/buyerregistration");
-				return mav;
-			}else if(!cpassword.equals(password))
-			{
-				mav.addObject("msg", "Confirm password does not match with Password.Please enter again");
-				mav.setViewName("/registration/buyerregistration");
-				return mav;
-				
-			}
-			else{
 				String msg = userService.insertBuyer(request,firstname,middlename,lastname,emailid,address,phonenumber,username,password);
 				if (msg.equals("success")) {
 					mav.addObject("msg","<font style=\"color:green;\">You are successfully registered</font>");
 					mav.setViewName("/login");
 					return mav;
 				}
-			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {

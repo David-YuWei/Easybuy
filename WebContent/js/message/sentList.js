@@ -14,18 +14,25 @@ var searchSentList = function(){
 	
 	$.getJSON('/Easybuy/message/sentList?_format=json', {}, function(r){
 		if(r.status == 'success'){
-			$('#list-table').find('> tbody > tr:gt(0)').remove();
-			$('#list-table').append($.tmpl('sentMessages',{list:r.list}));
-			var pageinfo = {
-					pager: r.pager,
-					pages: []
-				};
-			for(var i = pageinfo.pager.page - 5; i < pageinfo.pager.page + 5; i++){
-					if(i >= 1 && i <= pageinfo.pager.totalPage){
-						pageinfo.pages.push(i);
+			if(r.list ==null || r.list.length == 0){
+				$('#list-table').find('> tbody > tr:gt(0)').remove();
+				$('#list-table').append('<tr><td colspan="4">No message sent.</td></tr>');
+			}
+			else{
+				$('#list-table').find('> tbody > tr:gt(0)').remove();
+				$('#list-table').append($.tmpl('sentMessages',{list:r.list}));
+				var pageinfo = {
+						pager: r.pager,
+						pages: []
+					};
+				for(var i = pageinfo.pager.page - 5; i < pageinfo.pager.page + 5; i++){
+						if(i >= 1 && i <= pageinfo.pager.totalPage){
+							pageinfo.pages.push(i);
+						}
 					}
-				}
-			$('#pagebar').empty().append($.tmpl('pagebar', pageinfo));
+				$('#pagebar').empty().append($.tmpl('pagebar', pageinfo));
+			}
+			
 		}
 	});
 }

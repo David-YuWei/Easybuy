@@ -56,36 +56,13 @@ public class SellerController {
 		String routingnumber = request.getParameter("routingnumber");
 		
 		
-		
-			if (StringUtils.isBlank(username) || StringUtils.isBlank(password) || StringUtils.isBlank(firstname) || StringUtils.isBlank(lastname)
-					|| StringUtils.isBlank(emailid) || StringUtils.isBlank(address) || StringUtils.isBlank(phonenumber) 
-					|| StringUtils.isBlank(accountnumber) || StringUtils.isBlank(routingnumber)) {
-				mav.addObject("msg", "Please enter all details");
-				mav.setViewName("/registration/seller");
-				return mav;
-			}else if(!cpassword.equals(password))
-			{
-				mav.addObject("msg", "Confirm password does not match with Password.Please enter again");
-				mav.setViewName("/registration/seller");
-				return mav;
-				
-			} /* else if(!username.equals(null))
-			{
-				String msg = userService.checkBuyer(request,username);
-				if (msg.equals("success")) {
-					mav.addObject("msg","UserName is not available");
-					mav.setViewName("/registration/buyerregistration");
-					return mav;
-				}
-			} */
-			else{
 				String msg = userService.insertSeller(request,firstname,middlename,lastname,emailid,address,phonenumber,username,password,accountnumber,routingnumber);
 				if (msg.equals("success")) {
-					mav.addObject("msg","<font style=\"color:green;\">You are successfully registered, please waiting for approve</font>");
+					mav.addObject("msg","<font style=\"color:green;\">You are successfully registered, Please wait for approval</font>");
 					mav.setViewName("/login");
 					return mav;
 				}
-			}
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
