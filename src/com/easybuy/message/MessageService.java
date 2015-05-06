@@ -52,6 +52,16 @@ public class MessageService {
 		}
 	}
 	
+	public String selectSentCount(String user_name){
+		String empty="";
+		int count=0;
+		count=messageDAO.selectSentCount(user_name);
+		if(count==0){
+			empty="Sent list is empty";
+		}
+		return empty;
+	}
+	
 	public boolean sendRegistrationNotif(String touser){
 		try{
 			Message message =new Message();
@@ -111,4 +121,24 @@ public class MessageService {
 			return false;
 		}
 	}
+	
+	public boolean checkTouser(String touser){
+		try{
+			String test;
+			test=messageDAO.checkTouser(touser);
+			if(test!=null){
+				return true;
+			}
+			else{
+				return false;
+			}
+		}
+		catch(Exception e){
+			return false;
+		}
+	}
+	
+	
+	
+
 }

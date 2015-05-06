@@ -15,7 +15,12 @@ var searchList = function(option){
 	
 	$.getJSON('/Easybuy/message/receivedList?_format=json', option, function(r){
 		if(r.status == 'success'){
-			$('#list-table').find('> tbody > tr:gt(0)').remove();
+			if(r.list ==null || r.list.length == 0){
+				$('#list-table').find('> tbody > tr:gt(0)').remove();
+				$('#list-table').append('<tr><td colspan="4">No message received.</td></tr>');
+			}
+			else{
+				$('#list-table').find('> tbody > tr:gt(0)').remove();
 			$('#list-table').append($.tmpl('receivedList',{list:r.list}));
 			var pageinfo = {
 					pager: r.pager,
@@ -27,6 +32,8 @@ var searchList = function(option){
 					}
 				}
 			$('#pagebar').empty().append($.tmpl('pagebar', pageinfo));
+			}
+			
 		}
 	});
 }
