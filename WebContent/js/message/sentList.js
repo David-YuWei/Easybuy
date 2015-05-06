@@ -10,9 +10,9 @@ var initTmpls = function(){
 		$.template($(this).attr('x-id'), this);
 	});
 }
-var searchSentList = function(){
+var searchSentList = function(option){
 	
-	$.getJSON('/Easybuy/message/sentList?_format=json', {}, function(r){
+	$.getJSON('/Easybuy/message/sentList?_format=json', option, function(r){
 		if(r.status == 'success'){
 			if(r.list ==null || r.list.length == 0){
 				$('#list-table').find('> tbody > tr:gt(0)').remove();
