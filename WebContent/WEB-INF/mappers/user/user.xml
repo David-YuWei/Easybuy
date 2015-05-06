@@ -30,13 +30,12 @@
 		(
 			select "buyer" as type from buyer 
 			where user_name = #{username}
-			and status = '1'
+			
 		)
 		union
 		(
 			select "seller" as type from seller 
 			where user_name = #{username}
-			and status != '0'
 		)
 		union
 		(
