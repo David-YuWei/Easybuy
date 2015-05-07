@@ -49,7 +49,7 @@
 		<div class="op3"><a href="/Easybuy/message/new?touser={{= user_name_seller}}">Contact Seller</a></div>
 	</div>
 	<div class="column0"><font>{{= product_name}}</font></div>
-	<div id="total" class="data-column style2">$ {{= quantity * price}}</div>
+	<div id="total" class="data-column style2">$ {{= toDecimal2(quantity * price)}}</div>
 	<div class="data-column"><input name="quantity" onblur="calculateandsave(event,{{= product_id}});" id="quantity" type="text" class="input-text" value="{{= quantity}}" onkeyup="if(this.value.length==1){this.value=this.value.replace(/[^1-9]/g,'')}else{this.value=this.value.replace(/\D/g,'')}" /></div>
 	<div class="data-column style1">$ {{= price}}</div>
 	<input type="hidden" id="old" value="{{= quantity}}"/>

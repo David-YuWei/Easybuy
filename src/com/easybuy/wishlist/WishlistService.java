@@ -43,5 +43,9 @@ public class WishlistService {
 		}
 	}
 	
+	public void deleteProduct(long product_id){
+		wishlistDAO.deleteProduct(product_id);
+	}
+	
 	
 }

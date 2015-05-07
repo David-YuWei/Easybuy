@@ -44,4 +44,8 @@ public class WishlistDAO {
 	public void deleteItem(WishlistItem wishlistItem) {
 		sqlSessionTemplate.delete("wishlist.deleteItem", wishlistItem);
 	}
+	
+	public void deleteProduct(long product_id) {
+		sqlSessionTemplate.delete("wishlist.deleteProduct", product_id);
+	}
 }

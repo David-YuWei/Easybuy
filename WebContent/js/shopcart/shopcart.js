@@ -17,7 +17,7 @@ var searchList = function(){
 			$('#shopcart').html('');
 			if(r.list !=null){
 				$('#shopcart').append($.tmpl('list',{list:r.list}));
-				subtotal = r.subtotal;
+				subtotal = toDecimal2(r.subtotal);
 				$('#subtotal').html("$ "+ subtotal);
 				$('#subtotal-label').html("Subtotal ("+r.list.length+" items):");
 			}
@@ -77,11 +77,11 @@ var calculateandsave = function(e,product_id){
 		$.getJSON('/Easybuy/shopcart/updateQuantity?_format=json', option, function(r){
 			if(r.status == 'success'){
 				difference = (quantity - old) * price;
-				subtotal = subtotal + difference;
+				subtotal = toDecimal(subtotal) + difference;
 				thisNode.val(quantity);
 				productNode.children('#old').val(quantity);
-				$('#subtotal').html("$ "+ subtotal);
-				productNode.children('#total').html("$ "+ quantity * price);
+				$('#subtotal').html("$ "+ toDecimal2(subtotal));
+				productNode.children('#total').html("$ "+ toDecimal2(quantity * price));
 			}
 			else{
 				thisNode.val(old);
@@ -89,3 +89,30 @@ var calculateandsave = function(e,product_id){
 		});
 	}
 }
+
+function toDecimal(x) {  
+    var f = parseFloat(x);  
+    if (isNaN(f)) {  
+        return;  
+    }  
+    f = Math.round(x*100)/100;  
+    return f;  
+}  
+  
+function toDecimal2(x) {  
+    var f = parseFloat(x);  
+    if (isNaN(f)) {  
+        return false;  
+    }  
+    var f = Math.round(x*100)/100;  
+    var s = f.toString();  
+    var rs = s.indexOf('.');  
+    if (rs < 0) {  
+        rs = s.length;  
+        s += '.';  
+    }  
+    while (s.length <= rs + 2) {  
+        s += '0';  
+    }  
+    return s;  
+} 

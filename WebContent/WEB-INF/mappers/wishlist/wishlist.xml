@@ -32,4 +32,8 @@
 		delete from wish_list_items where user_name = #{user_name} and product_id = #{product_id} 
 	</delete>
 	
+	<delete id="deleteProduct">
+		delete from wish_list_items where product_id = #{product_id} 
+	</delete>
+	
 </mapper>
