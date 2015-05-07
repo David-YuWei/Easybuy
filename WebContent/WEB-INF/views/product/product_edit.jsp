@@ -37,7 +37,7 @@
 					</div>
 					<div class="input-row">
 						<div  class="label">price</div>
-						<div class="input-box"><input name="price" id="price" type="text" value="<%= product.getPrice()%>" class="input-text"/>&nbsp;<font color="red">*</font></div>
+						<div class="input-box"><input name="price" id="price" onkeyup="if(!this.value.match(/^[\+\-]?\d*?\.?\d*?$/))this.value=this.t_value;else this.t_value=this.value;if(this.value.match(/^(?:[\+\-]?\d+(?:\.\d+)?)?$/))this.o_value=this.value" type="text" value="<%= product.getPrice()%>" class="input-text"/>&nbsp;<font color="red">*</font></div>
 					</div>
 					<div class="input-row">
 						<div  class="label">image</div>
